@@ -136,7 +136,7 @@
 .header-logo {
   size: $global-height-xsmall $global-height;
   mask-image: url('../media/logo.svg');
-  mask-size: $global-height-small $global-height;
+  mask-size: contain;
   mask-position: center;
   background: url('../media/pattern.png') no-repeat -800px -575px;
   background-size: 1500px 1000px;
