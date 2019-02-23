@@ -189,7 +189,7 @@ class Foundation extends React.Component {
                         <Icon icon="github" />
                       </Button>
                       <Button
-                        url="https://www.github.com/zslabs"
+                        url="https://www.codepen.io/zslabs"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="aboutModal-social--codepen"
