@@ -7,6 +7,7 @@ import moment from 'moment';
 import 'what-input';
 import {
   Button,
+  Close,
   Inline,
   List,
   ListItem,
@@ -173,6 +174,10 @@ class Foundation extends React.Component {
                   handleOutsideModalClick={this.handleAboutModalToggle}
                 >
                   <ModalBody>
+                    <Close
+                      onClick={this.handleAboutModalToggle}
+                      className="aboutModal-close"
+                    />
                     <img src={me} className="aboutModal-image" alt={title} />
                     <h3 className="u-textCenter u-mb--small">
                       Hi, I&apos;m Zach
