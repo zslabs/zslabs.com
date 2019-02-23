@@ -1,5 +1,7 @@
 # Zach Schnackel
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b9947fc9-cc4d-40ed-8afe-a61d48e70924/deploy-status)](https://app.netlify.com/sites/zslabs/deploys)
+
 ## Overview
 
 This site is built with [Gatsby](http://gatsbyjs.org/) v2, a static-site generator built with [React](https://reactjs.org/).
