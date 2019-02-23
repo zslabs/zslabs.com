@@ -6,7 +6,7 @@ const { domainRegex } = require('./utils/helpers');
 module.exports = {
   siteMetadata: {
     title: 'Zach Schnackel',
-    description: 'Portfolio site software engineer, Zach Schnackel',
+    description: 'Portfolio site for software engineer, Zach Schnackel',
     siteUrl: 'https://www.zslabs.com',
   },
   plugins: [
