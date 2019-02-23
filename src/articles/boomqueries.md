@@ -6,7 +6,7 @@ date: 2015-04-24
 
 When I made the transition from agency-life to product development, my eyes were opened to the concept of truly modular components. Working under WordPress as our frontend platform; with the concept of "widgets" - it comes with "certain uncertainty" that any type of content can be placed... well anywhere. That perfectly responsive card-grid you intended to be used on a full-width homepage widget position? Well, it was just placed in a sidebar.
 
-<div class="u-textCenter"><img title="Deal with it" src="http://media.giphy.com/media/Zo9ACzmJgoqRy/giphy.gif"></div>
+<div class="u-textCenter"><img title="Deal with it" src="https://media.giphy.com/media/Zo9ACzmJgoqRy/giphy.gif"></div>
 
 What would you have to do as a work-around? Well, two options come to mind:
 
