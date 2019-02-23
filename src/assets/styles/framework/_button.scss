@@ -1,0 +1,46 @@
+//
+// Variables
+//
+
+$button-default-enable: false;
+$button-primary-enable: false;
+$button-secondary-enable: false;
+$button-danger-enable: false;
+$button-teal-enable: false;
+$button-outline-enable: false;
+$button-outline-primary-enable: false;
+$button-contrast-enable: false;
+$button-small-enable: false;
+$button-xsmall-enable: false;
+
+@mixin hook-button() {
+  transform-origin: center center;
+  box-shadow: $global-neutral-box-shadow;
+  background-image: url('../media/pattern.png') !important;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: auto;
+  color: $global-contrast;
+  text-shadow: 0 1px 10px rgba($global-dark, 0.1);
+
+  &:hover,
+  &:focus {
+    color: $global-contrast;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &--default {
+    background-position: 20% 15%;
+  }
+
+  &--primary {
+    background-position: 60% 10%;
+  }
+
+  &--secondary {
+    background-position: 70% 85%;
+  }
+}

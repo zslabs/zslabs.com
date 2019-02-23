@@ -1,0 +1,241 @@
+//
+// Title styles
+//
+
+%titleStyles {
+  position: relative;
+  display: inline-flex;
+  z-index: 1;
+
+  &::before {
+    @include fluid-size(
+      'width',
+      ($base-h3-font-size / 1.25),
+      ($base-h2-font-size / 1.25)
+    );
+    @include fluid-size(
+      'height',
+      ($base-h3-font-size / 1.25),
+      ($base-h2-font-size / 1.25)
+    );
+
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-25%);
+    background-image: url('../media/pattern.png');
+    background-repeat: no-repeat;
+  }
+}
+
+//
+// CodePen Embeds
+// `gatsby-remark-codepen`
+//
+
+.codepenEmbed {
+  position: relative;
+  padding-bottom: 56.25%;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+//
+// Full section
+//
+
+.section--full {
+  left: 50%;
+  margin: 0 -50vw;
+  position: relative;
+  right: 50%;
+  width: 100vw;
+}
+
+.section-title {
+  @extend %titleStyles;
+}
+
+//
+// OffCanvas
+//
+
+.offCanvas-title {
+  @extend %titleStyles;
+
+  &::before {
+    clip-path:
+      polygon(
+        0% 0%,
+        0% 100%,
+        25% 100%,
+        25% 25%,
+        75% 25%,
+        75% 75%,
+        25% 75%,
+        25% 100%,
+        100% 100%,
+        100% 0%
+      );
+    background-position: -325px -315px;
+    background-size: 750px 500px;
+  }
+}
+
+//
+// Header
+//
+
+.header {
+  @include fluid-size(
+    'margin-bottom',
+    $global-whitespace-large,
+    $global-whitespace-xlarge
+  );
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: $global-whitespace-regular;
+
+  &.has-animation {
+    > * {
+      // GSAP
+      transform: translateY(calc(-100% + (-#{$global-whitespace-regular})));
+      opacity: 0;
+    }
+  }
+
+  > * {
+    &:last-child {
+      justify-content: flex-end;
+    }
+
+    > * {
+      display: inline-block;
+      transition: transform 0.25s easeOutBack;
+      transform-origin: center center;
+      backface-visibility: hidden;
+
+      &:hover,
+      &:focus {
+        transform: scale(1.15);
+      }
+    }
+  }
+}
+
+.header-logo {
+  size: $global-height-xsmall $global-height;
+  mask-image: url('../media/logo.svg');
+  mask-size: $global-height-small $global-height;
+  mask-position: center;
+  background: url('../media/pattern.png') no-repeat -800px -575px;
+  background-size: 1500px 1000px;
+}
+
+.header-menu {
+  .icon {
+    size: $global-height-xsmall;
+  }
+}
+
+.header-about {
+  img {
+    size: $global-height;
+    border-radius: 50%;
+    box-shadow: $global-neutral-box-shadow;
+  }
+}
+
+//
+// About Modal
+//
+
+.aboutModal-image {
+  size: ($global-height * 2);
+  border-radius: 50%;
+  box-shadow: $global-neutral-box-shadow;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+[class^='aboutModal-social--'] {
+  transition: transform 0.25s easeOutBack;
+  transform-origin: center center;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.15);
+  }
+}
+
+.aboutModal-social--github {
+  background-position: 45% 70%;
+}
+
+.aboutModal-social--codepen {
+  background-position: 30% 30%;
+}
+
+.aboutModal-social--twitter {
+  background-position: 70% 10%;
+}
+
+//
+// Intro
+//
+
+// 1. GSAP
+.intro-title {
+  @include fluid-type($base-h1-font-size, ($base-h1-font-size * 1.5));
+
+  // 1
+  opacity: 0;
+  transform: translateY(50%);
+}
+
+// GSAP
+.intro-titleSub {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+// GSAP
+.intro-buttonWrapper {
+  transform-origin: center center;
+  transform: scale(0);
+  opacity: 0;
+}
+
+//
+// Projects
+//
+
+// 1. GSAP
+.section--projects {
+  opacity: 0; // 1
+
+  &::before {
+    @include background-dots($global-muted);
+
+    z-index: -2;
+  }
+
+  .section-title {
+    &::before {
+      clip-path: polygon(0 100%, 0 0, 100% 0);
+      background-position: -200px -75px;
+      background-size: 750px 500px;
+    }
+  }
+}

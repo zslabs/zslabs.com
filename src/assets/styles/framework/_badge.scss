@@ -1,0 +1,20 @@
+//
+// Variables
+//
+
+$badge-primary-enable: false;
+$badge-danger-enable: false;
+$badge-rounded-enable: false;
+
+@mixin hook-badge-misc() {
+  .badge--primary {
+    border: 0;
+    background-image: url('../media/pattern.png') !important;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: auto;
+    color: $global-contrast;
+    text-shadow: 0 1px 10px rgba($global-dark, 0.1);
+    background-position: 60% 10%;
+  }
+}

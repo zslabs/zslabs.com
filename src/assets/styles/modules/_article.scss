@@ -1,0 +1,51 @@
+.article-content {
+  @include trimChildren();
+  @include fluid-type($global-font-size, $global-font-size-medium);
+  @include fluid-size(
+    'padding-top',
+    $global-whitespace-large,
+    ($global-whitespace-large + $global-whitespace-regular)
+  );
+  @include fluid-size(
+    'padding-bottom',
+    $global-whitespace-large,
+    ($global-whitespace-large + $global-whitespace-regular)
+  );
+  @include fluid-size(
+    'margin-bottom',
+    $global-whitespace-large,
+    ($global-whitespace-large + $global-whitespace-regular)
+  );
+
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background: url('../media/pattern.png') no-repeat;
+    background-size: 1500px 1000px;
+    background-position: -800px -575px;
+    height: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &::before {
+    width: 250px;
+    bottom: 0;
+  }
+
+  &::after {
+    width: 125px;
+    bottom: -$global-whitespace-regular;
+  }
+}
+
+//
+// Individual articles styles
+//
+
+.svgBackground-example {
+  width: 50px;
+}
