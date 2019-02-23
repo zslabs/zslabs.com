@@ -10,8 +10,8 @@ Hosted on [Netlify](https://www.netlify.com/).
 
 ## Requirements
 
-- [NodeJS](https://nodejs.org/en/) `>= 8.12.0`
-- [Yarn](https://yarnpkg.com/en/) `>= 1.10.1`
+- [NodeJS](https://nodejs.org/en/) `>= 10.15.1`
+- [Yarn](https://yarnpkg.com/en/) `>= 1.12.1`
 
 ## Local Development
 
