@@ -93,4 +93,4 @@ The above snippet had me thinking about how I could apply this to any property t
 }
 ```
 
-This helps clean up common UI elements even further; making my source a bit cleaner as well.
+This helps clean up common UI elements even further; making my source a bit cleaner as well. Huzzah!
