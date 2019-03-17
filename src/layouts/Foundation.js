@@ -131,7 +131,7 @@ const Foundation = (props) => {
               >
                 <ModalBody>
                   <Close
-                    onClick={toggleAboutModalOpen}
+                    onClick={() => toggleAboutModalOpen()}
                     className="aboutModal-close"
                   />
                   <img src={me} className="aboutModal-image" alt={title} />
