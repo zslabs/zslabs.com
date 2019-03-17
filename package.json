@@ -43,6 +43,7 @@
     "react": "16.8.4",
     "react-dom": "16.8.4",
     "react-helmet": "5.2.0",
+    "react-use": "5.7.1",
     "remark": "10.0.1",
     "remark-external-links": "4.0.0",
     "remark-html": "9.0.0",
