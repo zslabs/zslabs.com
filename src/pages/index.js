@@ -1,5 +1,6 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { useMount } from 'react-use';
 import { graphql } from 'gatsby';
 import { TimelineMax } from 'gsap/TweenMax';
 import {
@@ -64,9 +65,9 @@ const Index = (props) => {
     },
   } = props;
 
-  useEffect(() => {
+  useMount(() => {
     runAnimation();
-  }, []);
+  });
 
   return (
     <Foundation
@@ -90,7 +91,7 @@ const Index = (props) => {
                 <Inline size="medium" className="u-flexCenter">
                   <div className="intro-buttonWrapper" ref={articleButtonRef}>
                     <Button
-                      onClick={renderProps.handleArticlesOffCanvasToggle}
+                      onClick={renderProps.toggleArticlesOffCanvasOpen}
                       type="primary"
                     >
                       Articles
