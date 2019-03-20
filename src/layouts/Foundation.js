@@ -198,6 +198,15 @@ const Foundation = (props) => {
                     >
                       GatsbyJS
                     </a>
+                    ,{' '}
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://nextjs.org"
+                      className="u-textUnderline u-textDefault"
+                    >
+                      Next.JS
+                    </a>
                     , and{' '}
                     <a
                       target="_blank"
