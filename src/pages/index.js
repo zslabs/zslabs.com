@@ -81,7 +81,7 @@ const Index = (props) => {
                   className="intro-titleSub u-textMuted u-textFluid--medium u-mb--small"
                   ref={introTitleSub}
                 >
-                  UI/Motion Developer
+                  Full-Stack/Motion Developer
                 </h5>
                 <h1 className="intro-title u-mt--remove" ref={introTitle}>
                   Zach Schnackel
