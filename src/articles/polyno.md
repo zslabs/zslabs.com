@@ -1,6 +1,6 @@
 ---
 title: PolyNo?
-date: 2015-11-15
+date: '2015-11-15'
 ---
 
 Let's run through a story you may already be familiar with.

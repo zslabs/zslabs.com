@@ -1,8 +1,8 @@
 ---
 title: Modifying SVG background fills
 slug: svg-background-fills
-date: 2014-09-29
-dateModified: 2019-02-22
+date: '2014-09-29'
+dateModified: '2019-02-22'
 ---
 
 Working with generated SVG-sprites provide access to individual symbols like so:

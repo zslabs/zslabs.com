@@ -1,6 +1,6 @@
 ---
 title: Fluid Sizes
-date: 2019-02-22
+date: '2019-02-22'
 ---
 
 Often times when working with responsive projects, we tend to forget that typography doesn't automatically scale down on smaller screens. While there are other solutions out there; like `rem` to universally control this, having more flexibility can be warranted.

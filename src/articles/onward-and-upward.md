@@ -1,6 +1,6 @@
 ---
 title: Onward and upward
-date: 2017-01-21
+date: '2017-01-21'
 ---
 
 Today's GSAP case-study will be into another animation I did for [DigitalOcean](https://www.digitalocean.com). The goal was to illustrate the growth of the company since its infancy.

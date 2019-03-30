@@ -1,6 +1,6 @@
 ---
 title: Round 'n round
-date: 2017-01-08
+date: '2017-01-08'
 ---
 
 Today's deep-dive will be a Droplet animation I did for [DigitalOcean](https://www.digitalocean.com). This was a branding experiment to test out future initiatives for the company.

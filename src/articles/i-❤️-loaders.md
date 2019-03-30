@@ -1,6 +1,6 @@
 ---
 title: I ❤️ loaders
-date: 2017-03-25
+date: '2017-03-25'
 ---
 
 Like many others, I've always found [Dribbble](http://dribbble.com) as an excellent resource for design inspiration. When [CodePen](http://codepen.io) came onto the scene, it brought a new avenue for developers to share their work and gather feedback.

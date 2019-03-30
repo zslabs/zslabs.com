@@ -82,7 +82,7 @@ module.exports = {
               destinationDir: 'uploads',
             },
           },
-          'gatsby-plugin-twitter',
+          '@weknow/gatsby-remark-twitter',
           {
             resolve: 'gatsby-remark-embed-video',
             options: {

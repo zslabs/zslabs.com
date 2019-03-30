@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { useMount } from 'react-use';
+import useMount from 'react-use/lib/useMount';
 import { graphql } from 'gatsby';
 import { TimelineMax } from 'gsap/TweenMax';
 import {

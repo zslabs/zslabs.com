@@ -1,6 +1,6 @@
 ---
 title: Extendable switch statements
-date: 2013-02-09
+date: '2013-02-09'
 ---
 
 While creating an extensible parent-theme, I was hell-bent on creating a DRY logic that was intuitive enough to handle the most complex setups, while not being too convoluted for the average user to get up and running. Inspired by [Scribu's article on theme wrappers](http://scribu.net/wordpress/theme-wrappers.html), I found several areas in my theme that ~~should be~~ needed to be pluggable.
