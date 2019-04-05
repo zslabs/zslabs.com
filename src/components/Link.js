@@ -4,7 +4,7 @@ import { Link as GatsbyLink } from 'gatsby';
 import { config } from 'chaoskit/src/helpers/config';
 
 // This component gets around an oddity where @reach/router doesn't appropriately handle active links; so we're stubbing in our own logic
-const Link = (props) => {
+const Link = React.forwardRef((props, ref) => {
   const { exact, className, children } = props;
 
   const activeClassName = config.classes.active;
@@ -12,6 +12,7 @@ const Link = (props) => {
   return (
     <GatsbyLink
       {...props}
+      ref={ref}
       getProps={({ isCurrent, isPartiallyCurrent }) => ({
         className: [
           className,
@@ -25,7 +26,7 @@ const Link = (props) => {
       {children}
     </GatsbyLink>
   );
-};
+});
 
 Link.propTypes = {
   className: PropTypes.string,

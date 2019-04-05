@@ -1,21 +1,61 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import useMount from 'react-use/lib/useMount';
-import { graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import { TimelineMax } from 'gsap/TweenMax';
 import {
   Button, Inline, List, ListItem,
 } from 'chaoskit/src/components';
 
 import Foundation from '../layouts/Foundation';
+import { Link } from '../components';
 import { config } from '../helpers/config';
 
-const Index = (props) => {
+const Index = () => {
   const introTitle = React.createRef();
   const introTitleSub = React.createRef();
   const articleButtonRef = React.createRef();
   const experienceButtonRef = React.createRef();
   const projectsRef = React.createRef();
+  const latestArticleRef = React.createRef();
+
+  const {
+    latestArticle: {
+      edges: [latestArticle],
+    },
+    projects: { childDataYaml: pageData },
+  } = useStaticQuery(graphql`
+    query IndexPageData {
+      latestArticle: allMarkdownRemark(
+        sort: { fields: [frontmatter___date], order: DESC }
+        filter: {
+          fileAbsolutePath: { regex: "/src/articles/" }
+          frontmatter: { title: { ne: "BLUEPRINT" } }
+        }
+        limit: 1
+      ) {
+        edges {
+          node {
+            frontmatter {
+              title
+            }
+            fields {
+              fullUrl
+            }
+          }
+        }
+      }
+
+      projects: file(name: { eq: "projects" }) {
+        childDataYaml {
+          projects {
+            title
+            url
+            description
+          }
+        }
+      }
+    }
+  `);
 
   const runAnimation = () => {
     const pageTimeline = new TimelineMax({
@@ -54,16 +94,14 @@ const Index = (props) => {
         },
         'introButtons',
       )
+      .to(latestArticleRef.current, 0.25, {
+        autoAlpha: 1,
+      })
       .to(projectsRef.current, 0.5, {
+        delay: 0.25,
         autoAlpha: 1,
       });
   };
-
-  const {
-    data: {
-      projects: { childDataYaml: pageData },
-    },
-  } = props;
 
   useMount(() => {
     runAnimation();
@@ -107,6 +145,25 @@ const Index = (props) => {
                   </div>
                 </Inline>
               </div>
+              <Link
+                className="u-linkDefault home__latestArticle"
+                to={latestArticle.node.fields.fullUrl}
+                ref={latestArticleRef}
+              >
+                <div>
+                  <span
+                    className="u-textMedium"
+                    role="img"
+                    aria-label="Hooray!"
+                  >
+                    🎉
+                  </span>{' '}
+                  Check out my latest article:
+                </div>
+                <div className="u-textBold">
+                  {latestArticle.node.frontmatter.title}
+                </div>
+              </Link>
             </div>
           </section>
           <section
@@ -149,23 +206,5 @@ const Index = (props) => {
     />
   );
 };
-
-Index.propTypes = {
-  data: PropTypes.object.isRequired,
-};
-
-export const pageQuery = graphql`
-  query IndexPageData {
-    projects: file(name: { eq: "projects" }) {
-      childDataYaml {
-        projects {
-          title
-          url
-          description
-        }
-      }
-    }
-  }
-`;
 
 export default Index;

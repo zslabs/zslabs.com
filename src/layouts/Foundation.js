@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import useMount from 'react-use/lib/useMount';
 import useToggle from 'react-use/lib/useToggle';
-import { StaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import moment from 'moment';
 import 'what-input';
@@ -27,15 +27,50 @@ import '../assets/styles/site.scss';
 
 const Foundation = (props) => {
   const {
-    data: {
-      site: {
-        siteMetadata: { title, description, siteUrl },
-      },
-      articles: { edges: articles },
+    site: {
+      siteMetadata: { title, description, siteUrl },
     },
-    render,
-    runAnimation,
-  } = props;
+    articles: { edges: articles },
+  } = useStaticQuery(
+    graphql`
+      query FoundationPageData {
+        site: site {
+          siteMetadata {
+            title
+            description
+            siteUrl
+          }
+        }
+
+        articles: allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }
+          filter: {
+            fileAbsolutePath: { regex: "/src/articles/" }
+            frontmatter: { title: { ne: "BLUEPRINT" } }
+          }
+        ) {
+          totalCount
+          edges {
+            node {
+              fileAbsolutePath
+              html
+              timeToRead
+              frontmatter {
+                title
+                date
+                slug
+              }
+              fields {
+                slug
+                fullUrl
+              }
+            }
+          }
+        }
+      }
+    `,
+  );
+  const { render, runAnimation } = props;
 
   const [isAboutModalOpen, toggleAboutModalOpen] = useToggle(false);
   const [isArticlesOffCanvasOpen, toggleArticlesOffCanvasOpen] = useToggle(
@@ -274,49 +309,7 @@ const Foundation = (props) => {
 
 Foundation.propTypes = {
   render: PropTypes.func.isRequired,
-  data: PropTypes.object.isRequired,
   runAnimation: PropTypes.bool,
 };
 
-export default props => (
-  <StaticQuery
-    query={graphql`
-      query FoundationPageData {
-        site: site {
-          siteMetadata {
-            title
-            description
-            siteUrl
-          }
-        }
-
-        articles: allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
-          filter: {
-            fileAbsolutePath: { regex: "/src/articles/" }
-            frontmatter: { title: { ne: "BLUEPRINT" } }
-          }
-        ) {
-          totalCount
-          edges {
-            node {
-              fileAbsolutePath
-              html
-              timeToRead
-              frontmatter {
-                title
-                date
-                slug
-              }
-              fields {
-                slug
-                fullUrl
-              }
-            }
-          }
-        }
-      }
-    `}
-    render={data => <Foundation data={data} {...props} />}
-  />
-);
+export default Foundation;
