@@ -163,7 +163,7 @@ const Foundation = (props) => {
               </Button>
               <Modal
                 open={isAboutModalOpen}
-                handleOutsideModalClick={toggleAboutModalOpen}
+                onOutsideModalClick={toggleAboutModalOpen}
               >
                 <ModalBody>
                   <Close
