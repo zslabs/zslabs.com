@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import moment from 'moment';
 import { graphql } from 'gatsby';
 import { Tooltip } from 'chaoskit/src/components';
 
 import Foundation from '../../layouts/Foundation';
 import { Icon } from '../../components';
+import { formatDate } from '../../helpers/config';
 
 const Post = (props) => {
   const {
@@ -27,13 +27,9 @@ const Post = (props) => {
             <header className="u-textCenter">
               <h1 className="u-mb--small">{title}</h1>
               <h5 className="u-mv--remove u-textMuted">
-                {moment(date).format('LL')}
+                {formatDate(date)}
                 {dateModified && (
-                  <Tooltip
-                    content={`Last updated ${moment(dateModified).format(
-                      'LL',
-                    )}`}
-                  >
+                  <Tooltip content={`Last updated ${formatDate(dateModified)}`}>
                     <span className="u-inlineBlock u-ml--small">
                       <Icon icon="question-circle" />
                     </span>

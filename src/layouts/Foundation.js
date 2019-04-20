@@ -5,7 +5,6 @@ import useMount from 'react-use/lib/useMount';
 import useToggle from 'react-use/lib/useToggle';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
-import moment from 'moment';
 import 'what-input';
 import {
   Button,
@@ -20,7 +19,7 @@ import {
 import { TimelineMax } from 'gsap/TweenMax';
 
 import { Icon, Link } from '../components';
-import { config } from '../helpers/config';
+import { config, formatDate } from '../helpers/config';
 
 import me from '../assets/media/me.png';
 import '../assets/styles/site.scss';
@@ -145,7 +144,7 @@ const Foundation = (props) => {
                           {node.frontmatter.title}
                         </Link>
                         <p className="u-mt--remove u-textMedium u-textMuted">
-                          {moment(node.frontmatter.date).format('LL')}
+                          {formatDate(node.frontmatter.date)}
                         </p>
                       </div>
                     </ListItem>
