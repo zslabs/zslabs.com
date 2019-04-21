@@ -286,6 +286,10 @@
       skew(-15deg)
       translate(-$global-whitespace-small, -$global-whitespace-small);
   }
+
+  @media (min-width: $global-viewport-small) {
+    min-width: calc(#{$global-viewport-small} * 0.75);
+  }
 }
 
 //
