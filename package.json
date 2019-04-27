@@ -11,7 +11,7 @@
   "dependencies": {
     "@weknow/gatsby-remark-twitter": "0.2.1",
     "babel-cli": "6.26.0",
-    "chaoskit": "1.3.3",
+    "chaoskit": "1.3.5",
     "date-fns": "1.30.1",
     "disqus-react": "1.0.5",
     "gatsby": "2.3.25",
