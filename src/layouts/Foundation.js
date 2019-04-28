@@ -109,6 +109,9 @@ const Foundation = (props) => {
           { name: 'description', content: description },
           { name: 'og:image', content: `${siteUrl}${me}` },
         ]}
+        htmlAttributes={{
+          lang: 'en',
+        }}
       />
       <div className="site-wrapper">
         <div className="container container--small">
@@ -121,6 +124,7 @@ const Foundation = (props) => {
                 type="reset"
                 className="header-menu"
                 onClick={toggleArticlesOffCanvasOpen}
+                aria-label="Toggle menu"
               >
                 <Icon icon="menu" />
               </Button>
