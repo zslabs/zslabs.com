@@ -31,6 +31,26 @@
 }
 
 //
+// Code filenames
+//
+
+.filename {
+  margin-top: $global-whitespace-regular;
+  background: $global-dark;
+  color: $global-contrast;
+  font-size: $global-font-size-small;
+  font-family: $base-code-font-family;
+  padding: $global-whitespace-xsmall $global-whitespace-regular;
+  border-top-left-radius: $global-border-radius;
+  border-top-right-radius: $global-border-radius;
+
+  + .gatsby-highlight pre {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+//
 // CodePen Embeds
 // `gatsby-remark-codepen`
 //
