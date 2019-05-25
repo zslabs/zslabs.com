@@ -1,6 +1,8 @@
 const path = require('path');
 
-const { postCssPlugins } = require('./utils/postcss-config');
+const {
+  postCssPlugins,
+} = require('./node_modules/chaoskit/utils/postcss-config');
 const { domainRegex } = require('./utils/helpers');
 
 module.exports = {
@@ -13,7 +15,11 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sass',
       options: {
-        postCssPlugins,
+        postCssPlugins: postCssPlugins([
+          './node_modules/chaoskit/src/assets/icons/',
+          './src/assets/icons/',
+          './src/assets/media/',
+        ]),
       },
     },
     'gatsby-transformer-sharp',
