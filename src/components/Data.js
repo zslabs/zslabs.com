@@ -10,7 +10,7 @@ import strip from 'strip-markdown';
 import { domainRegex } from '../../utils/helpers';
 
 // Provides consistent way for us to render content from yml file that propery encodes entities as well
-const Data = (props) => {
+const Data = props => {
   const { children, markdown, stripMarkdown } = props;
 
   if (!children) return null;
@@ -29,7 +29,7 @@ const Data = (props) => {
         .use(slug)
         .use(html)
         .processSync(children)
-        .toString(),
+        .toString()
     );
   }
 
@@ -38,7 +38,7 @@ const Data = (props) => {
       remark()
         .use(strip)
         .processSync(children)
-        .toString(),
+        .toString()
     );
   }
 

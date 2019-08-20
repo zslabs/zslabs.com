@@ -2,9 +2,7 @@ import React, { Fragment } from 'react';
 import useMount from 'react-use/lib/useMount';
 import { useStaticQuery, graphql } from 'gatsby';
 import { TimelineMax } from 'gsap/TweenMax';
-import {
-  Button, Inline, List, ListItem,
-} from 'chaoskit/src/components';
+import { Button, Inline, List, ListItem } from 'chaoskit/src/components';
 
 import Foundation from '../layouts/Foundation';
 import { Link } from '../components';
@@ -81,7 +79,7 @@ const Index = () => {
           autoAlpha: 1,
           ease: config.ease,
         },
-        'introButtons',
+        'introButtons'
       )
       .to(
         experienceButtonRef.current,
@@ -92,7 +90,7 @@ const Index = () => {
           autoAlpha: 1,
           ease: config.ease,
         },
-        'introButtons',
+        'introButtons'
       )
       .to(latestArticleRef.current, 0.25, {
         autoAlpha: 1,

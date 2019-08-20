@@ -24,7 +24,7 @@ import { config, formatDate } from '../helpers/config';
 import me from '../assets/media/me.png';
 import '../assets/styles/site.scss';
 
-const Foundation = (props) => {
+const Foundation = props => {
   const {
     site: {
       siteMetadata: { title, description, siteUrl },
@@ -67,13 +67,13 @@ const Foundation = (props) => {
           }
         }
       }
-    `,
+    `
   );
   const { render, runAnimation } = props;
 
   const [isAboutModalOpen, toggleAboutModalOpen] = useToggle(false);
   const [isArticlesOffCanvasOpen, toggleArticlesOffCanvasOpen] = useToggle(
-    false,
+    false
   );
 
   const runAnimationFunc = () => {
@@ -89,7 +89,7 @@ const Foundation = (props) => {
         autoAlpha: 1,
         ease: config.ease,
       },
-      0.1,
+      0.1
     );
   };
 

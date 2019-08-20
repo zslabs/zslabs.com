@@ -8,7 +8,7 @@ import Foundation from '../../layouts/Foundation';
 import { Icon } from '../../components';
 import { formatDate } from '../../helpers/config';
 
-const Post = (props) => {
+const Post = props => {
   const {
     data: {
       post: {

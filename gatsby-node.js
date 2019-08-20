@@ -7,21 +7,7 @@
 const StylelintPlugin = require('stylelint-webpack-plugin');
 
 // Custom Webpack configuration
-exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
-  // Include `chaoskit` and `query-string` in transpiled JS files
-  actions.setWebpackConfig({
-    module: {
-      rules: [
-        {
-          test: /\.js$|\.jsx$/,
-          exclude: modulePath => /node_modules/.test(modulePath)
-            && !/node_modules\/(chaoskit)/.test(modulePath),
-          use: loaders.js(),
-        },
-      ],
-    },
-  });
-
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
   if (['develop'].includes(stage)) {
     actions.setWebpackConfig({
       module: {
@@ -93,7 +79,7 @@ function attachFieldsToNodes({ node, actions }) {
 }
 
 // eslint-disable-next-line func-names
-exports.onCreateNode = function (...args) {
+exports.onCreateNode = function(...args) {
   return Promise.all([attachFieldsToNodes].map(fn => fn.apply(this, args)));
 };
 

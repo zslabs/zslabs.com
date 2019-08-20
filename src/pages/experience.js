@@ -2,14 +2,12 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import {
-  Badge, Button, List, ListItem,
-} from 'chaoskit/src/components';
+import { Badge, Button, List, ListItem } from 'chaoskit/src/components';
 
 import Foundation from '../layouts/Foundation';
 import { Data } from '../components';
 
-const Experience = (props) => {
+const Experience = props => {
   const {
     data: {
       file: {
