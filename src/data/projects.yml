@@ -1,4 +1,7 @@
 projects:
+  - title: List
+    description: The best eBay toolkit for gauging market-prices, trends, and activity on multiple search terms.
+    url: https://list.zslabs.com
   - title: Listing Props
     url: https://listingprops.com
     description: Giving real estate agents the power to build gorgeous single property websites for their real estate listings.

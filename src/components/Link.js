@@ -31,6 +31,7 @@ const Link = React.forwardRef((props, ref) => {
 Link.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  exact: PropTypes.bool,
 };
 
 Link.defaultProps = {
