@@ -3,12 +3,21 @@ import PropTypes from 'prop-types';
 import useMount from 'react-use/lib/useMount';
 import { useStaticQuery, graphql } from 'gatsby';
 import { TimelineMax } from 'gsap/TweenMax';
-import { Button, Inline, List, ListItem } from 'chaoskit/src/components';
+import {
+  Button,
+  Container,
+  Inline,
+  List,
+  ListItem,
+  Section,
+} from 'chaoskit/src/components';
+import { misc } from 'chaoskit/src/assets/styles/utility';
 import { withTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
 import Link from '../components/Link';
 import { ZSContext } from '../components/ZSContext';
+import { backgroundDots } from '../helpers/config';
 
 const Index = ({ theme }) => {
   const { dispatch } = useContext(ZSContext);
@@ -111,86 +120,119 @@ const Index = ({ theme }) => {
 
   return (
     <Foundation runAnimation>
-      <section className="section section--full section--large">
-        <div className="container u-ph--regular">
-          <div className="u-textCenter">
-            <h5
-              css={{
-                ...theme.fontSize.medium__fluid,
-                color: theme.fontColor.muted,
-                marginBottom: theme.space.small,
-                // GSAP
-                opacity: 0,
-                transform: 'translateY(100%)',
-              }}
-              ref={introTitleSub}
-            >
-              Full-Stack/Motion Developer
-            </h5>
-            <h1 className="intro-title u-mt--remove" ref={introTitle}>
-              Zach Schnackel
-            </h1>
-          </div>
-          <div className="u-mt--large">
-            <Inline size="medium" css={{ justifyContent: 'center' }}>
-              <div
-                css={{
-                  // GSAP
-                  transformOrigin: 'center center',
-                  transform: 'scale(0)',
-                  opacity: 0,
-                }}
-                ref={articleButtonRef}
-              >
-                <Button
-                  onClick={() => {
-                    dispatch({
-                      type: 'toggleOffCanvas',
-                    });
-                  }}
-                  type="primary"
-                >
-                  Articles
-                </Button>
-              </div>
-              <div
-                css={{
-                  // GSAP
-                  transformOrigin: 'center center',
-                  transform: 'scale(0)',
-                  opacity: 0,
-                }}
-                ref={experienceButtonRef}
-              >
-                <Button type="secondary" url="/experience/">
-                  Experience
-                </Button>
-              </div>
-            </Inline>
-          </div>
-          <Link
-            className="u-linkDefault home__latestArticle"
-            to={latestArticle.node.fields.fullUrl}
-            ref={latestArticleRef}
+      <Section size="large">
+        <div css={{ textAlign: 'center' }}>
+          <h5
+            css={{
+              ...theme.fontSize.medium__fluid,
+              color: theme.fontColor.muted,
+              marginBottom: theme.space.small,
+              // GSAP
+              opacity: 0,
+              transform: 'translateY(100%)',
+            }}
+            ref={introTitleSub}
           >
-            <div>
-              <span className="u-textMedium" role="img" aria-label="Hooray!">
-                🎉
-              </span>{' '}
-              Check out my latest article:
-            </div>
-            <div className="u-textBold">
-              {latestArticle.node.frontmatter.title}
-            </div>
-          </Link>
+            Full-Stack/Motion Developer
+          </h5>
+          <h1
+            css={{
+              marginTop: 0,
+              ...misc.fluidSize({
+                theme,
+                property: 'fontSize',
+                from: theme.fontSize.h1,
+                to: theme.fontSize.h1 * 1.5,
+              }),
+              // GSAP
+              opacity: 0,
+              transform: 'translateY(50%)',
+            }}
+            ref={introTitle}
+          >
+            Zach Schnackel
+          </h1>
         </div>
-      </section>
-      <section
+        <div className="u-mt--large">
+          <Inline size="medium" css={{ justifyContent: 'center' }}>
+            <div
+              css={{
+                // GSAP
+                transformOrigin: 'center center',
+                transform: 'scale(0)',
+                opacity: 0,
+              }}
+              ref={articleButtonRef}
+            >
+              <Button
+                onClick={() => {
+                  dispatch({
+                    type: 'toggleOffCanvas',
+                  });
+                }}
+                type="primary"
+              >
+                Articles
+              </Button>
+            </div>
+            <div
+              css={{
+                // GSAP
+                transformOrigin: 'center center',
+                transform: 'scale(0)',
+                opacity: 0,
+              }}
+              ref={experienceButtonRef}
+            >
+              <Button type="secondary" url="/experience/">
+                Experience
+              </Button>
+            </div>
+          </Inline>
+        </div>
+        <Link
+          className="u-linkDefault home__latestArticle"
+          to={latestArticle.node.fields.fullUrl}
+          ref={latestArticleRef}
+        >
+          <div>
+            <span className="u-textMedium" role="img" aria-label="Hooray!">
+              🎉
+            </span>{' '}
+            Check out my latest article:
+          </div>
+          <div className="u-textBold">
+            {latestArticle.node.frontmatter.title}
+          </div>
+        </Link>
+      </Section>
+      <Section
         ref={projectsRef}
         id="recent-projects"
-        className="section section--full section--projects"
+        css={{
+          // GSAP
+          opacity: 0,
+
+          position: 'relative',
+          left: '50%',
+          margin: `0 calc(var(--rw) / -2)`,
+          right: '50%',
+          width: 'var(--rw)',
+
+          '&::before': {
+            ...backgroundDots(theme.fontColor.muted),
+            zIndex: -2,
+          },
+        }}
+        className="section--projects"
       >
-        <div className="container u-ph--regular">
+        <Container
+          css={{
+            paddingLeft: theme.space.base,
+            paddingRight: theme.space.base,
+          }}
+          size="small"
+        >
           <div className="section-titleWrapper">
             <h2 className="section-title">Recent Projects</h2>
           </div>
@@ -218,8 +260,8 @@ const Index = ({ theme }) => {
               </List>
             </div>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
     </Foundation>
   );
 };
