@@ -1,11 +1,11 @@
-import { Fragment, useRef } from 'react';
+import { useRef } from 'react';
 import useMount from 'react-use/lib/useMount';
 import { useStaticQuery, graphql } from 'gatsby';
 import { TimelineMax } from 'gsap/TweenMax';
 import { Button, Inline, List, ListItem } from 'chaoskit/src/components';
 
 import Foundation from '../layouts/Foundation';
-import { Link } from '../components';
+import Link from '../components/Link';
 import { config } from '../helpers/config';
 
 const Index = () => {
@@ -106,102 +106,90 @@ const Index = () => {
   });
 
   return (
-    <Foundation
-      runAnimation
-      render={renderProps => (
-        <Fragment>
-          <section className="section section--full section--large">
-            <div className="container u-ph--regular">
-              <div className="u-textCenter">
-                <h5
-                  className="intro-titleSub u-textMuted u-textFluid--medium u-mb--small"
-                  ref={introTitleSub}
+    <Foundation>
+      <section className="section section--full section--large">
+        <div className="container u-ph--regular">
+          <div className="u-textCenter">
+            <h5
+              className="intro-titleSub u-textMuted u-textFluid--medium u-mb--small"
+              ref={introTitleSub}
+            >
+              Full-Stack/Motion Developer
+            </h5>
+            <h1 className="intro-title u-mt--remove" ref={introTitle}>
+              Zach Schnackel
+            </h1>
+          </div>
+          <div className="u-mt--large">
+            <Inline size="medium" className="u-flexCenter">
+              <div className="intro-buttonWrapper" ref={articleButtonRef}>
+                <Button
+                  onClick={() => console.log('open articles')}
+                  type="primary"
                 >
-                  Full-Stack/Motion Developer
-                </h5>
-                <h1 className="intro-title u-mt--remove" ref={introTitle}>
-                  Zach Schnackel
-                </h1>
+                  Articles
+                </Button>
               </div>
-              <div className="u-mt--large">
-                <Inline size="medium" className="u-flexCenter">
-                  <div className="intro-buttonWrapper" ref={articleButtonRef}>
-                    <Button
-                      onClick={renderProps.toggleArticlesOffCanvasOpen}
-                      type="primary"
-                    >
-                      Articles
-                    </Button>
-                  </div>
-                  <div
-                    className="intro-buttonWrapper"
-                    ref={experienceButtonRef}
-                  >
-                    <Button type="secondary" url="/experience/">
-                      Experience
-                    </Button>
-                  </div>
-                </Inline>
+              <div className="intro-buttonWrapper" ref={experienceButtonRef}>
+                <Button type="secondary" url="/experience/">
+                  Experience
+                </Button>
               </div>
-              <Link
-                className="u-linkDefault home__latestArticle"
-                to={latestArticle.node.fields.fullUrl}
-                ref={latestArticleRef}
-              >
-                <div>
-                  <span
-                    className="u-textMedium"
-                    role="img"
-                    aria-label="Hooray!"
-                  >
-                    🎉
-                  </span>{' '}
-                  Check out my latest article:
-                </div>
-                <div className="u-textBold">
-                  {latestArticle.node.frontmatter.title}
-                </div>
-              </Link>
-            </div>
-          </section>
-          <section
-            ref={projectsRef}
-            id="recent-projects"
-            className="section section--full section--projects"
+            </Inline>
+          </div>
+          <Link
+            className="u-linkDefault home__latestArticle"
+            to={latestArticle.node.fields.fullUrl}
+            ref={latestArticleRef}
           >
-            <div className="container u-ph--regular">
-              <div className="section-titleWrapper">
-                <h2 className="section-title">Recent Projects</h2>
-              </div>
-              <div className="row u-flexCenter">
-                <div className="column-10@small column-8@medium">
-                  <List className="bubbleList">
-                    {pageData.projects.map(project => (
-                      <ListItem className="bubbleList-item" key={project.title}>
-                        <div className="bubbleList-item-bubble" />
-                        <div className="bubbleList-item-info">
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bubbleList-item-link"
-                            href={project.url}
-                          >
-                            {project.title}
-                          </a>
-                          <p className="u-mt--remove u-textMedium">
-                            {project.description}
-                          </p>
-                        </div>
-                      </ListItem>
-                    ))}
-                  </List>
-                </div>
-              </div>
+            <div>
+              <span className="u-textMedium" role="img" aria-label="Hooray!">
+                🎉
+              </span>{' '}
+              Check out my latest article:
             </div>
-          </section>
-        </Fragment>
-      )}
-    />
+            <div className="u-textBold">
+              {latestArticle.node.frontmatter.title}
+            </div>
+          </Link>
+        </div>
+      </section>
+      <section
+        ref={projectsRef}
+        id="recent-projects"
+        className="section section--full section--projects"
+      >
+        <div className="container u-ph--regular">
+          <div className="section-titleWrapper">
+            <h2 className="section-title">Recent Projects</h2>
+          </div>
+          <div className="row u-flexCenter">
+            <div className="column-10@small column-8@medium">
+              <List className="bubbleList">
+                {pageData.projects.map(project => (
+                  <ListItem className="bubbleList-item" key={project.title}>
+                    <div className="bubbleList-item-bubble" />
+                    <div className="bubbleList-item-info">
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bubbleList-item-link"
+                        href={project.url}
+                      >
+                        {project.title}
+                      </a>
+                      <p className="u-mt--remove u-textMedium">
+                        {project.description}
+                      </p>
+                    </div>
+                  </ListItem>
+                ))}
+              </List>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Foundation>
   );
 };
 
