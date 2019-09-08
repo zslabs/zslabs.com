@@ -9,6 +9,7 @@ import {
   Inline,
 } from 'chaoskit/src/components';
 import { withTheme } from 'emotion-theming';
+import { text, link } from 'chaoskit/src/assets/styles/utility';
 
 import Icon from './Icon';
 import me from '../assets/media/me.png';
@@ -34,11 +35,34 @@ const AboutModal = ({ theme }) => {
         <ModalBody>
           <Close
             onClick={() => toggleAboutModalOpen()}
-            className="aboutModal-close"
+            css={{
+              position: 'absolute',
+              top: theme.space.large,
+              right: theme.space.large,
+            }}
           />
-          <img src={me} className="aboutModal-image" alt="" />
-          <h3 className="u-textCenter u-mb--small">Hi, I&apos;m Zach</h3>
-          <Inline size="medium" className="u-flexCenter">
+          <img
+            src={me}
+            alt=""
+            css={{
+              width: theme.height.base * 2,
+              height: theme.height.base * 2,
+              borderRadius: '50%',
+              boxShadow: theme.boxShadow.neutral,
+              position: 'relative',
+              left: '50%',
+              transform: 'translateX(-50%)',
+            }}
+          />
+          <h3 css={{ textAlign: 'center', marginBottom: theme.space.small }}>
+            Hi, I'm Zach
+          </h3>
+          <Inline
+            size="medium"
+            css={{
+              justifyContent: 'center',
+            }}
+          >
             <Button
               url="https://www.github.com/zslabs"
               target="_blank"
@@ -74,9 +98,9 @@ const AboutModal = ({ theme }) => {
             I create buttons, borders, and other groovy things at{' '}
             <a
               href="https://www.gremlin.com"
-              className="u-textUnderline u-textDefault"
               target="_blank"
               rel="noopener noreferrer"
+              css={[text.underline, link.reset(theme)]}
             >
               Gremlin
             </a>
@@ -85,7 +109,7 @@ const AboutModal = ({ theme }) => {
               target="_blank"
               rel="noopener noreferrer"
               href="https://reactjs.org"
-              className="u-textUnderline u-textDefault"
+              css={[text.underline, link.reset(theme)]}
             >
               ReactJS
             </a>
@@ -94,7 +118,7 @@ const AboutModal = ({ theme }) => {
               target="_blank"
               rel="noopener noreferrer"
               href="https://gatsbyjs.org"
-              className="u-textUnderline u-textDefault"
+              css={[text.underline, link.reset(theme)]}
             >
               GatsbyJS
             </a>
@@ -103,7 +127,7 @@ const AboutModal = ({ theme }) => {
               target="_blank"
               rel="noopener noreferrer"
               href="https://nextjs.org"
-              className="u-textUnderline u-textDefault"
+              css={[text.underline, link.reset(theme)]}
             >
               Next.JS
             </a>
@@ -112,7 +136,7 @@ const AboutModal = ({ theme }) => {
               target="_blank"
               rel="noopener noreferrer"
               href="https://nodejs.org"
-              className="u-textUnderline u-textDefault"
+              css={[text.underline, link.reset(theme)]}
             >
               NodeJS
             </a>
@@ -120,36 +144,36 @@ const AboutModal = ({ theme }) => {
             the backend and how we can experience it on the frontend. My
             passions are perfecting process and educating those around me.
           </p>
-          <h4 className="u-textFluid--xlarge">Speaking/Consulting</h4>
+          <h4 css={{ ...theme.fontSize.xlarge__fluid }}>Speaking/Consulting</h4>
           <p>
             Have an event and/or consluting project you&apos;d like me to be a
             part of? Awesome!{' '}
             <a
-              className="u-textUnderline u-textDefault"
               href="mailto:info@zslabs.com"
+              css={[text.underline, link.reset(theme)]}
             >
               Let&apos;s chat
             </a>
             .
           </p>
-          <h4 className="u-textFluid--xlarge">
+          <h4 css={{ ...theme.fontSize.xlarge__fluid }}>
             How&apos;d you build this site?!
           </h4>
           <p>
             Because I love open-source—it&apos;s available for anyone to view.
             Find a bug? Report it!{' '}
             <a
-              className="u-textUnderline u-textDefault"
               target="_blank"
               rel="noopener noreferrer"
               href="https://github.com/zslabs/zslabs.com"
+              css={[text.underline, link.reset(theme)]}
             >
               View source
             </a>
             .
           </p>
-          <div className="u-mt--large u-textCenter">
-            <span className="u-textMuted">
+          <div css={{ marginTop: theme.space.large, textAlign: 'center' }}>
+            <span css={{ color: theme.fontColor.muted }}>
               Copyright © {new Date().getFullYear()} Zach Schnackel. Penalty is
             </span>{' '}
             🔥

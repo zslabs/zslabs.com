@@ -123,21 +123,6 @@
 // About Modal
 //
 
-.aboutModal-close {
-  position: absolute;
-  top: $global-whitespace-large;
-  right: $global-whitespace-large;
-}
-
-.aboutModal-image {
-  size: ($global-height * 2);
-  border-radius: 50%;
-  box-shadow: $global-neutral-box-shadow;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 [class^='aboutModal-social--'] {
   transition: transform 0.25s easeOutBack;
   transform-origin: center center;
