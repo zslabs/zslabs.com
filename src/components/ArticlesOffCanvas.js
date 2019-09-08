@@ -1,13 +1,14 @@
 import { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Button, List, ListItem, OffCanvas } from 'chaoskit/src/components';
+import { withTheme } from 'emotion-theming';
 
 import { ZSContext } from './ZSContext';
 import Icon from './Icon';
 import Link from './Link';
 import { formatDate } from '../helpers/config';
 
-const ArticlesOffCanvas = ({ articles }) => {
+const ArticlesOffCanvas = ({ articles, theme }) => {
   const {
     state: { offCanvasOpen },
     dispatch,
@@ -17,7 +18,6 @@ const ArticlesOffCanvas = ({ articles }) => {
     <Fragment>
       <Button
         type="reset"
-        className="header-menu"
         onClick={() => {
           dispatch({
             type: 'toggleOffCanvas',
@@ -25,7 +25,10 @@ const ArticlesOffCanvas = ({ articles }) => {
         }}
         aria-label="Toggle menu"
       >
-        <Icon icon="menu" />
+        <Icon
+          icon="menu"
+          css={{ width: theme.height.xsmall, height: theme.height.xsmall }}
+        />
       </Button>
       <OffCanvas
         open={offCanvasOpen}
@@ -59,6 +62,7 @@ const ArticlesOffCanvas = ({ articles }) => {
 
 ArticlesOffCanvas.propTypes = {
   articles: PropTypes.array.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default ArticlesOffCanvas;
+export default withTheme(ArticlesOffCanvas);

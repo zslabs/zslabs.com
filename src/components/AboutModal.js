@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import useToggle from 'react-use/lib/useToggle';
 import {
   Button,
@@ -7,21 +8,27 @@ import {
   Close,
   Inline,
 } from 'chaoskit/src/components';
+import { withTheme } from 'emotion-theming';
 
 import Icon from './Icon';
 import me from '../assets/media/me.png';
 
-const AboutModal = () => {
+const AboutModal = ({ theme }) => {
   const [isAboutModalOpen, toggleAboutModalOpen] = useToggle(false);
 
   return (
     <Fragment>
-      <Button
-        type="reset"
-        className="header-about"
-        onClick={toggleAboutModalOpen}
-      >
-        <img src={me} alt="About" />
+      <Button type="reset" onClick={toggleAboutModalOpen}>
+        <img
+          src={me}
+          alt="About"
+          css={{
+            width: theme.height.base,
+            height: theme.height.base,
+            borderRadius: '50%',
+            boxShadow: theme.boxShadow.neutral,
+          }}
+        />
       </Button>
       <Modal open={isAboutModalOpen} onOutsideModalClick={toggleAboutModalOpen}>
         <ModalBody>
@@ -153,4 +160,8 @@ const AboutModal = () => {
   );
 };
 
-export default AboutModal;
+AboutModal.propTypes = {
+  theme: PropTypes.object.isRequired,
+};
+
+export default withTheme(AboutModal);
