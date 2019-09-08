@@ -115,7 +115,14 @@ const Index = ({ theme }) => {
         <div className="container u-ph--regular">
           <div className="u-textCenter">
             <h5
-              className="intro-titleSub u-textMuted u-textFluid--medium u-mb--small"
+              css={{
+                ...theme.fontSize.medium__fluid,
+                color: theme.fontColor.muted,
+                marginBottom: theme.space.small,
+                // GSAP
+                opacity: 0,
+                transform: 'translateY(100%)',
+              }}
               ref={introTitleSub}
             >
               Full-Stack/Motion Developer
@@ -125,8 +132,16 @@ const Index = ({ theme }) => {
             </h1>
           </div>
           <div className="u-mt--large">
-            <Inline size="medium" className="u-flexCenter">
-              <div className="intro-buttonWrapper" ref={articleButtonRef}>
+            <Inline size="medium" css={{ justifyContent: 'center' }}>
+              <div
+                css={{
+                  // GSAP
+                  transformOrigin: 'center center',
+                  transform: 'scale(0)',
+                  opacity: 0,
+                }}
+                ref={articleButtonRef}
+              >
                 <Button
                   onClick={() => {
                     dispatch({
@@ -138,7 +153,15 @@ const Index = ({ theme }) => {
                   Articles
                 </Button>
               </div>
-              <div className="intro-buttonWrapper" ref={experienceButtonRef}>
+              <div
+                css={{
+                  // GSAP
+                  transformOrigin: 'center center',
+                  transform: 'scale(0)',
+                  opacity: 0,
+                }}
+                ref={experienceButtonRef}
+              >
                 <Button type="secondary" url="/experience/">
                   Experience
                 </Button>

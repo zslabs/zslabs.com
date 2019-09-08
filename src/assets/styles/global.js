@@ -37,7 +37,7 @@ export const global = theme => ({
   },
 
   // Reset `letterSpacing` Chaoskit does by default
-  'h1, h2, h3, h4, h5': {
+  'h1, h2, h3, h4': {
     letterSpacing: 'normal',
   },
 });
