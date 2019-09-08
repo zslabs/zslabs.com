@@ -10,6 +10,7 @@ import {
   List,
   ListItem,
   Section,
+  SectionTitle,
 } from 'chaoskit/src/components';
 import { misc } from 'chaoskit/src/assets/styles/utility';
 import { withTheme } from 'emotion-theming';
@@ -222,6 +223,7 @@ const Index = ({ theme }) => {
           '&::before': {
             ...backgroundDots(theme.fontColor.muted),
             zIndex: -2,
+            maskImage: 'linear-gradient(transparent 5%, #000)',
           },
         }}
         className="section--projects"
@@ -233,9 +235,7 @@ const Index = ({ theme }) => {
           }}
           size="small"
         >
-          <div className="section-titleWrapper">
-            <h2 className="section-title">Recent Projects</h2>
-          </div>
+          <SectionTitle title="Recent Projects" />
           <div className="row u-flexCenter">
             <div className="column-10@small column-8@medium">
               <List className="bubbleList">
