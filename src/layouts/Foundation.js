@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import useMount from 'react-use/lib/useMount';
@@ -5,75 +6,19 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import 'what-input';
 import { TimelineMax } from 'gsap/TweenMax';
-import { ThemeProvider } from 'emotion-theming';
-import { CacheProvider, Global } from '@emotion/core';
-import { ckCache } from 'chaoskit/src/helpers/Wrapper';
-import { theme } from 'chaoskit/src/assets/styles/theme';
-import { globalStyles } from 'chaoskit/src/assets/styles/global';
-import { merge } from 'lodash-es';
-import { shade, tint } from 'polished';
 import rootUnits from 'root-units';
+import { withTheme } from 'emotion-theming';
 
-import { ZSProvider } from '../components/ZSContext';
 import Link from '../components/Link';
 import AboutModal from '../components/AboutModal';
 import ArticlesOffCanvas from '../components/ArticlesOffCanvas';
-import { global } from '../assets/styles/global';
-import { fonts } from '../assets/styles/fonts';
-import { config } from '../helpers/config';
+
 import me from '../assets/media/me.png';
 
 // Get more reliable viewport units
 rootUnits.install();
 
-// Handy-dandy utility function to deep-merge themes
-function extendTheme(...themes) {
-  return merge({}, ...themes);
-}
-
-const zslabsTheme = extendTheme(theme, {
-  color: {
-    primary: {
-      base: '#1d8cf5',
-      get light() {
-        return tint(0.9, this.base);
-      },
-      get dark() {
-        return shade(0.1, this.base);
-      },
-      filter:
-        'invert(36%) sepia(94%) saturate(1614%) hue-rotate(194deg) brightness(103%) contrast(92%)',
-    },
-  },
-  warning: {
-    base: '#fcd000',
-    get light() {
-      return tint(0.95, this.base);
-    },
-    get dark() {
-      return shade(0.05, this.base);
-    },
-    filter:
-      'invert(80%) sepia(79%) saturate(3799%) hue-rotate(354deg) brightness(97%) contrast(105%)',
-  },
-  danger: {
-    base: '#f25041',
-    get light() {
-      return tint(0.95, this.base);
-    },
-    get dark() {
-      return shade(0.05, this.base);
-    },
-    filter:
-      'invert(64%) sepia(92%) saturate(5728%) hue-rotate(339deg) brightness(101%) contrast(90%)',
-  },
-  fontFamily: {
-    base: "Calibre, 'Helvetica Neue', Arial, sans-serif",
-    heading: "Calibre, 'Helvetica Neue', Arial, sans-serif",
-  },
-});
-
-const Foundation = ({ children, runAnimation }) => {
+const Foundation = ({ children, runAnimation, theme }) => {
   const {
     site: {
       siteMetadata: { title, description, siteUrl },
@@ -130,7 +75,7 @@ const Foundation = ({ children, runAnimation }) => {
       {
         y: 0,
         autoAlpha: 1,
-        ease: config.ease,
+        ease: theme.gsap.transition.bounce,
       },
       0.1
     );
@@ -145,51 +90,41 @@ const Foundation = ({ children, runAnimation }) => {
   });
 
   return (
-    <ZSProvider>
-      <CacheProvider value={ckCache}>
-        <ThemeProvider theme={zslabsTheme}>
-          <Global
-            styles={[
-              globalStyles(zslabsTheme),
-              global(zslabsTheme),
-              fonts(zslabsTheme),
-            ]}
-          />
-          <Helmet
-            title={title}
-            meta={[
-              { name: 'description', content: description },
-              { name: 'og:image', content: `${siteUrl}${me}` },
-            ]}
-            htmlAttributes={{
-              lang: 'en',
-            }}
-          />
-          <div className="site-wrapper">
-            <div className="container container--small">
-              <header className={headerClasses}>
-                <div>
-                  <Link to="/" className="header-logo" title={title} />
-                </div>
-                <div>
-                  <ArticlesOffCanvas articles={articles} />
-                </div>
-                <div>
-                  <AboutModal />
-                </div>
-              </header>
-              <main>{children}</main>
+    <Fragment>
+      <Helmet
+        title={title}
+        meta={[
+          { name: 'description', content: description },
+          { name: 'og:image', content: `${siteUrl}${me}` },
+        ]}
+        htmlAttributes={{
+          lang: 'en',
+        }}
+      />
+      <div className="site-wrapper">
+        <div className="container container--small">
+          <header className={headerClasses}>
+            <div>
+              <Link to="/" className="header-logo" title={title} />
             </div>
-          </div>
-        </ThemeProvider>
-      </CacheProvider>
-    </ZSProvider>
+            <div>
+              <ArticlesOffCanvas articles={articles} />
+            </div>
+            <div>
+              <AboutModal />
+            </div>
+          </header>
+          <main>{children}</main>
+        </div>
+      </div>
+    </Fragment>
   );
 };
 
 Foundation.propTypes = {
   runAnimation: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default Foundation;
+export default withTheme(Foundation);

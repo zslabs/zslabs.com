@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import useMount from 'react-use/lib/useMount';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -8,17 +8,17 @@ import { withTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
 import Link from '../components/Link';
-import { config } from '../helpers/config';
+import { ZSContext } from '../components/ZSContext';
 
 const Index = ({ theme }) => {
+  const { dispatch } = useContext(ZSContext);
+
   const introTitle = useRef();
   const introTitleSub = useRef();
   const articleButtonRef = useRef();
   const experienceButtonRef = useRef();
   const projectsRef = useRef();
   const latestArticleRef = useRef();
-
-  console.log({ theme });
 
   const {
     latestArticle: {
@@ -68,12 +68,12 @@ const Index = ({ theme }) => {
       .to(introTitle.current, 0.5, {
         y: 0,
         autoAlpha: 1,
-        ease: config.ease,
+        ease: theme.gsap.transition.bounce,
       })
       .to(introTitleSub.current, 0.5, {
         y: 0,
         autoAlpha: 1,
-        ease: config.ease,
+        ease: theme.gsap.transition.bounce,
       })
       .to(
         articleButtonRef.current,
@@ -81,7 +81,7 @@ const Index = ({ theme }) => {
         {
           scale: 1,
           autoAlpha: 1,
-          ease: config.ease,
+          ease: theme.gsap.transition.bounce,
         },
         'introButtons'
       )
@@ -92,7 +92,7 @@ const Index = ({ theme }) => {
           delay: 0.125,
           scale: 1,
           autoAlpha: 1,
-          ease: config.ease,
+          ease: theme.gsap.transition.bounce,
         },
         'introButtons'
       )
@@ -110,7 +110,7 @@ const Index = ({ theme }) => {
   });
 
   return (
-    <Foundation>
+    <Foundation runAnimation>
       <section className="section section--full section--large">
         <div className="container u-ph--regular">
           <div className="u-textCenter">
@@ -128,7 +128,11 @@ const Index = ({ theme }) => {
             <Inline size="medium" className="u-flexCenter">
               <div className="intro-buttonWrapper" ref={articleButtonRef}>
                 <Button
-                  onClick={() => console.log('open articles')}
+                  onClick={() => {
+                    dispatch({
+                      type: 'toggleOffCanvas',
+                    });
+                  }}
                   type="primary"
                 >
                   Articles
