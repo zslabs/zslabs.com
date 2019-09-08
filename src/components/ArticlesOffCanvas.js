@@ -2,7 +2,7 @@ import { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Button, List, ListItem, OffCanvas } from 'chaoskit/src/components';
 
-import { Context } from './Context';
+import { ZSContext } from './ZSContext';
 import Icon from './Icon';
 import Link from './Link';
 import { formatDate } from '../helpers/config';
@@ -11,7 +11,7 @@ const ArticlesOffCanvas = ({ articles }) => {
   const {
     state: { offCanvasOpen },
     dispatch,
-  } = useContext(Context);
+  } = useContext(ZSContext);
 
   return (
     <Fragment>

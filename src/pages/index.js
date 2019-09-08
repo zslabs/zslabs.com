@@ -1,20 +1,24 @@
 import { useRef } from 'react';
+import PropTypes from 'prop-types';
 import useMount from 'react-use/lib/useMount';
 import { useStaticQuery, graphql } from 'gatsby';
 import { TimelineMax } from 'gsap/TweenMax';
 import { Button, Inline, List, ListItem } from 'chaoskit/src/components';
+import { withTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
 import Link from '../components/Link';
 import { config } from '../helpers/config';
 
-const Index = () => {
+const Index = ({ theme }) => {
   const introTitle = useRef();
   const introTitleSub = useRef();
   const articleButtonRef = useRef();
   const experienceButtonRef = useRef();
   const projectsRef = useRef();
   const latestArticleRef = useRef();
+
+  console.log({ theme });
 
   const {
     latestArticle: {
@@ -193,4 +197,8 @@ const Index = () => {
   );
 };
 
-export default Index;
+Index.propTypes = {
+  theme: PropTypes.object.isRequired,
+};
+
+export default withTheme(Index);

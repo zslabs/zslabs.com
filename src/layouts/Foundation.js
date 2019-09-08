@@ -14,14 +14,13 @@ import { merge } from 'lodash-es';
 import { shade, tint } from 'polished';
 import rootUnits from 'root-units';
 
-import { Provider } from '../components/Context';
+import { ZSProvider } from '../components/ZSContext';
 import Link from '../components/Link';
 import AboutModal from '../components/AboutModal';
 import ArticlesOffCanvas from '../components/ArticlesOffCanvas';
 import { global } from '../assets/styles/global';
 import { fonts } from '../assets/styles/fonts';
 import { config } from '../helpers/config';
-
 import me from '../assets/media/me.png';
 
 // Get more reliable viewport units
@@ -146,16 +145,16 @@ const Foundation = ({ children, runAnimation }) => {
   });
 
   return (
-    <CacheProvider value={ckCache}>
-      <ThemeProvider theme={zslabsTheme}>
-        <Global
-          styles={[
-            globalStyles(zslabsTheme),
-            global(zslabsTheme),
-            fonts(zslabsTheme),
-          ]}
-        />
-        <Provider>
+    <ZSProvider>
+      <CacheProvider value={ckCache}>
+        <ThemeProvider theme={zslabsTheme}>
+          <Global
+            styles={[
+              globalStyles(zslabsTheme),
+              global(zslabsTheme),
+              fonts(zslabsTheme),
+            ]}
+          />
           <Helmet
             title={title}
             meta={[
@@ -182,9 +181,9 @@ const Foundation = ({ children, runAnimation }) => {
               <main>{children}</main>
             </div>
           </div>
-        </Provider>
-      </ThemeProvider>
-    </CacheProvider>
+        </ThemeProvider>
+      </CacheProvider>
+    </ZSProvider>
   );
 };
 

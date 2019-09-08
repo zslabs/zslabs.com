@@ -1,7 +1,7 @@
 import { createContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
-const Context = createContext();
+const ZSContext = createContext();
 
 const initialState = {
   offCanvasOpen: false,
@@ -18,17 +18,17 @@ const reducer = (state, action) => {
   }
 };
 
-const Provider = ({ children }) => {
+const ZSProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const value = { state, dispatch };
 
-  return <Context.Provider value={value}>{children}</Context.Provider>;
+  return <ZSContext.Provider value={value}>{children}</ZSContext.Provider>;
 };
 
-Provider.propTypes = {
+ZSProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const { Consumer } = Context;
+const ZSConsumer = ZSContext.Consumer;
 
-export { Context, Provider, Consumer };
+export { ZSContext, ZSProvider, ZSConsumer };
