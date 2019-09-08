@@ -40,55 +40,57 @@ const Post = ({
         </h5>
       </header>
       <div
-        css={{
-          ...misc.trimChildren,
-          ...misc.fluidSize({
+        css={[
+          misc.trimChildren,
+          misc.fluidSize({
             theme,
             property: 'fontSize',
             from: theme.fontSize.base,
             to: theme.fontSize.medium,
           }),
-          ...misc.fluidSize({
+          misc.fluidSize({
             theme,
             property: 'paddingTop',
             from: theme.space.large,
             to: theme.space.large + theme.space.base,
           }),
-          ...misc.fluidSize({
+          misc.fluidSize({
             theme,
             property: 'paddingBottom',
             from: theme.space.large,
             to: theme.space.large + theme.space.base,
           }),
-          ...misc.fluidSize({
+          misc.fluidSize({
             theme,
             property: 'marginBottom',
             from: theme.space.large,
             to: theme.space.large + theme.space.base,
           }),
-          position: 'relative',
+          {
+            position: 'relative',
 
-          '&::before, &::after': {
-            content: "''",
-            position: 'absolute',
-            background: `url(${pattern}) no-repeat`,
-            backgroundSize: '1500px 1000px',
-            backgroundPosition: '-800px -575px',
-            height: 2,
-            left: '50%',
-            transform: 'translateX(-50%)',
-          },
+            '&::before, &::after': {
+              content: "''",
+              position: 'absolute',
+              background: `url(${pattern}) no-repeat`,
+              backgroundSize: '1500px 1000px',
+              backgroundPosition: '-800px -575px',
+              height: 2,
+              left: '50%',
+              transform: 'translateX(-50%)',
+            },
 
-          '&::before': {
-            width: 250,
-            bottom: 0,
-          },
+            '&::before': {
+              width: 250,
+              bottom: 0,
+            },
 
-          '&::after': {
-            width: 125,
-            bottom: -theme.space.base,
+            '&::after': {
+              width: 125,
+              bottom: -theme.space.base,
+            },
           },
-        }}
+        ]}
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </article>

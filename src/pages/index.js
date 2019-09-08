@@ -12,13 +12,15 @@ import {
   Section,
   SectionTitle,
 } from 'chaoskit/src/components';
-import { misc } from 'chaoskit/src/assets/styles/utility';
+import { link, misc } from 'chaoskit/src/assets/styles/utility';
+import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient';
 import { withTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
 import Link from '../components/Link';
 import { ZSContext } from '../components/ZSContext';
 import { backgroundDots } from '../helpers/config';
+import pattern from '../assets/media/pattern.png';
 
 const Index = ({ theme }) => {
   const { dispatch } = useContext(ZSContext);
@@ -121,7 +123,7 @@ const Index = ({ theme }) => {
 
   return (
     <Foundation runAnimation>
-      <Section size="large">
+      <Section size="xlarge">
         <div css={{ textAlign: 'center' }}>
           <h5
             css={{
@@ -154,7 +156,7 @@ const Index = ({ theme }) => {
             Zach Schnackel
           </h1>
         </div>
-        <div className="u-mt--large">
+        <div css={{ marginTop: theme.space.large }}>
           <Inline size="medium" css={{ justifyContent: 'center' }}>
             <div
               css={{
@@ -195,14 +197,77 @@ const Index = ({ theme }) => {
           className="u-linkDefault home__latestArticle"
           to={latestArticle.node.fields.fullUrl}
           ref={latestArticleRef}
+          css={[
+            misc.fluidSize({
+              theme,
+              property: 'marginTop',
+              from: theme.space.xlarge,
+              to: theme.space.large * 1.5,
+            }),
+            link.reset(theme),
+            {
+              textAlign: 'center',
+              display: 'inline-flex',
+              flexDirection: 'column',
+              padding: theme.space.base,
+              position: 'relative',
+              left: '50%',
+              zIndex: 1,
+              transform: 'translateX(-50%)',
+              transition: `transform ${theme.timing.base} ${theme.transition.bounce}`,
+
+              // GSAP
+              opacity: 0,
+
+              '&:hover, &:focus': {
+                transform: 'translateX(-50%) scale(1.05)',
+              },
+
+              '&::before, &::after': {
+                content: "''",
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                background: generateGradient({
+                  start: theme.color.light.base,
+                  stop: theme.color.panel.base,
+                  position: 'to bottom right',
+                }),
+                transform: 'skew(-15deg)',
+              },
+
+              '&::before': {
+                zIndex: -1,
+              },
+
+              '&::after': {
+                zIndex: -2,
+                backgroundImage: `url(${pattern})`,
+                backgroundPosition: '-600px -575px',
+                backgroundSize: '1500px 1000px',
+                backgroundRepeat: 'no-repeat',
+                opacity: theme.opacity.base,
+                transform: `skew(-15deg) translate(-${theme.space.small}px, -${theme.space.small}px)`,
+              },
+            },
+            [theme.mq.small] && {
+              minWidth: `calc(${theme.breakpoint.small}px * 0.75)`,
+            },
+          ]}
         >
           <div>
-            <span className="u-textMedium" role="img" aria-label="Hooray!">
+            <span
+              css={{ fontSize: theme.fontSize.medium }}
+              role="img"
+              aria-label="Hooray!"
+            >
               🎉
             </span>{' '}
             Check out my latest article:
           </div>
-          <div className="u-textBold">
+          <div css={{ fontWeight: theme.fontWeight.bold }}>
             {latestArticle.node.frontmatter.title}
           </div>
         </Link>
