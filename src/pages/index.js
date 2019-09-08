@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment, useRef } from 'react';
 import useMount from 'react-use/lib/useMount';
 import { useStaticQuery, graphql } from 'gatsby';
 import { TimelineMax } from 'gsap/TweenMax';
@@ -9,12 +9,12 @@ import { Link } from '../components';
 import { config } from '../helpers/config';
 
 const Index = () => {
-  const introTitle = React.createRef();
-  const introTitleSub = React.createRef();
-  const articleButtonRef = React.createRef();
-  const experienceButtonRef = React.createRef();
-  const projectsRef = React.createRef();
-  const latestArticleRef = React.createRef();
+  const introTitle = useRef();
+  const introTitleSub = useRef();
+  const articleButtonRef = useRef();
+  const experienceButtonRef = useRef();
+  const projectsRef = useRef();
+  const latestArticleRef = useRef();
 
   const {
     latestArticle: {

@@ -4,8 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-const StylelintPlugin = require('stylelint-webpack-plugin');
-
 // Custom Webpack configuration
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   if (['develop'].includes(stage)) {
@@ -23,14 +21,6 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
           },
         ],
       },
-      plugins: [
-        new StylelintPlugin({
-          files: ['src/assets/styles/**/*.scss'],
-          configFile: 'stylelint.config.js',
-          syntax: 'scss',
-          emitErrors: false,
-        }),
-      ],
     });
   }
 };

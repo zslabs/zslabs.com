@@ -4,12 +4,4 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-// The following two functions are used to trigger a specific class used to attach the `scroll-behavior` modifier; to avoid unecessary smooth-scrolling to the top of the page between routes
-exports.onPreRouteUpdate = () => {
-  document.documentElement.classList.remove('is-loaded');
-  document.body.classList.remove('has-openOffCanvas');
-};
-
-exports.onRouteUpdate = () => {
-  document.documentElement.classList.add('is-loaded');
-};
+// You can delete this file if you're not using it
