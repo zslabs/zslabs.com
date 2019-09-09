@@ -1,36 +1,4 @@
 //
-// Title styles
-//
-
-%titleStyles {
-  position: relative;
-  display: inline-flex;
-  z-index: 1;
-
-  &::before {
-    @include fluid-size(
-      'width',
-      ($base-h3-font-size / 1.25),
-      ($base-h2-font-size / 1.25)
-    );
-    @include fluid-size(
-      'height',
-      ($base-h3-font-size / 1.25),
-      ($base-h2-font-size / 1.25)
-    );
-
-    content: '';
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translateX(-25%);
-    background-image: url('../media/pattern.png');
-    background-repeat: no-repeat;
-  }
-}
-
-//
 // Code filenames
 //
 
@@ -69,40 +37,6 @@
 }
 
 //
-// Full section
-//
-
-.section-title {
-  @extend %titleStyles;
-}
-
-//
-// OffCanvas
-//
-
-.offCanvas-title {
-  @extend %titleStyles;
-
-  &::before {
-    clip-path:
-      polygon(
-        0% 0%,
-        0% 100%,
-        25% 100%,
-        25% 25%,
-        75% 25%,
-        75% 75%,
-        25% 75%,
-        25% 100%,
-        100% 100%,
-        100% 0%
-      );
-    background-position: -325px -315px;
-    background-size: 750px 500px;
-  }
-}
-
-//
 // About Modal
 //
 
@@ -126,19 +60,4 @@
 
 .aboutModal-social--twitter {
   background-position: 70% 10%;
-}
-
-//
-// Projects
-//
-
-// 1. GSAP
-.section--projects {
-  .section-title {
-    &::before {
-      clip-path: polygon(0 100%, 0 0, 100% 0);
-      background-position: -200px -75px;
-      background-size: 750px 500px;
-    }
-  }
 }

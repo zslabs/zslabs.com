@@ -11,9 +11,11 @@ import {
   Section,
   SectionTitle,
 } from 'chaoskit/src/components';
+import { withTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
 import Data from '../components/Data';
+import { titleStyles } from '../helpers/config';
 
 const Experience = ({
   data: {
@@ -21,11 +23,28 @@ const Experience = ({
       childDataYaml: { experience },
     },
   },
+  theme,
 }) => (
   <Foundation>
     <Helmet title="Experience" />
     <Section>
-      <SectionTitle as="h2" title="Experience" />
+      <SectionTitle
+        as="h2"
+        title="Experience"
+        css={{
+          '.CK__SectionTitle__Header': [
+            titleStyles(theme),
+
+            {
+              '&::before': {
+                clipPath:
+                  'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)',
+                backgroundPosition: '-600px -175px',
+              },
+            },
+          ],
+        }}
+      />
       <Row css={{ justifyContent: 'center' }}>
         <RowColumn size={{ small: 10, medium: 8 }}>
           <List className="bubbleList">
@@ -79,4 +98,8 @@ export const pageQuery = graphql`
   }
 `;
 
-export default Experience;
+Experience.propTypes = {
+  theme: PropTypes.object.isRequired,
+};
+
+export default withTheme(Experience);

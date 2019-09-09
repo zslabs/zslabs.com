@@ -6,7 +6,7 @@ import { withTheme } from 'emotion-theming';
 import { ZSContext } from './ZSContext';
 import Icon from './Icon';
 import Link from './Link';
-import { formatDate } from '../helpers/config';
+import { formatDate, titleStyles } from '../helpers/config';
 
 const ArticlesOffCanvas = ({ articles, theme }) => {
   const {
@@ -39,7 +39,21 @@ const ArticlesOffCanvas = ({ articles, theme }) => {
           });
         }}
       >
-        <h2 className="offCanvas-title">Articles</h2>
+        <h2
+          css={[
+            titleStyles(theme),
+
+            {
+              '&::before': {
+                clipPath:
+                  'polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%)',
+                backgroundPosition: '-325px -315px',
+              },
+            },
+          ]}
+        >
+          Articles
+        </h2>
         <List className="bubbleList">
           {articles.map(({ node }) => (
             <ListItem key={node.frontmatter.title} className="bubbleList-item">

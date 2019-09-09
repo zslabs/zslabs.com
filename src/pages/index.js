@@ -21,7 +21,7 @@ import { withTheme } from 'emotion-theming';
 import Foundation from '../layouts/Foundation';
 import Link from '../components/Link';
 import { ZSContext } from '../components/ZSContext';
-import { backgroundDots } from '../helpers/config';
+import { backgroundDots, titleStyles } from '../helpers/config';
 import pattern from '../assets/media/pattern.png';
 
 const Index = ({ theme }) => {
@@ -292,7 +292,6 @@ const Index = ({ theme }) => {
             maskImage: 'linear-gradient(transparent 5%, #000)',
           },
         }}
-        className="section--projects"
       >
         <Container
           css={{
@@ -301,7 +300,22 @@ const Index = ({ theme }) => {
           }}
           size="small"
         >
-          <SectionTitle as="h2" title="Recent Projects" />
+          <SectionTitle
+            as="h2"
+            title="Recent Projects"
+            css={{
+              '.CK__SectionTitle__Header': [
+                titleStyles(theme),
+
+                {
+                  '&::before': {
+                    clipPath: 'polygon(0 100%, 0 0, 100% 0)',
+                    backgroundPosition: '-200px -75px',
+                  },
+                },
+              ],
+            }}
+          />
           <Row css={{ justifyContent: 'center' }}>
             <RowColumn size={{ small: 10, medium: 8 }}>
               <List className="bubbleList">
