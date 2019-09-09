@@ -3488,9 +3488,9 @@ chalk@^2.4.2:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-chaoskit@gremlin/chaoskit#81c0eff133d381e57e9d1720e6008bbbfcb1513b:
+chaoskit@gremlin/chaoskit#5376abfb2874a1fa71fa9efa505f4f6c1885eded:
   version "1.4.7"
-  resolved "https://codeload.github.com/gremlin/chaoskit/tar.gz/81c0eff133d381e57e9d1720e6008bbbfcb1513b"
+  resolved "https://codeload.github.com/gremlin/chaoskit/tar.gz/5376abfb2874a1fa71fa9efa505f4f6c1885eded"
   dependencies:
     "@emotion/babel-preset-css-prop" "10.0.14"
     "@emotion/cache" "10.0.15"

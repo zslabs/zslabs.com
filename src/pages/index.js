@@ -9,6 +9,8 @@ import {
   Inline,
   List,
   ListItem,
+  Row,
+  RowColumn,
   Section,
   SectionTitle,
 } from 'chaoskit/src/components';
@@ -194,7 +196,6 @@ const Index = ({ theme }) => {
           </Inline>
         </div>
         <Link
-          className="u-linkDefault home__latestArticle"
           to={latestArticle.node.fields.fullUrl}
           ref={latestArticleRef}
           css={[
@@ -202,7 +203,7 @@ const Index = ({ theme }) => {
               theme,
               property: 'marginTop',
               from: theme.space.xlarge,
-              to: theme.space.large * 1.5,
+              to: theme.space.xlarge * 1.5,
             }),
             link.reset(theme),
             {
@@ -300,9 +301,9 @@ const Index = ({ theme }) => {
           }}
           size="small"
         >
-          <SectionTitle title="Recent Projects" />
-          <div className="row u-flexCenter">
-            <div className="column-10@small column-8@medium">
+          <SectionTitle as="h2" title="Recent Projects" />
+          <Row css={{ justifyContent: 'center' }}>
+            <RowColumn size={{ small: 10, medium: 8 }}>
               <List className="bubbleList">
                 {pageData.projects.map(project => (
                   <ListItem className="bubbleList-item" key={project.title}>
@@ -323,8 +324,8 @@ const Index = ({ theme }) => {
                   </ListItem>
                 ))}
               </List>
-            </div>
-          </div>
+            </RowColumn>
+          </Row>
         </Container>
       </Section>
     </Foundation>

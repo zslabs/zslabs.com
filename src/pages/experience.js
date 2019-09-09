@@ -1,7 +1,16 @@
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import { Badge, Button, List, ListItem } from 'chaoskit/src/components';
+import {
+  Badge,
+  Button,
+  List,
+  ListItem,
+  Row,
+  RowColumn,
+  Section,
+  SectionTitle,
+} from 'chaoskit/src/components';
 
 import Foundation from '../layouts/Foundation';
 import Data from '../components/Data';
@@ -15,12 +24,10 @@ const Experience = ({
 }) => (
   <Foundation>
     <Helmet title="Experience" />
-    <section className="section section--experience">
-      <div className="section-titleWrapper">
-        <h2 className="section-title">Experience</h2>
-      </div>
-      <div className="row u-flexCenter">
-        <div className="column-10@small column-9@medium">
+    <Section>
+      <SectionTitle as="h2" title="Experience" />
+      <Row css={{ justifyContent: 'center' }}>
+        <RowColumn size={{ small: 10, medium: 8 }}>
           <List className="bubbleList">
             {experience.map((item, index) => (
               <ListItem className="bubbleList-item" key={item.company}>
@@ -47,9 +54,9 @@ const Experience = ({
               Recent Projects
             </Button>
           </div>
-        </div>
-      </div>
-    </section>
+        </RowColumn>
+      </Row>
+    </Section>
   </Foundation>
 );
 
