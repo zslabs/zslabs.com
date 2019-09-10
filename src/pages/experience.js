@@ -2,22 +2,18 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import {
-  Badge,
   Button,
-  List,
-  ListItem,
   Row,
   RowColumn,
   Section,
   SectionTitle,
 } from 'chaoskit/src/components';
-import { rgba } from 'polished';
 import { withTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
 import Data from '../components/Data';
+import { BubbleList, BubbleListItem } from '../components/BubbleList';
 import { titleStyles } from '../helpers';
-import pattern from '../assets/media/pattern.png';
 
 const Experience = ({
   data: {
@@ -49,43 +45,21 @@ const Experience = ({
       />
       <Row css={{ justifyContent: 'center' }}>
         <RowColumn size={{ small: 10, medium: 8 }}>
-          <List className="bubbleList">
+          <BubbleList>
             {experience.map((item, index) => (
-              <ListItem className="bubbleList-item" key={item.company}>
-                <div className="bubbleList-item-bubble" />
-                <div className="bubbleList-item-info">
-                  <div className="bubbleList-item-title-wrapper">
-                    <h4 className="bubbleList-item-title">{item.company}</h4>
-                    <Badge
-                      type={index === 0 ? 'primary' : null}
-                      label={item.dates}
-                      css={[
-                        index === 0 && {
-                          border: 0,
-                          backgroundImage: `url(${pattern}) !important`,
-                          backgroundColor: 'transparent',
-                          backgroundRepeat: 'no-repeat',
-                          backgroundSize: 'auto',
-                          color: theme.contrast.base,
-                          textShadow: `0 1px 10px ${rgba(
-                            theme.color.dark.base,
-                            0.1
-                          )}`,
-                          backgroundPosition: '60% 10%',
-                        },
-                      ]}
-                    />
-                  </div>
-                  <div className="u-textMuted u-mb--regular">{item.title}</div>
-                  <div className="u-mt--remove u-textMedium">
-                    <Data markdown>{item.blurb}</Data>
-                  </div>
-                </div>
-              </ListItem>
+              <BubbleListItem
+                key={item.company}
+                first={index === 0}
+                title={item.company}
+                meta={item.title}
+                badge={item.dates}
+              >
+                <Data markdown>{item.blurb}</Data>
+              </BubbleListItem>
             ))}
-          </List>
+          </BubbleList>
 
-          <div className="u-textCenter u-mt--xlarge">
+          <div css={{ marginTop: theme.space.xlarge, textAlign: 'center' }}>
             <Button type="secondary" url="/#recent-projects">
               Recent Projects
             </Button>

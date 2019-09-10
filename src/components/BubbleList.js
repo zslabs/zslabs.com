@@ -1,18 +1,33 @@
 import { useContext } from 'react';
+import { rgba } from 'polished';
 import { Badge, List, ListItem } from 'chaoskit/src/components';
+import { misc } from 'chaoskit/src/assets/styles/utility';
 import { withTheme } from 'emotion-theming';
 
 import Link from './Link';
 import { ZSContext } from './ZSContext';
+import pattern from '../assets/media/pattern.png';
 
 export const BubbleList = withTheme(({ theme, ...opts }) => (
   <List space="medium" {...opts} />
 ));
 
-const bubbleSize = 8;
+const bubbleSize = 16;
+
+const linkStyles = theme => [
+  {
+    ...theme.fontSize.xlarge__fluid,
+    color: theme.fontColor.muted,
+    position: 'relative',
+    display: 'inline-block',
+    verticalAlign: 'bottom',
+    overflow: 'hidden',
+    paddingBottom: 3,
+  },
+];
 
 export const BubbleListItem = withTheme(
-  ({ theme, url, title, meta, badge, children, ...opts }) => {
+  ({ theme, key, url, title, meta, badge, first, children, ...opts }) => {
     const { dispatch } = useContext(ZSContext);
 
     return (
@@ -20,7 +35,15 @@ export const BubbleListItem = withTheme(
         css={{
           display: 'grid',
           alignItems: 'center',
-          gridGap: theme.space.base,
+          gridGap: theme.space.medium,
+          gridTemplateColumns: `${bubbleSize}px 1fr`,
+
+          '&:hover, &:focus': {
+            '.ZS__Bubble': {
+              transform: 'scale(1.25)',
+              backgroundColor: theme.fontColor.base,
+            },
+          },
         }}
         {...opts}
       >
@@ -28,10 +51,12 @@ export const BubbleListItem = withTheme(
           css={{
             width: bubbleSize,
             height: bubbleSize,
-            border: 2,
+            border: `2px solid ${theme.fontColor.base}`,
             borderRadius: '50%',
-            background: theme.color.light.base,
+            backgroundColor: theme.color.light.base,
+            transition: `all ${theme.timing.base} ${theme.transition.bounce}`,
           }}
+          className="ZS__Bubble"
         />
         <div>
           <div
@@ -64,31 +89,75 @@ export const BubbleListItem = withTheme(
                         type: 'toggleOffCanvas',
                       });
                     }}
+                    css={linkStyles(theme)}
                   >
                     {title}
                   </Link>
                 ) : (
-                  <a href={url.to} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={url.to}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    css={linkStyles(theme)}
+                  >
                     {title}
                   </a>
                 )
               ) : (
-                <h4>{title}</h4>
+                <h4 css={{ ...theme.fontSize.xlarge__fluid, marginBottom: 0 }}>
+                  {title}
+                </h4>
               )}
               {meta && (
                 <div
                   css={{
                     color: theme.fontColor.muted,
-                    fontSize: theme.fontSize.small,
                   }}
                 >
                   {meta}
                 </div>
               )}
             </div>
-            {badge && <Badge label={badge} />}
+            {badge && (
+              <div>
+                <Badge
+                  css={[
+                    first && {
+                      border: 0,
+                      backgroundImage: `url(${pattern}) !important`,
+                      backgroundColor: 'transparent',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: 'auto',
+                      color: theme.contrast.base,
+                      textShadow: `0 1px 10px ${rgba(
+                        theme.color.dark.base,
+                        0.1
+                      )}`,
+                      backgroundPosition: '60% 10%',
+                    },
+                  ]}
+                  label={badge}
+                />
+              </div>
+            )}
           </div>
-          {children}
+          {children && (
+            <div
+              css={
+                (misc.fluidSize({
+                  theme,
+                  property: 'fontSize',
+                  from: theme.fontSize.base,
+                  to: theme.fontSize.medium,
+                }),
+                {
+                  marginTop: theme.space.small,
+                })
+              }
+            >
+              {children}
+            </div>
+          )}
         </div>
       </ListItem>
     );
