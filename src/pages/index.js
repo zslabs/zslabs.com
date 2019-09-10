@@ -21,7 +21,7 @@ import { withTheme } from 'emotion-theming';
 import Foundation from '../layouts/Foundation';
 import Link from '../components/Link';
 import { ZSContext } from '../components/ZSContext';
-import { backgroundDots, titleStyles } from '../helpers/config';
+import { backgroundDots, buttonBase, titleStyles } from '../helpers';
 import pattern from '../assets/media/pattern.png';
 
 const Index = ({ theme }) => {
@@ -175,7 +175,7 @@ const Index = ({ theme }) => {
                     type: 'toggleOffCanvas',
                   });
                 }}
-                type="primary"
+                css={buttonBase(theme, { type: 'primary' })}
               >
                 Articles
               </Button>
@@ -189,7 +189,10 @@ const Index = ({ theme }) => {
               }}
               ref={experienceButtonRef}
             >
-              <Button type="secondary" url="/experience/">
+              <Button
+                css={buttonBase(theme, { type: 'secondary' })}
+                url="/experience/"
+              >
                 Experience
               </Button>
             </div>

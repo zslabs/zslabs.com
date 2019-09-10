@@ -11,11 +11,13 @@ import {
   Section,
   SectionTitle,
 } from 'chaoskit/src/components';
+import { rgba } from 'polished';
 import { withTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
 import Data from '../components/Data';
-import { titleStyles } from '../helpers/config';
+import { titleStyles } from '../helpers';
+import pattern from '../assets/media/pattern.png';
 
 const Experience = ({
   data: {
@@ -57,6 +59,21 @@ const Experience = ({
                     <Badge
                       type={index === 0 ? 'primary' : null}
                       label={item.dates}
+                      css={[
+                        index === 0 && {
+                          border: 0,
+                          backgroundImage: `url(${pattern}) !important`,
+                          backgroundColor: 'transparent',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundSize: 'auto',
+                          color: theme.contrast.base,
+                          textShadow: `0 1px 10px ${rgba(
+                            theme.color.dark.base,
+                            0.1
+                          )}`,
+                          backgroundPosition: '60% 10%',
+                        },
+                      ]}
                     />
                   </div>
                   <div className="u-textMuted u-mb--regular">{item.title}</div>

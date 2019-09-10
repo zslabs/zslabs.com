@@ -7,7 +7,7 @@ import { withTheme } from 'emotion-theming';
 
 import Foundation from '../../layouts/Foundation';
 import Icon from '../../components/Icon';
-import { formatDate } from '../../helpers/config';
+import { formatDate } from '../../helpers';
 import pattern from '../../assets/media/pattern.png';
 
 const Post = ({

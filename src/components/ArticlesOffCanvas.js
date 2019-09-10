@@ -6,7 +6,7 @@ import { withTheme } from 'emotion-theming';
 import { ZSContext } from './ZSContext';
 import Icon from './Icon';
 import Link from './Link';
-import { formatDate, titleStyles } from '../helpers/config';
+import { formatDate, titleStyles } from '../helpers';
 
 const ArticlesOffCanvas = ({ articles, theme }) => {
   const {
@@ -59,7 +59,15 @@ const ArticlesOffCanvas = ({ articles, theme }) => {
             <ListItem key={node.frontmatter.title} className="bubbleList-item">
               <div className="bubbleList-item-bubble" />
               <div className="bubbleList-item-info">
-                <Link className="bubbleList-item-link" to={node.fields.fullUrl}>
+                <Link
+                  className="bubbleList-item-link"
+                  to={node.fields.fullUrl}
+                  onClick={() => {
+                    dispatch({
+                      type: 'toggleOffCanvas',
+                    });
+                  }}
+                >
                   {node.frontmatter.title}
                 </Link>
                 <p className="u-mt--remove u-textMedium u-textMuted">

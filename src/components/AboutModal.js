@@ -13,6 +13,27 @@ import { text, link } from 'chaoskit/src/assets/styles/utility';
 
 import Icon from './Icon';
 import me from '../assets/media/me.png';
+import { buttonBase } from '../helpers';
+
+const SocialButton = withTheme(({ url, title, icon, theme }) => (
+  <Button
+    url={url}
+    target="_blank"
+    rel="noopener noreferrer"
+    iconOnly
+    title={title}
+    css={[
+      buttonBase(theme, { type: icon }),
+      {
+        '&:hover, &:focus': {
+          transform: 'scale(1.15)',
+        },
+      },
+    ]}
+  >
+    <Icon icon={icon} />
+  </Button>
+));
 
 const AboutModal = ({ theme }) => {
   const [isAboutModalOpen, toggleAboutModalOpen] = useToggle(false);
@@ -63,38 +84,28 @@ const AboutModal = ({ theme }) => {
               justifyContent: 'center',
             }}
           >
-            <Button
+            <SocialButton
               url="https://www.github.com/zslabs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="aboutModal-social--github"
-              iconOnly
               title="GitHub"
-            >
-              <Icon icon="github" />
-            </Button>
-            <Button
+              icon="github"
+            />
+            <SocialButton
               url="https://www.codepen.io/zslabs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="aboutModal-social--codepen"
-              iconOnly
               title="CodePen"
-            >
-              <Icon icon="codepen" />
-            </Button>
-            <Button
+              icon="codepen"
+            />
+            <SocialButton
               url="https://www.twitter.com/zslabs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="aboutModal-social--twitter"
-              iconOnly
               title="Twitter"
-            >
-              <Icon icon="twitter" />
-            </Button>
+              icon="twitter"
+            />
           </Inline>
-          <p className="u-mv--large">
+          <p
+            css={{
+              marginTop: theme.space.large,
+              marginBottom: theme.space.large,
+            }}
+          >
             I create buttons, borders, and other groovy things at{' '}
             <a
               href="https://www.gremlin.com"
