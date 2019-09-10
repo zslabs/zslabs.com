@@ -1,11 +1,11 @@
 import { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Button, List, ListItem, OffCanvas } from 'chaoskit/src/components';
+import { Button, OffCanvas } from 'chaoskit/src/components';
 import { withTheme } from 'emotion-theming';
 
 import { ZSContext } from './ZSContext';
 import Icon from './Icon';
-import Link from './Link';
+import { BubbleList, BubbleListItem } from './BubbleList';
 import { formatDate, titleStyles } from '../helpers';
 
 const ArticlesOffCanvas = ({ articles, theme }) => {
@@ -54,29 +54,19 @@ const ArticlesOffCanvas = ({ articles, theme }) => {
         >
           Articles
         </h2>
-        <List className="bubbleList">
+        <BubbleList>
           {articles.map(({ node }) => (
-            <ListItem key={node.frontmatter.title} className="bubbleList-item">
-              <div className="bubbleList-item-bubble" />
-              <div className="bubbleList-item-info">
-                <Link
-                  className="bubbleList-item-link"
-                  to={node.fields.fullUrl}
-                  onClick={() => {
-                    dispatch({
-                      type: 'toggleOffCanvas',
-                    });
-                  }}
-                >
-                  {node.frontmatter.title}
-                </Link>
-                <p className="u-mt--remove u-textMedium u-textMuted">
-                  {formatDate(node.frontmatter.date)}
-                </p>
-              </div>
-            </ListItem>
+            <BubbleListItem
+              key={node.frontmatter.title}
+              url={{
+                type: 'article',
+                to: node.fields.fullUrl,
+              }}
+              title={node.frontmatter.title}
+              meta={formatDate(node.frontmatter.date)}
+            />
           ))}
-        </List>
+        </BubbleList>
       </OffCanvas>
     </Fragment>
   );
