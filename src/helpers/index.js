@@ -4,7 +4,7 @@ import { misc } from 'chaoskit/src/assets/styles/utility';
 import dots from '../assets/media/dots.svg';
 import pattern from '../assets/media/pattern.png';
 
-export const formatDate = date => format(date, 'MMMM D, YYYY');
+export const formatDate = date => format(new Date(date), 'MMMM d, yyyy');
 
 export const buttonBase = (theme, props = { type: 'default' }) => [
   {

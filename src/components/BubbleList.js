@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { rgba } from 'polished';
 import { Badge, List, ListItem } from 'chaoskit/src/components';
-import { misc } from 'chaoskit/src/assets/styles/utility';
+import { link, misc, text } from 'chaoskit/src/assets/styles/utility';
 import { withTheme } from 'emotion-theming';
 
 import Link from './Link';
@@ -15,14 +15,34 @@ export const BubbleList = withTheme(({ theme, ...opts }) => (
 const bubbleSize = 16;
 
 const linkStyles = theme => [
+  text.heading(theme),
+  link.heading(theme),
   {
     ...theme.fontSize.xlarge__fluid,
-    color: theme.fontColor.muted,
     position: 'relative',
     display: 'inline-block',
     verticalAlign: 'bottom',
     overflow: 'hidden',
     paddingBottom: 3,
+
+    '&::before': {
+      content: "''",
+      zIndex: -1,
+      background: rgba(theme.fontColor.heading, 0.1),
+      height: 3,
+      top: 'calc(100% - 3px)',
+      width: '100%',
+      left: 0,
+      transform: 'translateX(-100%)',
+      position: 'absolute',
+      transition: `transform ${theme.timing.base} ${theme.transition.base}`,
+    },
+
+    '&:hover, &:focus': {
+      '&::before': {
+        transform: 'none',
+      },
+    },
   },
 ];
 

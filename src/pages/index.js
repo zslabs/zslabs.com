@@ -7,8 +7,6 @@ import {
   Button,
   Container,
   Inline,
-  List,
-  ListItem,
   Row,
   RowColumn,
   Section,
@@ -21,6 +19,7 @@ import { withTheme } from 'emotion-theming';
 import Foundation from '../layouts/Foundation';
 import Link from '../components/Link';
 import { ZSContext } from '../components/ZSContext';
+import { BubbleList, BubbleListItem } from '../components/BubbleList';
 import { backgroundDots, buttonBase, titleStyles } from '../helpers';
 import pattern from '../assets/media/pattern.png';
 
@@ -321,26 +320,19 @@ const Index = ({ theme }) => {
           />
           <Row css={{ justifyContent: 'center' }}>
             <RowColumn size={{ small: 10, medium: 8 }}>
-              <List className="bubbleList">
+              <BubbleList>
                 {pageData.projects.map(project => (
-                  <ListItem className="bubbleList-item" key={project.title}>
-                    <div className="bubbleList-item-bubble" />
-                    <div className="bubbleList-item-info">
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bubbleList-item-link"
-                        href={project.url}
-                      >
-                        {project.title}
-                      </a>
-                      <p className="u-mt--remove u-textMedium">
-                        {project.description}
-                      </p>
-                    </div>
-                  </ListItem>
+                  <BubbleListItem
+                    key={project.title}
+                    title={project.title}
+                    url={{
+                      to: project.url,
+                    }}
+                  >
+                    {project.description}
+                  </BubbleListItem>
                 ))}
-              </List>
+              </BubbleList>
             </RowColumn>
           </Row>
         </Container>
