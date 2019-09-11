@@ -92,6 +92,28 @@ export const BubbleListItem = withTheme(
               backgroundColor: theme.fontColor.base,
             },
           },
+
+          '&:first-of-type': {
+            paddingTop: theme.space.medium,
+          },
+
+          '&:last-of-type': {
+            position: 'relative',
+            paddingBottom: theme.space.medium,
+
+            '&::after': {
+              content: "''",
+              zIndex: -1,
+              position: 'absolute',
+              bottom: 0,
+              left: bubbleSize / 2,
+              transform: 'translateX(-50%)',
+              background: theme.fontColor.base,
+              width: bubbleSize / 2,
+              height: bubbleSize / 2,
+              borderRadius: '50%',
+            },
+          },
         }}
         {...opts}
       >
