@@ -1,5 +1,4 @@
 import { useEffect, useRef, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import { TimelineMax } from 'gsap/TweenMax';
 import {
@@ -13,7 +12,6 @@ import {
 } from 'chaoskit/src/components';
 import { link, misc } from 'chaoskit/src/assets/styles/utility';
 import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient';
-import { withTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
 import Link from '../components/Link';
@@ -21,8 +19,9 @@ import { ZSContext } from '../components/ZSContext';
 import { BubbleList, BubbleListItem } from '../components/BubbleList';
 import { backgroundDots, buttonBase, titleStyles } from '../helpers';
 import pattern from '../assets/media/pattern.png';
+import useTheme from '../hooks/useTheme';
 
-const Index = ({ theme }) => {
+const Index = () => {
   const { dispatch } = useContext(ZSContext);
 
   const introTitle = useRef();
@@ -31,6 +30,8 @@ const Index = ({ theme }) => {
   const experienceButtonRef = useRef();
   const projectsRef = useRef();
   const latestArticleRef = useRef();
+
+  const theme = useTheme();
 
   const {
     latestArticle: {
@@ -339,8 +340,4 @@ const Index = ({ theme }) => {
   );
 };
 
-Index.propTypes = {
-  theme: PropTypes.object.isRequired,
-};
-
-export default withTheme(Index);
+export default Index;

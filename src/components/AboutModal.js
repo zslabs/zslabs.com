@@ -7,35 +7,46 @@ import {
   Close,
   Inline,
 } from 'chaoskit/src/components';
-import { withTheme } from 'emotion-theming';
 import { text, link } from 'chaoskit/src/assets/styles/utility';
 
 import Icon from './Icon';
 import me from '../assets/media/me.png';
 import { buttonBase } from '../helpers';
+import useTheme from '../hooks/useTheme';
 
-const SocialButton = withTheme(({ url, title, icon, theme }) => (
-  <Button
-    url={url}
-    target="_blank"
-    rel="noopener noreferrer"
-    iconOnly
-    title={title}
-    css={[
-      buttonBase(theme, { type: icon }),
-      {
-        '&:hover, &:focus': {
-          transform: 'scale(1.15)',
+const SocialButton = ({ url, title, icon }) => {
+  const theme = useTheme();
+
+  return (
+    <Button
+      url={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      iconOnly
+      title={title}
+      css={[
+        buttonBase(theme, { type: icon }),
+        {
+          '&:hover, &:focus': {
+            transform: 'scale(1.15)',
+          },
         },
-      },
-    ]}
-  >
-    <Icon icon={icon} />
-  </Button>
-));
+      ]}
+    >
+      <Icon icon={icon} />
+    </Button>
+  );
+};
 
-const AboutModal = ({ theme }) => {
+SocialButton.propTypes = {
+  url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+};
+
+const AboutModal = () => {
   const [isAboutModalOpen, toggleAboutModalOpen] = useState(false);
+  const theme = useTheme();
 
   return (
     <Fragment>
@@ -197,8 +208,4 @@ const AboutModal = ({ theme }) => {
   );
 };
 
-AboutModal.propTypes = {
-  theme: PropTypes.object.isRequired,
-};
-
-export default withTheme(AboutModal);
+export default AboutModal;

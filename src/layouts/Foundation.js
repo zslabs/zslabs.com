@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet';
 import 'what-input';
 import { TimelineMax } from 'gsap/TweenMax';
 import rootUnits from 'root-units';
-import { withTheme } from 'emotion-theming';
 import { Container } from 'chaoskit/src/components';
 import { misc } from 'chaoskit/src/assets/styles/utility';
 
@@ -16,11 +15,14 @@ import ArticlesOffCanvas from '../components/ArticlesOffCanvas';
 import me from '../assets/media/me.png';
 import logo from '../assets/media/logo.svg';
 import pattern from '../assets/media/pattern.png';
+import useTheme from '../hooks/useTheme';
 
-const Foundation = ({ children, runAnimation, theme }) => {
+const Foundation = ({ children, runAnimation }) => {
   const logoRef = useRef();
   const menuRef = useRef();
   const aboutRef = useRef();
+
+  const theme = useTheme();
 
   useEffect(() => {
     // Get more reliable viewport units
@@ -179,7 +181,6 @@ const Foundation = ({ children, runAnimation, theme }) => {
 Foundation.propTypes = {
   runAnimation: PropTypes.bool,
   children: PropTypes.node.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-export default withTheme(Foundation);
+export default Foundation;

@@ -8,12 +8,12 @@ import {
   Section,
   SectionTitle,
 } from 'chaoskit/src/components';
-import { withTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
 import Data from '../components/Data';
 import { BubbleList, BubbleListItem } from '../components/BubbleList';
 import { titleStyles } from '../helpers';
+import useTheme from '../hooks/useTheme';
 
 const Experience = ({
   data: {
@@ -21,54 +21,57 @@ const Experience = ({
       childDataYaml: { experience },
     },
   },
-  theme,
-}) => (
-  <Foundation>
-    <Helmet title="Experience" />
-    <Section>
-      <SectionTitle
-        as="h2"
-        title="Experience"
-        css={{
-          '.CK__SectionTitle__Header': [
-            titleStyles(theme),
+}) => {
+  const theme = useTheme();
 
-            {
-              '&::before': {
-                clipPath:
-                  'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)',
-                backgroundPosition: '-600px -175px',
+  return (
+    <Foundation>
+      <Helmet title="Experience" />
+      <Section>
+        <SectionTitle
+          as="h2"
+          title="Experience"
+          css={{
+            '.CK__SectionTitle__Header': [
+              titleStyles(theme),
+
+              {
+                '&::before': {
+                  clipPath:
+                    'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)',
+                  backgroundPosition: '-600px -175px',
+                },
               },
-            },
-          ],
-        }}
-      />
-      <Row css={{ justifyContent: 'center' }}>
-        <RowColumn size={{ small: 10, medium: 8 }}>
-          <BubbleList>
-            {experience.map((item, index) => (
-              <BubbleListItem
-                key={item.company}
-                first={index === 0}
-                title={item.company}
-                meta={item.title}
-                badge={item.dates}
-              >
-                <Data markdown>{item.blurb}</Data>
-              </BubbleListItem>
-            ))}
-          </BubbleList>
+            ],
+          }}
+        />
+        <Row css={{ justifyContent: 'center' }}>
+          <RowColumn size={{ small: 10, medium: 8 }}>
+            <BubbleList>
+              {experience.map((item, index) => (
+                <BubbleListItem
+                  key={item.company}
+                  first={index === 0}
+                  title={item.company}
+                  meta={item.title}
+                  badge={item.dates}
+                >
+                  <Data markdown>{item.blurb}</Data>
+                </BubbleListItem>
+              ))}
+            </BubbleList>
 
-          <div css={{ marginTop: theme.space.xlarge, textAlign: 'center' }}>
-            <Button type="secondary" url="/#recent-projects">
-              Recent Projects
-            </Button>
-          </div>
-        </RowColumn>
-      </Row>
-    </Section>
-  </Foundation>
-);
+            <div css={{ marginTop: theme.space.xlarge, textAlign: 'center' }}>
+              <Button type="secondary" url="/#recent-projects">
+                Recent Projects
+              </Button>
+            </div>
+          </RowColumn>
+        </Row>
+      </Section>
+    </Foundation>
+  );
+};
 
 Experience.propTypes = {
   data: PropTypes.object.isRequired,
@@ -89,8 +92,4 @@ export const pageQuery = graphql`
   }
 `;
 
-Experience.propTypes = {
-  theme: PropTypes.object.isRequired,
-};
-
-export default withTheme(Experience);
+export default Experience;

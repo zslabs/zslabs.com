@@ -1,18 +1,19 @@
 import { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Button, OffCanvas } from 'chaoskit/src/components';
-import { withTheme } from 'emotion-theming';
 
 import { ZSContext } from './ZSContext';
 import Icon from './Icon';
 import { BubbleList, BubbleListItem } from './BubbleList';
 import { formatDate, titleStyles } from '../helpers';
+import useTheme from '../hooks/useTheme';
 
-const ArticlesOffCanvas = ({ articles, theme }) => {
+const ArticlesOffCanvas = ({ articles }) => {
   const {
     state: { offCanvasOpen },
     dispatch,
   } = useContext(ZSContext);
+  const theme = useTheme();
 
   return (
     <Fragment>
@@ -74,7 +75,6 @@ const ArticlesOffCanvas = ({ articles, theme }) => {
 
 ArticlesOffCanvas.propTypes = {
   articles: PropTypes.array.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-export default withTheme(ArticlesOffCanvas);
+export default ArticlesOffCanvas;
