@@ -5,7 +5,7 @@
  */
 
 // Custom Webpack configuration
-exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
   if (['develop'].includes(stage)) {
     actions.setWebpackConfig({
       module: {
