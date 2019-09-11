@@ -8,11 +8,33 @@ import Link from './Link';
 import { ZSContext } from './ZSContext';
 import pattern from '../assets/media/pattern.png';
 
-export const BubbleList = withTheme(({ theme, ...opts }) => (
-  <List space="medium" {...opts} />
-));
-
 const bubbleSize = 16;
+
+export const BubbleList = withTheme(({ theme, ...opts }) => (
+  <List
+    css={{
+      position: 'relative',
+
+      '&::before, &::after': {
+        content: "''",
+        zIndex: 0,
+        position: 'absolute',
+        top: 0,
+        left: bubbleSize / 2,
+        transform: 'translateX(-50%)',
+        background: theme.fontColor.base,
+      },
+
+      '&::before': {
+        width: bubbleSize / 2,
+        height: bubbleSize / 2,
+        borderRadius: '50%',
+      },
+    }}
+    space="medium"
+    {...opts}
+  />
+));
 
 const linkStyles = theme => [
   text.heading(theme),
