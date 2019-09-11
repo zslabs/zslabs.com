@@ -5,7 +5,7 @@
  */
 
 // Custom Webpack configuration
-exports.onCreateWebpackConfig = ({ stage, actions }) => {
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   if (['develop'].includes(stage)) {
     actions.setWebpackConfig({
       module: {
@@ -18,6 +18,21 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
                 loader: 'eslint-loader',
               },
             ],
+          },
+        ],
+      },
+    });
+  }
+
+  // Get around certain 3rd party modules that define `window` or `document`
+  // https://next.gatsbyjs.org/docs/debugging-html-builds/#debugging-html-builds
+  if (stage.includes('html')) {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /root-units/,
+            use: loaders.null(),
           },
         ],
       },
