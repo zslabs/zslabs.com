@@ -30,6 +30,12 @@ export const BubbleList = withTheme(({ theme, ...opts }) => (
         height: bubbleSize / 2,
         borderRadius: '50%',
       },
+
+      '&::after': {
+        bottom: 0,
+        background: theme.fontColor.base,
+        width: 2,
+      },
     }}
     space="medium"
     {...opts}
