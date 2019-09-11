@@ -15,6 +15,8 @@ const reducer = (state, action) => {
         ...state,
         offCanvasOpen: !state.offCanvasOpen,
       };
+    default:
+      throw new Error();
   }
 };
 

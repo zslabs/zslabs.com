@@ -94,8 +94,7 @@ export const BubbleListItem = withTheme(
           >
             <div
               css={{
-                display: 'grid',
-                gridGap: theme.space.xsmall,
+                display: 'inline-grid',
                 gridTemplateColumns: 'minmax(0px, 1fr)',
               }}
             >

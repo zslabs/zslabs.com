@@ -1,6 +1,5 @@
 import { Fragment, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import useMount from 'react-use/lib/useMount';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import 'what-input';
@@ -90,9 +89,11 @@ const Foundation = ({ children, runAnimation, theme }) => {
     );
   };
 
-  useMount(() => {
-    if (runAnimation) runAnimationFunc();
-  });
+  useEffect(() => {
+    if (runAnimation) {
+      runAnimationFunc();
+    }
+  }, []);
 
   return (
     <Fragment>

@@ -1,6 +1,5 @@
-import { Fragment } from 'react';
+import { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import useToggle from 'react-use/lib/useToggle';
 import {
   Button,
   Modal,
@@ -36,11 +35,11 @@ const SocialButton = withTheme(({ url, title, icon, theme }) => (
 ));
 
 const AboutModal = ({ theme }) => {
-  const [isAboutModalOpen, toggleAboutModalOpen] = useToggle(false);
+  const [isAboutModalOpen, toggleAboutModalOpen] = useState(false);
 
   return (
     <Fragment>
-      <Button type="reset" onClick={toggleAboutModalOpen}>
+      <Button type="reset" onClick={() => toggleAboutModalOpen(true)}>
         <img
           src={me}
           alt="About"
@@ -52,10 +51,13 @@ const AboutModal = ({ theme }) => {
           }}
         />
       </Button>
-      <Modal open={isAboutModalOpen} onOutsideModalClick={toggleAboutModalOpen}>
+      <Modal
+        open={isAboutModalOpen}
+        onOutsideModalClick={() => toggleAboutModalOpen(false)}
+      >
         <ModalBody>
           <Close
-            onClick={() => toggleAboutModalOpen()}
+            onClick={() => toggleAboutModalOpen(false)}
             css={{
               position: 'absolute',
               top: theme.space.large,

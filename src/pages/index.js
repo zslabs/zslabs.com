@@ -1,6 +1,5 @@
-import { useRef, useContext } from 'react';
+import { useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
-import useMount from 'react-use/lib/useMount';
 import { useStaticQuery, graphql } from 'gatsby';
 import { TimelineMax } from 'gsap/TweenMax';
 import {
@@ -118,9 +117,9 @@ const Index = ({ theme }) => {
       });
   };
 
-  useMount(() => {
+  useEffect(() => {
     runAnimation();
-  });
+  }, []);
 
   return (
     <Foundation runAnimation>
