@@ -291,7 +291,6 @@ const Index = ({ theme }) => {
           '&::before': {
             ...backgroundDots(theme.fontColor.muted),
             zIndex: -2,
-            maskImage: 'linear-gradient(transparent 5%, #000)',
           },
         }}
       >
