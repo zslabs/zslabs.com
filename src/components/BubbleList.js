@@ -17,7 +17,7 @@ export const BubbleList = withTheme(({ theme, ...opts }) => (
 
       '&::before, &::after': {
         content: "''",
-        zIndex: 0,
+        zIndex: -1,
         position: 'absolute',
         top: 0,
         left: bubbleSize / 2,
