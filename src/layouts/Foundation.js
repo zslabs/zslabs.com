@@ -1,4 +1,4 @@
-import { Fragment, useRef } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import useMount from 'react-use/lib/useMount';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -18,13 +18,15 @@ import me from '../assets/media/me.png';
 import logo from '../assets/media/logo.svg';
 import pattern from '../assets/media/pattern.png';
 
-// Get more reliable viewport units
-rootUnits.install();
-
 const Foundation = ({ children, runAnimation, theme }) => {
   const logoRef = useRef();
   const menuRef = useRef();
   const aboutRef = useRef();
+
+  useEffect(() => {
+    // Get more reliable viewport units
+    rootUnits.install();
+  }, []);
 
   const {
     site: {

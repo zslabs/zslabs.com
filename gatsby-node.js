@@ -23,21 +23,6 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
       },
     });
   }
-
-  // Get around certain 3rd party modules that define `window` or `document`
-  // https://next.gatsbyjs.org/docs/debugging-html-builds/#debugging-html-builds
-  if (stage.includes('html')) {
-    actions.setWebpackConfig({
-      module: {
-        rules: [
-          {
-            test: /root-units/,
-            use: loaders.null(),
-          },
-        ],
-      },
-    });
-  }
 };
 
 const path = require('path');
