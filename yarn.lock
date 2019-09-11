@@ -2966,9 +2966,9 @@ chalk@^2.0, chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.4.1, chalk@^2.4.2
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-"chaoskit@https://github.com/gremlin/chaoskit/tarball/cb29b518d5ad3b2995d68afee1462fb366e12bc2/chaoskit.tar.gz":
+"chaoskit@https://github.com/gremlin/chaoskit/tarball/83c247b8a16eaa7855a8cf56bd3f85d4685f3d3a/chaoskit.tar.gz":
   version "1.4.7"
-  resolved "https://github.com/gremlin/chaoskit/tarball/cb29b518d5ad3b2995d68afee1462fb366e12bc2/chaoskit.tar.gz#0ec3cc494a2488c85d261b9c9ea9320442a14aef"
+  resolved "https://github.com/gremlin/chaoskit/tarball/83c247b8a16eaa7855a8cf56bd3f85d4685f3d3a/chaoskit.tar.gz#9258fa6c332fd62e83f2abb71092c5edfa6c1a22"
   dependencies:
     "@emotion/babel-preset-css-prop" "10.0.17"
     "@emotion/cache" "10.0.17"
@@ -2979,7 +2979,7 @@ chalk@^2.0, chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.4.1, chalk@^2.4.2
     babel-plugin-polished "1.1.0"
     classnames "2.2.6"
     downshift "3.2.14"
-    emotion-theming "10.0.17"
+    emotion-theming "10.0.18"
     eslint "5.16.0"
     eslint-config-airbnb "17.1.0"
     eslint-config-prettier "5.1.0"
@@ -4530,10 +4530,10 @@ emojis-list@^2.0.0:
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"
   integrity sha1-TapNnbAPmBmIDHn6RXrlsJof04k=
 
-emotion-theming@10.0.17:
-  version "10.0.17"
-  resolved "https://registry.yarnpkg.com/emotion-theming/-/emotion-theming-10.0.17.tgz#dc1fe33c24dc7377633535dff4885cfa4d6ad48b"
-  integrity sha512-EocpFv+YjZPve20spmnj0Xtnkm/aJec8J8d69XJWtn5Kqqq7jK5S/amMtXSGNm5sjAwoGfJBMZ1p0jMgB3wIPA==
+emotion-theming@10.0.18:
+  version "10.0.18"
+  resolved "https://registry.yarnpkg.com/emotion-theming/-/emotion-theming-10.0.18.tgz#7d636eb465cb190590e17d815b8d318be512ef7d"
+  integrity sha512-zFAax4setUIKDj+cmbl3nxXDBRIMsPmiRNpg+qDmX9wTHW2TPWpETMGaDWB67LwK63rfSIkeTH7stFFnyKd2pQ==
   dependencies:
     "@babel/runtime" "^7.5.5"
     "@emotion/weak-memoize" "0.2.3"

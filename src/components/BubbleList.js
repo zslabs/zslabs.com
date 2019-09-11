@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { rgba } from 'polished';
 import { Badge, List, ListItem } from 'chaoskit/src/components';
 import { link, misc, text } from 'chaoskit/src/assets/styles/utility';
+import { useTheme } from 'emotion-theming';
 
 import Link from './Link';
 import { ZSContext } from './ZSContext';
 import pattern from '../assets/media/pattern.png';
-import useTheme from '../hooks/useTheme';
 
 const bubbleSize = 16;
 
@@ -138,6 +138,7 @@ export const BubbleListItem = ({
           borderRadius: '50%',
           backgroundColor: theme.color.light.base,
           transition: `all ${theme.timing.base} ${theme.transition.bounce}`,
+          boxShadow: `0 0 0 ${bubbleSize / 4}px ${theme.color.light.base}`,
         }}
         className="ZS__Bubble"
       />

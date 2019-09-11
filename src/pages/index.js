@@ -12,6 +12,7 @@ import {
 } from 'chaoskit/src/components';
 import { link, misc } from 'chaoskit/src/assets/styles/utility';
 import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient';
+import { useTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
 import Link from '../components/Link';
@@ -19,7 +20,6 @@ import { ZSContext } from '../components/ZSContext';
 import { BubbleList, BubbleListItem } from '../components/BubbleList';
 import { backgroundDots, buttonBase, titleStyles } from '../helpers';
 import pattern from '../assets/media/pattern.png';
-import useTheme from '../hooks/useTheme';
 
 const Index = () => {
   const { dispatch } = useContext(ZSContext);

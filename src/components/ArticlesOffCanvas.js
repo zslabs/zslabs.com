@@ -1,12 +1,12 @@
 import { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Button, OffCanvas } from 'chaoskit/src/components';
+import { useTheme } from 'emotion-theming';
 
 import { ZSContext } from './ZSContext';
 import Icon from './Icon';
 import { BubbleList, BubbleListItem } from './BubbleList';
 import { formatDate, titleStyles } from '../helpers';
-import useTheme from '../hooks/useTheme';
 
 const ArticlesOffCanvas = ({ articles }) => {
   const {

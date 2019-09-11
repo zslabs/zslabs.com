@@ -8,6 +8,7 @@ import rootUnits from 'root-units';
 import { Container } from 'chaoskit/src/components';
 import { misc } from 'chaoskit/src/assets/styles/utility';
 
+import { useTheme } from 'emotion-theming';
 import Link from '../components/Link';
 import AboutModal from '../components/AboutModal';
 import ArticlesOffCanvas from '../components/ArticlesOffCanvas';
@@ -15,7 +16,6 @@ import ArticlesOffCanvas from '../components/ArticlesOffCanvas';
 import me from '../assets/media/me.png';
 import logo from '../assets/media/logo.svg';
 import pattern from '../assets/media/pattern.png';
-import useTheme from '../hooks/useTheme';
 
 const Foundation = ({ children, runAnimation }) => {
   const logoRef = useRef();

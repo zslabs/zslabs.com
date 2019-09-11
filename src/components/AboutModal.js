@@ -8,11 +8,11 @@ import {
   Inline,
 } from 'chaoskit/src/components';
 import { text, link } from 'chaoskit/src/assets/styles/utility';
+import { useTheme } from 'emotion-theming';
 
 import Icon from './Icon';
 import me from '../assets/media/me.png';
 import { buttonBase } from '../helpers';
-import useTheme from '../hooks/useTheme';
 
 const SocialButton = ({ url, title, icon }) => {
   const theme = useTheme();

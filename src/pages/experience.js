@@ -1,19 +1,13 @@
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import {
-  Button,
-  Row,
-  RowColumn,
-  Section,
-  SectionTitle,
-} from 'chaoskit/src/components';
+import { Row, RowColumn, Section, SectionTitle } from 'chaoskit/src/components';
+import { useTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
 import Data from '../components/Data';
 import { BubbleList, BubbleListItem } from '../components/BubbleList';
 import { titleStyles } from '../helpers';
-import useTheme from '../hooks/useTheme';
 
 const Experience = ({
   data: {
@@ -60,12 +54,6 @@ const Experience = ({
                 </BubbleListItem>
               ))}
             </BubbleList>
-
-            <div css={{ marginTop: theme.space.xlarge, textAlign: 'center' }}>
-              <Button type="secondary" url="/#recent-projects">
-                Recent Projects
-              </Button>
-            </div>
           </RowColumn>
         </Row>
       </Section>

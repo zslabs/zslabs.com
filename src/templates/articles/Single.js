@@ -3,12 +3,12 @@ import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import { Tooltip } from 'chaoskit/src/components';
 import { misc } from 'chaoskit/src/assets/styles/utility';
+import { useTheme } from 'emotion-theming';
 
 import Foundation from '../../layouts/Foundation';
 import Icon from '../../components/Icon';
 import { formatDate } from '../../helpers';
 import pattern from '../../assets/media/pattern.png';
-import useTheme from '../../hooks/useTheme';
 
 const Post = ({
   data: {
