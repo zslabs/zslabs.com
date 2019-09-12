@@ -40,7 +40,7 @@ const Experience = ({
           }}
         />
         <Row css={{ justifyContent: 'center' }}>
-          <RowColumn size={{ small: 10, medium: 8 }}>
+          <RowColumn size={{ medium: 9 }}>
             <BubbleList>
               {experience.map((item, index) => (
                 <BubbleListItem

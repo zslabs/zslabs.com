@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { rgba } from 'polished';
 import { Badge, List, ListItem } from 'chaoskit/src/components';
-import { link, misc, text } from 'chaoskit/src/assets/styles/utility';
+import { link, text } from 'chaoskit/src/assets/styles/utility';
 import { useTheme } from 'emotion-theming';
 
 import Link from './Link';
@@ -226,17 +226,10 @@ export const BubbleListItem = ({
         </div>
         {children && (
           <div
-            css={
-              (misc.fluidSize({
-                theme,
-                property: 'fontSize',
-                from: theme.fontSize.base,
-                to: theme.fontSize.medium,
-              }),
-              {
-                marginTop: theme.space.small,
-              })
-            }
+            css={{
+              ...theme.fontSize.medium__fluid,
+              marginTop: theme.space.small,
+            }}
           >
             {children}
           </div>

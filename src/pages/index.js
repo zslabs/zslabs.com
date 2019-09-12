@@ -318,7 +318,7 @@ const Index = () => {
             }}
           />
           <Row css={{ justifyContent: 'center' }}>
-            <RowColumn size={{ small: 10, medium: 8 }}>
+            <RowColumn size={{ medium: 9 }}>
               <BubbleList>
                 {pageData.projects.map(project => (
                   <BubbleListItem
