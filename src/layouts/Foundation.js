@@ -5,10 +5,14 @@ import { Helmet } from 'react-helmet';
 import 'what-input';
 import { TimelineMax } from 'gsap/TweenMax';
 import rootUnits from 'root-units';
+import { Global } from '@emotion/core';
+import { useTheme } from 'emotion-theming';
 import { Container } from 'chaoskit/src/components';
 import { misc } from 'chaoskit/src/assets/styles/utility';
+import { globalStyles } from 'chaoskit/src/assets/styles/global';
 
-import { useTheme } from 'emotion-theming';
+import { global } from '../assets/styles/global';
+import { fonts } from '../assets/styles/fonts';
 import Link from '../components/Link';
 import AboutModal from '../components/AboutModal';
 import ArticlesOffCanvas from '../components/ArticlesOffCanvas';
@@ -99,6 +103,7 @@ const Foundation = ({ children, runAnimation }) => {
 
   return (
     <Fragment>
+      <Global styles={[globalStyles(theme), global(theme), fonts(theme)]} />
       <Helmet
         title={title}
         meta={[
