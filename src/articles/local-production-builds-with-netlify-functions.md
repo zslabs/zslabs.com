@@ -7,9 +7,9 @@ With my framework of choice, [GatsbyJS](https://www.gatsbyjs.org), I've become a
 
 When developing locally, Gatsby provides access to a `developMiddleware` method that allows me to proxy requests to Netlify functions on-top of their [netlify-lambda](https://github.com/netlify/netlify-lambda) package:
 
-```js
-// gatsby-config.js
+<div class="filename">gatsby-config.js</div>
 
+```js
 const proxy = require('http-proxy-middleware');
 
 module.exports = {
@@ -21,7 +21,7 @@ module.exports = {
         pathRewrite: {
           '/.netlify/functions/': '',
         },
-      }),
+      })
     );
   },
 };
@@ -29,9 +29,9 @@ module.exports = {
 
 To start up both my functions and Gatsby site in unison, my local development script takes advantage of the [concurrently](https://www.npmjs.com/package/concurrently) package to start them up at the same time:
 
-```json
-// package.json
+<div class="filename">package.json</div>
 
+```json
 "scripts": {
   "start:lambda": "netlify-lambda serve src/functions",
   "develop": "concurrently \"yarn start:lambda\" \"gatsby develop --open\""
@@ -44,9 +44,9 @@ To get around this, I turned to [light-server](https://www.npmjs.com/package/lig
 
 First, I created a `light-server.json` file that included the proxy:
 
-```json
-// light-server.json
+<div class="filename">light-server.json</div>
 
+```json
 {
   "port": 8000,
   "proxy": "http://localhost:9000",
@@ -56,9 +56,9 @@ First, I created a `light-server.json` file that included the proxy:
 
 And then, instead of using `gatsby build && gatsby serve`, my local production server command was updated to take advantage of light-server:
 
-```json
-// package.json
+<div class="filename">package.json</div>
 
+```json
 "scripts": {
   "start:lambda": "netlify-lambda serve src/functions",
   "build:lambda": "netlify-lambda build src/functions",

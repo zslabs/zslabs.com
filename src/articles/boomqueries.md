@@ -6,12 +6,10 @@ date: '2015-04-24'
 
 When I made the transition from agency-life to product development, my eyes were opened to the concept of truly modular components. Working under WordPress as our frontend platform; with the concept of "widgets" - it comes with "certain uncertainty" that any type of content can be placed... well anywhere. That perfectly responsive card-grid you intended to be used on a full-width homepage widget position? Well, it was just placed in a sidebar.
 
-<div class="u-textCenter"><img title="Deal with it" src="https://media.giphy.com/media/Zo9ACzmJgoqRy/giphy.gif"></div>
-
 What would you have to do as a work-around? Well, two options come to mind:
 
 1. Add a modifier class to the component itself based on its position.
-1. Override any/all components that could exist in different widths and rewrite all media queries to match each scenario as needed.
+2. Override any/all components that could exist in different widths and rewrite all media queries to match each scenario as needed.
 
 Neither of which are ideal. Hey, it's not all our fault. Media queries have been around for quite a while and we've done a damn good job of extending them to the best of our ability. But, like everything else in life, it's just not good enough and we want more. Enter element queries.
 

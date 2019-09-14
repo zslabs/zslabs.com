@@ -34,8 +34,6 @@ Upon doing a deeper dive into the user-base across the product I work on, we dis
 
 Remember the options we had above for manually including polyfills in our project? What if there was a resource that not only sent down community-vetted polyfills, but also only sent down the polyfills needed based on the browser that was visiting the site at that time? There is.
 
-<div class="u-textCenter"><img title="Mind. Blown." src="https://media.giphy.com/media/EldfH1VJdbrwY/giphy.gif" /></div>
-
 [Polyfill.io](http://polyfill.io) is a service that (taken from their docs):
 
 > selectively bundles browser polyfills based on the User-Agent header supplied in a request, with the intention of allowing JavaScript and CSS developers to use modern standards in legacy user agents that do not natively support the standard. Think of it like a pair of glasses for your aging browser.
