@@ -47,4 +47,11 @@ export const zslabsTheme = extendTheme(theme, {
     base: "Calibre, 'Helvetica Neue', Arial, sans-serif",
     heading: "Calibre, 'Helvetica Neue', Arial, sans-serif",
   },
+  settings: {
+    button: {
+      gradient: {
+        enable: false,
+      },
+    },
+  },
 });

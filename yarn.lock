@@ -2966,9 +2966,9 @@ chalk@^2.0, chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.4.1, chalk@^2.4.2
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-"chaoskit@https://github.com/gremlin/chaoskit/tarball/858c6dd55add6873fb5658cb50b99ed446225745/chaoskit.tar.gz":
+"chaoskit@https://github.com/gremlin/chaoskit/tarball/90317e5a08da1c89017764f0ef01037a550c3a18/chaoskit.tar.gz":
   version "1.4.7"
-  resolved "https://github.com/gremlin/chaoskit/tarball/858c6dd55add6873fb5658cb50b99ed446225745/chaoskit.tar.gz#776602db12d238c73035005fbfb1be5552d18bb7"
+  resolved "https://github.com/gremlin/chaoskit/tarball/90317e5a08da1c89017764f0ef01037a550c3a18/chaoskit.tar.gz#eb4d8c6b99e2ac492904361e523b40fc5b66082c"
   dependencies:
     "@emotion/babel-preset-css-prop" "10.0.17"
     "@emotion/cache" "10.0.17"

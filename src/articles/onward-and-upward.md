@@ -34,7 +34,7 @@ featuresGraphTimeline
       drawSVG: '0 100%',
       ease: Power0.easeNone,
     },
-    'droplet-lines',
+    'droplet-lines'
   );
 ```
 
@@ -51,7 +51,7 @@ featuresGraphTimeline.staggerFrom(
     y: '100%',
   },
   0.25,
-  'droplet-lines',
+  'droplet-lines'
 );
 ```
 
@@ -68,7 +68,7 @@ featuresGraphTimeline.staggerFrom(
     transformOrigin: 'center center',
   },
   0.25,
-  'droplet-lines',
+  'droplet-lines'
 );
 ```
 
@@ -76,7 +76,7 @@ featuresGraphTimeline.staggerFrom(
 
 Similar to my [last case study](/articles/round-n-round#task-3), I started this with a typical "deer in headlights" look on how to best approach this.
 
-<div class="u-textCenter"><img src="https://media1.tenor.com/images/0e051c3a14969b241594d58512fc9465/tenor.gif?itemid=5364621"></div>
+<div class="u-textCenter"><img src="https://media1.tenor.com/images/0e051c3a14969b241594d58512fc9465/tenor.gif?itemid=5364621" /></div>
 
 First-off, did you know that this [will be possible](https://css-tricks.com/motion-along-path-in-css/) in the future?! Pretty cool stuff. Now, back to the reality of old browsers and pop-up ads. Unlike my other case study, this was a perfect candidate for the [Bezier plugin](https://greensock.com/BezierPlugin-JS) to shine. With the power of [MorphSVG](https://greensock.com/morphSVG) and its `pathDataToBezier()` function, I was able to feed it the coordinates of the main graph stroke path. Then, by determining the speed and length of time it would take for each dot to reach the end, adjusting both the delay and opacity fit perfectly. Since there were multiple dots that we'd be moving at the same time, creating a mini-timeline for each required a loop.
 
@@ -105,7 +105,7 @@ forEach(document.querySelectorAll('.Features-dot'), (index, value) => {
     {
       opacity: 1,
     },
-    'dot-path',
+    'dot-path'
   )
     .to(
       value,
@@ -117,7 +117,7 @@ forEach(document.querySelectorAll('.Features-dot'), (index, value) => {
         },
         ease: Power0.easeNone,
       },
-      'dot-path',
+      'dot-path'
     )
     .to(
       value,
@@ -126,7 +126,7 @@ forEach(document.querySelectorAll('.Features-dot'), (index, value) => {
         delay: 19,
         opacity: 0,
       },
-      'dot-path',
+      'dot-path'
     );
 });
 ```
