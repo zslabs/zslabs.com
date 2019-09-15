@@ -7,8 +7,8 @@ export const postTeaserFragment = graphql`
     timeToRead
     frontmatter {
       title
-      date
-      dateModified
+      date(formatString: "MMMM D, YYYY")
+      dateModified(formatString: "MMMM D, YYYY")
       slug
     }
     fields {

@@ -64,7 +64,7 @@ const Foundation = ({ children, runAnimation }) => {
               timeToRead
               frontmatter {
                 title
-                date
+                date(formatString: "MMMM D, YYYY")
                 slug
               }
               fields {

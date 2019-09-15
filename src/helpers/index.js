@@ -1,11 +1,7 @@
-import { format } from 'date-fns';
 import { misc } from 'chaoskit/src/assets/styles/utility';
 
 import dots from '../assets/media/dots.svg';
 import pattern from '../assets/media/pattern.png';
-
-export const formatDate = date =>
-  format(new Date(`${date} EST`), 'MMMM d, yyyy');
 
 export const buttonBase = (theme, props = { type: 'default' }) => [
   {

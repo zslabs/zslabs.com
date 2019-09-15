@@ -20,7 +20,6 @@
     "@weknow/gatsby-remark-twitter": "0.2.3",
     "babel-eslint": "10.0.3",
     "chaoskit": "https://github.com/gremlin/chaoskit/tarball/90317e5a08da1c89017764f0ef01037a550c3a18/chaoskit.tar.gz",
-    "date-fns": "2.1.0",
     "emotion": "10.0.17",
     "gatsby": "2.15.14",
     "gatsby-plugin-canonical-urls": "2.1.7",

@@ -7,7 +7,6 @@ import { useTheme } from 'emotion-theming';
 
 import Foundation from '../../layouts/Foundation';
 import Icon from '../../components/Icon';
-import { formatDate } from '../../helpers';
 import pattern from '../../assets/media/pattern.png';
 
 const Post = ({
@@ -33,9 +32,9 @@ const Post = ({
               color: theme.fontColor.muted,
             }}
           >
-            {formatDate(date)}
+            {date}
             {dateModified && (
-              <Tooltip content={`Last updated ${formatDate(dateModified)}`}>
+              <Tooltip content={`Last updated ${dateModified}`}>
                 <span
                   css={{
                     display: 'inline-block',

@@ -6,7 +6,7 @@ import { useTheme } from 'emotion-theming';
 import { ZSContext } from './ZSContext';
 import Icon from './Icon';
 import { BubbleList, BubbleListItem } from './BubbleList';
-import { formatDate, titleStyles } from '../helpers';
+import { titleStyles } from '../helpers';
 
 const ArticlesOffCanvas = ({ articles }) => {
   const {
@@ -64,7 +64,7 @@ const ArticlesOffCanvas = ({ articles }) => {
                 to: node.fields.fullUrl,
               }}
               title={node.frontmatter.title}
-              meta={formatDate(node.frontmatter.date)}
+              meta={node.frontmatter.date}
             />
           ))}
         </BubbleList>
