@@ -19,7 +19,7 @@ import {
 import { TimelineMax } from 'gsap/TweenMax';
 
 import { Icon, Link } from '../components';
-import { config, formatDate } from '../helpers/config';
+import { config } from '../helpers/config';
 
 import me from '../assets/media/me.png';
 import '../assets/styles/site.scss';
@@ -56,7 +56,7 @@ const Foundation = props => {
               timeToRead
               frontmatter {
                 title
-                date
+                date(formatString: "MMMM D, YYYY")
                 slug
               }
               fields {
@@ -148,7 +148,7 @@ const Foundation = props => {
                           {node.frontmatter.title}
                         </Link>
                         <p className="u-mt--remove u-textMedium u-textMuted">
-                          {formatDate(node.frontmatter.date)}
+                          {node.frontmatter.date}
                         </p>
                       </div>
                     </ListItem>

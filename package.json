@@ -12,7 +12,6 @@
     "@weknow/gatsby-remark-twitter": "0.2.3",
     "babel-cli": "6.26.0",
     "chaoskit": "1.4.7",
-    "date-fns": "1.30.1",
     "disqus-react": "1.0.6",
     "gatsby": "2.15.9",
     "gatsby-plugin-canonical-urls": "2.1.6",

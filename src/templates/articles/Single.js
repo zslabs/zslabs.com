@@ -6,7 +6,6 @@ import { Tooltip } from 'chaoskit/src/components';
 
 import Foundation from '../../layouts/Foundation';
 import { Icon } from '../../components';
-import { formatDate } from '../../helpers/config';
 
 const Post = props => {
   const {
@@ -27,9 +26,9 @@ const Post = props => {
             <header className="u-textCenter">
               <h1 className="u-mb--small">{title}</h1>
               <h5 className="u-mv--remove u-textMuted">
-                {formatDate(date)}
+                {date}
                 {dateModified && (
-                  <Tooltip content={`Last updated ${formatDate(dateModified)}`}>
+                  <Tooltip content={`Last updated ${dateModified}`}>
                     <span className="u-inlineBlock u-ml--small">
                       <Icon icon="question-circle" />
                     </span>
