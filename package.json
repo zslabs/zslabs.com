@@ -21,6 +21,7 @@
     "babel-eslint": "10.0.3",
     "chaoskit": "https://github.com/gremlin/chaoskit/tarball/90317e5a08da1c89017764f0ef01037a550c3a18/chaoskit.tar.gz",
     "emotion": "10.0.17",
+    "emotion-server": "10.0.17",
     "gatsby": "2.15.14",
     "gatsby-plugin-canonical-urls": "2.1.7",
     "gatsby-plugin-catch-links": "2.1.9",
