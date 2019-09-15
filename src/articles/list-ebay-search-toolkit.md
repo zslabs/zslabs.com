@@ -11,7 +11,7 @@ When buying, I do my fair share of shopping-around; which can mean having multip
 
 Having used a few external tools that attempt to solve issues that plague the native app; that ultimately fall-short - I decided to take on this challenge myself. I recently launched [List](https://list.zslabs.com) - the best eBay toolkit for gauging market-prices, trends, and activity on multiple search terms.
 
-<a target="_blank" href="https://list.zslabs.com">![List](/uploads/list.zslabs.com.png)</a>
+<a target="_blank" href="https://list.zslabs.com">![List](/uploads/list.png)</a>
 
 ### Features
 
