@@ -1,20 +1,37 @@
-import React, { Fragment } from 'react';
-import useMount from 'react-use/lib/useMount';
+import { useEffect, useRef, useContext } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { TimelineMax } from 'gsap/TweenMax';
-import { Button, Inline, List, ListItem } from 'chaoskit/src/components';
+import {
+  Button,
+  Container,
+  Inline,
+  Row,
+  RowColumn,
+  Section,
+  SectionTitle,
+} from 'chaoskit/src/components';
+import { link, misc } from 'chaoskit/src/assets/styles/utility';
+import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient';
+import { useTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
-import { Link } from '../components';
-import { config } from '../helpers/config';
+import Link from '../components/Link';
+import { ZSContext } from '../components/ZSContext';
+import { BubbleList, BubbleListItem } from '../components/BubbleList';
+import { backgroundDots, buttonBase, titleStyles } from '../helpers';
+import pattern from '../assets/media/pattern.png';
 
 const Index = () => {
-  const introTitle = React.createRef();
-  const introTitleSub = React.createRef();
-  const articleButtonRef = React.createRef();
-  const experienceButtonRef = React.createRef();
-  const projectsRef = React.createRef();
-  const latestArticleRef = React.createRef();
+  const { dispatch } = useContext(ZSContext);
+
+  const introTitle = useRef();
+  const introTitleSub = useRef();
+  const articleButtonRef = useRef();
+  const experienceButtonRef = useRef();
+  const projectsRef = useRef();
+  const latestArticleRef = useRef();
+
+  const theme = useTheme();
 
   const {
     latestArticle: {
@@ -64,12 +81,12 @@ const Index = () => {
       .to(introTitle.current, 0.5, {
         y: 0,
         autoAlpha: 1,
-        ease: config.ease,
+        ease: theme.gsap.transition.bounce,
       })
       .to(introTitleSub.current, 0.5, {
         y: 0,
         autoAlpha: 1,
-        ease: config.ease,
+        ease: theme.gsap.transition.bounce,
       })
       .to(
         articleButtonRef.current,
@@ -77,7 +94,7 @@ const Index = () => {
         {
           scale: 1,
           autoAlpha: 1,
-          ease: config.ease,
+          ease: theme.gsap.transition.bounce,
         },
         'introButtons'
       )
@@ -88,7 +105,7 @@ const Index = () => {
           delay: 0.125,
           scale: 1,
           autoAlpha: 1,
-          ease: config.ease,
+          ease: theme.gsap.transition.bounce,
         },
         'introButtons'
       )
@@ -101,107 +118,225 @@ const Index = () => {
       });
   };
 
-  useMount(() => {
+  useEffect(() => {
     runAnimation();
-  });
+  }, []);
 
   return (
-    <Foundation
-      runAnimation
-      render={renderProps => (
-        <Fragment>
-          <section className="section section--full section--large">
-            <div className="container u-ph--regular">
-              <div className="u-textCenter">
-                <h5
-                  className="intro-titleSub u-textMuted u-textFluid--medium u-mb--small"
-                  ref={introTitleSub}
-                >
-                  Full-Stack/Motion Developer
-                </h5>
-                <h1 className="intro-title u-mt--remove" ref={introTitle}>
-                  Zach Schnackel
-                </h1>
-              </div>
-              <div className="u-mt--large">
-                <Inline size="medium" className="u-flexCenter">
-                  <div className="intro-buttonWrapper" ref={articleButtonRef}>
-                    <Button
-                      onClick={renderProps.toggleArticlesOffCanvasOpen}
-                      type="primary"
-                    >
-                      Articles
-                    </Button>
-                  </div>
-                  <div
-                    className="intro-buttonWrapper"
-                    ref={experienceButtonRef}
-                  >
-                    <Button type="secondary" url="/experience/">
-                      Experience
-                    </Button>
-                  </div>
-                </Inline>
-              </div>
-              <Link
-                className="u-linkDefault home__latestArticle"
-                to={latestArticle.node.fields.fullUrl}
-                ref={latestArticleRef}
-              >
-                <div>
-                  <span
-                    className="u-textMedium"
-                    role="img"
-                    aria-label="Hooray!"
-                  >
-                    🎉
-                  </span>{' '}
-                  Check out my latest article:
-                </div>
-                <div className="u-textBold">
-                  {latestArticle.node.frontmatter.title}
-                </div>
-              </Link>
-            </div>
-          </section>
-          <section
-            ref={projectsRef}
-            id="recent-projects"
-            className="section section--full section--projects"
+    <Foundation runAnimation>
+      <Section size="xlarge">
+        <div css={{ textAlign: 'center' }}>
+          <h5
+            css={{
+              ...theme.fontSize.medium__fluid,
+              color: theme.fontColor.muted,
+              marginBottom: theme.space.small,
+              // GSAP
+              opacity: 0,
+              transform: 'translateY(100%)',
+            }}
+            ref={introTitleSub}
           >
-            <div className="container u-ph--regular">
-              <div className="section-titleWrapper">
-                <h2 className="section-title">Recent Projects</h2>
-              </div>
-              <div className="row u-flexCenter">
-                <div className="column-10@small column-8@medium">
-                  <List className="bubbleList">
-                    {pageData.projects.map(project => (
-                      <ListItem className="bubbleList-item" key={project.title}>
-                        <div className="bubbleList-item-bubble" />
-                        <div className="bubbleList-item-info">
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bubbleList-item-link"
-                            href={project.url}
-                          >
-                            {project.title}
-                          </a>
-                          <p className="u-mt--remove u-textMedium">
-                            {project.description}
-                          </p>
-                        </div>
-                      </ListItem>
-                    ))}
-                  </List>
-                </div>
-              </div>
+            Full-Stack/Motion Developer
+          </h5>
+          <h1
+            css={{
+              marginTop: 0,
+              ...misc.fluidSize({
+                theme,
+                property: 'fontSize',
+                from: theme.fontSize.h1,
+                to: theme.fontSize.h1 * 1.5,
+              }),
+              // GSAP
+              opacity: 0,
+              transform: 'translateY(50%)',
+            }}
+            ref={introTitle}
+          >
+            Zach Schnackel
+          </h1>
+        </div>
+        <div css={{ marginTop: theme.space.large }}>
+          <Inline size="medium" css={{ justifyContent: 'center' }}>
+            <div
+              css={{
+                // GSAP
+                transformOrigin: 'center center',
+                transform: 'scale(0)',
+                opacity: 0,
+              }}
+              ref={articleButtonRef}
+            >
+              <Button
+                onClick={() => {
+                  dispatch({
+                    type: 'toggleOffCanvas',
+                  });
+                }}
+                css={buttonBase(theme, { type: 'primary' })}
+              >
+                Articles
+              </Button>
             </div>
-          </section>
-        </Fragment>
-      )}
-    />
+            <div
+              css={{
+                // GSAP
+                transformOrigin: 'center center',
+                transform: 'scale(0)',
+                opacity: 0,
+              }}
+              ref={experienceButtonRef}
+            >
+              <Button
+                css={buttonBase(theme, { type: 'secondary' })}
+                url="/experience/"
+              >
+                Experience
+              </Button>
+            </div>
+          </Inline>
+        </div>
+        <Link
+          to={latestArticle.node.fields.fullUrl}
+          ref={latestArticleRef}
+          css={[
+            misc.fluidSize({
+              theme,
+              property: 'marginTop',
+              from: theme.space.xlarge,
+              to: theme.space.xlarge * 1.5,
+            }),
+            link.reset(theme),
+            {
+              textAlign: 'center',
+              display: 'inline-flex',
+              flexDirection: 'column',
+              padding: theme.space.base,
+              position: 'relative',
+              left: '50%',
+              zIndex: 1,
+              transform: 'translateX(-50%)',
+              transition: `transform ${theme.timing.base} ${theme.transition.bounce}`,
+
+              // GSAP
+              opacity: 0,
+
+              '&:hover, &:focus': {
+                transform: 'translateX(-50%) scale(1.05)',
+              },
+
+              '&::before, &::after': {
+                content: "''",
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                background: generateGradient({
+                  start: theme.color.light.base,
+                  stop: theme.color.panel.base,
+                  position: 'to bottom right',
+                }),
+                transform: 'skew(-15deg)',
+              },
+
+              '&::before': {
+                zIndex: -1,
+              },
+
+              '&::after': {
+                zIndex: -2,
+                backgroundImage: `url(${pattern})`,
+                backgroundPosition: '-600px -575px',
+                backgroundSize: '1500px 1000px',
+                backgroundRepeat: 'no-repeat',
+                opacity: theme.opacity.base,
+                transform: `skew(-15deg) translate(-${theme.space.small}px, -${theme.space.small}px)`,
+              },
+            },
+            [theme.mq.small] && {
+              minWidth: `calc(${theme.breakpoint.small}px * 0.75)`,
+            },
+          ]}
+        >
+          <div>
+            <span
+              css={{ fontSize: theme.fontSize.medium }}
+              role="img"
+              aria-label="Hooray!"
+            >
+              🎉
+            </span>{' '}
+            Check out my latest article:
+          </div>
+          <div css={{ fontWeight: theme.fontWeight.bold }}>
+            {latestArticle.node.frontmatter.title}
+          </div>
+        </Link>
+      </Section>
+      <Section
+        ref={projectsRef}
+        id="recent-projects"
+        css={{
+          // GSAP
+          opacity: 0,
+
+          position: 'relative',
+          left: '50%',
+          margin: `0 calc(var(--rw) / -2)`,
+          right: '50%',
+          width: 'var(--rw)',
+
+          '&::before': {
+            ...backgroundDots(theme.fontColor.muted),
+            zIndex: -2,
+          },
+        }}
+      >
+        <Container
+          css={{
+            paddingLeft: theme.space.base,
+            paddingRight: theme.space.base,
+          }}
+          size="small"
+        >
+          <SectionTitle
+            as="h2"
+            title="Recent Projects"
+            css={{
+              '.CK__SectionTitle__Header': [
+                titleStyles(theme),
+
+                {
+                  '&::before': {
+                    clipPath: 'polygon(0 100%, 0 0, 100% 0)',
+                    backgroundPosition: '-200px -75px',
+                  },
+                },
+              ],
+            }}
+          />
+          <Row css={{ justifyContent: 'center' }}>
+            <RowColumn size={{ medium: 9 }}>
+              <BubbleList>
+                {pageData.projects.map(project => (
+                  <BubbleListItem
+                    key={project.title}
+                    title={project.title}
+                    url={{
+                      to: project.url,
+                    }}
+                  >
+                    {project.description}
+                  </BubbleListItem>
+                ))}
+              </BubbleList>
+            </RowColumn>
+          </Row>
+        </Container>
+      </Section>
+    </Foundation>
   );
 };
 

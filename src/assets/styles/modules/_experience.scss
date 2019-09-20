@@ -1,9 +1,0 @@
-.section--experience {
-  .section-title {
-    &::before {
-      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-      background-position: -600px -175px;
-      background-size: 750px 500px;
-    }
-  }
-}

@@ -1,30 +1,38 @@
-import React, { Fragment } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
-import useMount from 'react-use/lib/useMount';
-import useToggle from 'react-use/lib/useToggle';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import 'what-input';
-import {
-  Button,
-  Close,
-  Inline,
-  List,
-  ListItem,
-  Modal,
-  ModalBody,
-  OffCanvas,
-} from 'chaoskit/src/components';
 import { TimelineMax } from 'gsap/TweenMax';
+import rootUnits from 'root-units';
+import { Global } from '@emotion/core';
+import { useTheme } from 'emotion-theming';
+import { Container } from 'chaoskit/src/components';
+import { misc } from 'chaoskit/src/assets/styles/utility';
+import { globalStyles } from 'chaoskit/src/assets/styles/global';
 
-import { Icon, Link } from '../components';
-import { config } from '../helpers/config';
+import { global } from '../assets/styles/global';
+import { fonts } from '../assets/styles/fonts';
+import Link from '../components/Link';
+import AboutModal from '../components/AboutModal';
+import ArticlesOffCanvas from '../components/ArticlesOffCanvas';
 
 import me from '../assets/media/me.png';
-import '../assets/styles/site.scss';
+import logo from '../assets/media/logo.svg';
+import pattern from '../assets/media/pattern.png';
 
-const Foundation = props => {
+const Foundation = ({ children, runAnimation }) => {
+  const logoRef = useRef();
+  const menuRef = useRef();
+  const aboutRef = useRef();
+
+  const theme = useTheme();
+
+  useEffect(() => {
+    // Get more reliable viewport units
+    rootUnits.install();
+  }, []);
+
   const {
     site: {
       siteMetadata: { title, description, siteUrl },
@@ -69,12 +77,6 @@ const Foundation = props => {
       }
     `
   );
-  const { render, runAnimation } = props;
-
-  const [isAboutModalOpen, toggleAboutModalOpen] = useToggle(false);
-  const [isArticlesOffCanvasOpen, toggleArticlesOffCanvasOpen] = useToggle(
-    false
-  );
 
   const runAnimationFunc = () => {
     const pageTimeline = new TimelineMax({
@@ -82,27 +84,26 @@ const Foundation = props => {
     });
 
     pageTimeline.staggerTo(
-      '.header  > *',
+      [logoRef.current, menuRef.current, aboutRef.current],
       0.5,
       {
         y: 0,
         autoAlpha: 1,
-        ease: config.ease,
+        ease: theme.gsap.transition.bounce,
       },
       0.1
     );
   };
 
-  useMount(() => {
-    if (runAnimation) runAnimationFunc();
-  });
-
-  const headerClasses = cx('header', {
-    'has-animation': runAnimation,
-  });
+  useEffect(() => {
+    if (runAnimation) {
+      runAnimationFunc();
+    }
+  }, []);
 
   return (
     <Fragment>
+      <Global styles={[globalStyles(theme), global(theme), fonts(theme)]} />
       <Helmet
         title={title}
         meta={[
@@ -113,206 +114,78 @@ const Foundation = props => {
           lang: 'en',
         }}
       />
-      <div className="site-wrapper">
-        <div className="container container--small">
-          <header className={headerClasses}>
-            <div>
-              <Link to="/" className="header-logo" title={title} />
-            </div>
-            <div>
-              <Button
-                type="reset"
-                className="header-menu"
-                onClick={toggleArticlesOffCanvasOpen}
-                aria-label="Toggle menu"
-              >
-                <Icon icon="menu" />
-              </Button>
-              <OffCanvas
-                open={isArticlesOffCanvasOpen}
-                onOffCanvasToggle={toggleArticlesOffCanvasOpen}
-              >
-                <h2 className="offCanvas-title">Articles</h2>
-                <List className="bubbleList">
-                  {articles.map(({ node }) => (
-                    <ListItem
-                      key={node.frontmatter.title}
-                      className="bubbleList-item"
-                    >
-                      <div className="bubbleList-item-bubble" />
-                      <div className="bubbleList-item-info">
-                        <Link
-                          className="bubbleList-item-link"
-                          to={node.fields.fullUrl}
-                        >
-                          {node.frontmatter.title}
-                        </Link>
-                        <p className="u-mt--remove u-textMedium u-textMuted">
-                          {node.frontmatter.date}
-                        </p>
-                      </div>
-                    </ListItem>
-                  ))}
-                </List>
-              </OffCanvas>
-            </div>
-            <div>
-              <Button
-                type="reset"
-                className="header-about"
-                onClick={toggleAboutModalOpen}
-              >
-                <img src={me} alt={title} />
-              </Button>
-              <Modal
-                open={isAboutModalOpen}
-                onOutsideModalClick={toggleAboutModalOpen}
-              >
-                <ModalBody>
-                  <Close
-                    onClick={() => toggleAboutModalOpen()}
-                    className="aboutModal-close"
-                  />
-                  <img src={me} className="aboutModal-image" alt={title} />
-                  <h3 className="u-textCenter u-mb--small">
-                    Hi, I&apos;m Zach
-                  </h3>
-                  <Inline size="medium" className="u-flexCenter">
-                    <Button
-                      url="https://www.github.com/zslabs"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="aboutModal-social--github"
-                      iconOnly
-                      title="GitHub"
-                    >
-                      <Icon icon="github" />
-                    </Button>
-                    <Button
-                      url="https://www.codepen.io/zslabs"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="aboutModal-social--codepen"
-                      iconOnly
-                      title="CodePen"
-                    >
-                      <Icon icon="codepen" />
-                    </Button>
-                    <Button
-                      url="https://www.twitter.com/zslabs"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="aboutModal-social--twitter"
-                      iconOnly
-                      title="Twitter"
-                    >
-                      <Icon icon="twitter" />
-                    </Button>
-                  </Inline>
-                  <p className="u-mv--large">
-                    I create buttons, borders, and other groovy things at{' '}
-                    <a
-                      href="https://www.gremlin.com"
-                      className="u-textUnderline u-textDefault"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Gremlin
-                    </a>
-                    . I work with techologies like{' '}
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="https://reactjs.org"
-                      className="u-textUnderline u-textDefault"
-                    >
-                      ReactJS
-                    </a>
-                    ,{' '}
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="https://gatsbyjs.org"
-                      className="u-textUnderline u-textDefault"
-                    >
-                      GatsbyJS
-                    </a>
-                    ,{' '}
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="https://nextjs.org"
-                      className="u-textUnderline u-textDefault"
-                    >
-                      Next.JS
-                    </a>
-                    , and{' '}
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="https://nodejs.org"
-                      className="u-textUnderline u-textDefault"
-                    >
-                      NodeJS
-                    </a>
-                    . My background involves pushing the limits of what we can
-                    build on the backend and how we can experience it on the
-                    frontend. My passions are perfecting process and educating
-                    those around me.
-                  </p>
-                  <h4 className="u-textFluid--xlarge">Speaking/Consulting</h4>
-                  <p>
-                    Have an event and/or consluting project you&apos;d like me
-                    to be a part of? Awesome!{' '}
-                    <a
-                      className="u-textUnderline u-textDefault"
-                      href="mailto:info@zslabs.com"
-                    >
-                      Let&apos;s chat
-                    </a>
-                    .
-                  </p>
-                  <h4 className="u-textFluid--xlarge">
-                    How&apos;d you build this site?!
-                  </h4>
-                  <p>
-                    Because I love open-source—it&apos;s available for anyone to
-                    view. Find a bug? Report it!{' '}
-                    <a
-                      className="u-textUnderline u-textDefault"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="https://github.com/zslabs/zslabs.com"
-                    >
-                      View source
-                    </a>
-                    .
-                  </p>
-                  <div className="u-mt--large u-textCenter">
-                    <span className="u-textMuted">
-                      Copyright © {new Date().getFullYear()} Zach Schnackel.
-                      Penalty is
-                    </span>{' '}
-                    🔥
-                  </div>
-                </ModalBody>
-              </Modal>
-            </div>
-          </header>
-          <main>
-            {render({
-              toggleArticlesOffCanvasOpen,
-            })}
-          </main>
-        </div>
-      </div>
+      <Container size="small">
+        <header
+          css={[
+            misc.fluidSize({
+              theme,
+              property: 'paddingBottom',
+              from: theme.space.large,
+              to: theme.space.xlarge,
+            }),
+            {
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              paddingTop: theme.space.base,
+
+              '> * > *': {
+                display: 'inline-block',
+                transition: `transform ${theme.timing.base} ${theme.transition.bounce}`,
+                transformOrigin: 'center center',
+                backfaceVisibility: 'hidden',
+
+                '&:hover, &:focus': {
+                  transform: 'scale(1.15)',
+                },
+              },
+            },
+
+            runAnimation && {
+              // GSAP
+              '> *': {
+                transform: `translateY(calc(-100% + ${theme.space.base}px))`,
+                opacity: 0,
+              },
+            },
+          ]}
+        >
+          <div ref={logoRef}>
+            <Link
+              to="/"
+              title={title}
+              css={{
+                width: theme.height.xsmall,
+                height: theme.height.base,
+                maskImage: `url(${logo})`,
+                maskSize: 'contain',
+                maskPosition: 'center',
+                background: `url(${pattern}) no-repeat -800px -575px`,
+                backgroundSize: '1500px 1000px',
+              }}
+            />
+          </div>
+          <div ref={menuRef}>
+            <ArticlesOffCanvas articles={articles} />
+          </div>
+          <div
+            ref={aboutRef}
+            css={{
+              justifyContent: 'flex-end',
+            }}
+          >
+            <AboutModal />
+          </div>
+        </header>
+        <main>{children}</main>
+      </Container>
     </Fragment>
   );
 };
 
 Foundation.propTypes = {
-  render: PropTypes.func.isRequired,
   runAnimation: PropTypes.bool,
+  children: PropTypes.node.isRequired,
 };
 
 export default Foundation;

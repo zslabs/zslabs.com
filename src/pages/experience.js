@@ -1,68 +1,63 @@
-import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import { Badge, Button, List, ListItem } from 'chaoskit/src/components';
+import { Row, RowColumn, Section, SectionTitle } from 'chaoskit/src/components';
+import { useTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
-import { Data } from '../components';
+import Data from '../components/Data';
+import { BubbleList, BubbleListItem } from '../components/BubbleList';
+import { titleStyles } from '../helpers';
 
-const Experience = props => {
-  const {
-    data: {
-      file: {
-        childDataYaml: { experience },
-      },
+const Experience = ({
+  data: {
+    file: {
+      childDataYaml: { experience },
     },
-  } = props;
+  },
+}) => {
+  const theme = useTheme();
 
   return (
-    <Foundation
-      render={() => (
-        <Fragment>
-          <Helmet title="Experience" />
-          <section className="section section--experience">
-            <div className="section-titleWrapper">
-              <h2 className="section-title">Experience</h2>
-            </div>
-            <div className="row u-flexCenter">
-              <div className="column-10@small column-9@medium">
-                <List className="bubbleList">
-                  {experience.map((item, index) => (
-                    <ListItem className="bubbleList-item" key={item.company}>
-                      <div className="bubbleList-item-bubble" />
-                      <div className="bubbleList-item-info">
-                        <div className="bubbleList-item-title-wrapper">
-                          <h4 className="bubbleList-item-title">
-                            {item.company}
-                          </h4>
-                          <Badge
-                            type={index === 0 ? 'primary' : null}
-                            label={item.dates}
-                          />
-                        </div>
-                        <div className="u-textMuted u-mb--regular">
-                          {item.title}
-                        </div>
-                        <div className="u-mt--remove u-textMedium">
-                          <Data markdown>{item.blurb}</Data>
-                        </div>
-                      </div>
-                    </ListItem>
-                  ))}
-                </List>
+    <Foundation>
+      <Helmet title="Experience" />
+      <Section>
+        <SectionTitle
+          as="h2"
+          title="Experience"
+          css={{
+            '.CK__SectionTitle__Header': [
+              titleStyles(theme),
 
-                <div className="u-textCenter u-mt--xlarge">
-                  <Button type="secondary" url="/#recent-projects">
-                    Recent Projects
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </section>
-        </Fragment>
-      )}
-    />
+              {
+                '&::before': {
+                  clipPath:
+                    'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)',
+                  backgroundPosition: '-600px -175px',
+                },
+              },
+            ],
+          }}
+        />
+        <Row css={{ justifyContent: 'center' }}>
+          <RowColumn size={{ medium: 9 }}>
+            <BubbleList>
+              {experience.map((item, index) => (
+                <BubbleListItem
+                  key={item.company}
+                  first={index === 0}
+                  title={item.company}
+                  meta={item.title}
+                  badge={item.dates}
+                >
+                  <Data markdown>{item.blurb}</Data>
+                </BubbleListItem>
+              ))}
+            </BubbleList>
+          </RowColumn>
+        </Row>
+      </Section>
+    </Foundation>
   );
 };
 

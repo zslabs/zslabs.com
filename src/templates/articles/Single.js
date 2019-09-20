@@ -1,49 +1,108 @@
-import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import { Tooltip } from 'chaoskit/src/components';
+import { misc } from 'chaoskit/src/assets/styles/utility';
+import { useTheme } from 'emotion-theming';
 
 import Foundation from '../../layouts/Foundation';
-import { Icon } from '../../components';
+import Icon from '../../components/Icon';
+import pattern from '../../assets/media/pattern.png';
 
-const Post = props => {
-  const {
-    data: {
-      post: {
-        html,
-        frontmatter: { title, date, dateModified },
-      },
+const Post = ({
+  data: {
+    post: {
+      html,
+      frontmatter: { title, date, dateModified },
     },
-  } = props;
+  },
+}) => {
+  const theme = useTheme();
 
   return (
-    <Foundation
-      render={() => (
-        <Fragment>
-          <Helmet title={`${title} - Zach Schnackel`} />
-          <article className="article">
-            <header className="u-textCenter">
-              <h1 className="u-mb--small">{title}</h1>
-              <h5 className="u-mv--remove u-textMuted">
-                {date}
-                {dateModified && (
-                  <Tooltip content={`Last updated ${dateModified}`}>
-                    <span className="u-inlineBlock u-ml--small">
-                      <Icon icon="question-circle" />
-                    </span>
-                  </Tooltip>
-                )}
-              </h5>
-            </header>
-            <div
-              className="article-content"
-              dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
-            />
-          </article>
-        </Fragment>
-      )}
-    />
+    <Foundation>
+      <Helmet title={`${title} - Zach Schnackel`} />
+      <article>
+        <header css={{ textAlign: 'center' }}>
+          <h1 css={{ marginBottom: theme.space.small }}>{title}</h1>
+          <h5
+            css={{
+              marginTop: 0,
+              marginBottom: 0,
+              color: theme.fontColor.muted,
+            }}
+          >
+            {date}
+            {dateModified && (
+              <Tooltip content={`Last updated ${dateModified}`}>
+                <span
+                  css={{
+                    display: 'inline-block',
+                    marginLeft: theme.space.small,
+                  }}
+                >
+                  <Icon icon="question-circle" />
+                </span>
+              </Tooltip>
+            )}
+          </h5>
+        </header>
+        <div
+          css={[
+            misc.trimChildren,
+            misc.fluidSize({
+              theme,
+              property: 'fontSize',
+              from: theme.fontSize.base,
+              to: theme.fontSize.medium,
+            }),
+            misc.fluidSize({
+              theme,
+              property: 'paddingTop',
+              from: theme.space.large,
+              to: theme.space.large + theme.space.base,
+            }),
+            misc.fluidSize({
+              theme,
+              property: 'paddingBottom',
+              from: theme.space.large,
+              to: theme.space.large + theme.space.base,
+            }),
+            misc.fluidSize({
+              theme,
+              property: 'marginBottom',
+              from: theme.space.large,
+              to: theme.space.large + theme.space.base,
+            }),
+            {
+              position: 'relative',
+
+              '&::before, &::after': {
+                content: "''",
+                position: 'absolute',
+                background: `url(${pattern}) no-repeat`,
+                backgroundSize: '1500px 1000px',
+                backgroundPosition: '-800px -575px',
+                height: 2,
+                left: '50%',
+                transform: 'translateX(-50%)',
+              },
+
+              '&::before': {
+                width: 250,
+                bottom: 0,
+              },
+
+              '&::after': {
+                width: 125,
+                bottom: -theme.space.base,
+              },
+            },
+          ]}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      </article>
+    </Foundation>
   );
 };
 

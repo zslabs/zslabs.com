@@ -1,8 +1,5 @@
 const path = require('path');
 
-const {
-  postCssPlugins,
-} = require('./node_modules/chaoskit/utils/postcss-config');
 const { domainRegex } = require('./utils/helpers');
 
 module.exports = {
@@ -18,16 +15,7 @@ module.exports = {
         modules: ['chaoskit', 'lodash-es'],
       },
     },
-    {
-      resolve: 'gatsby-plugin-sass',
-      options: {
-        postCssPlugins: postCssPlugins([
-          './node_modules/chaoskit/src/assets/icons/',
-          './src/assets/icons/',
-          './src/assets/media/',
-        ]),
-      },
-    },
+    'gatsby-plugin-emotion',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-catch-links',

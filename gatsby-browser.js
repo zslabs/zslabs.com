@@ -1,15 +1,19 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+import PropTypes from 'prop-types';
+import { ThemeProvider } from 'emotion-theming';
+import { CacheProvider } from '@emotion/core';
+import { ckCache } from 'chaoskit/src/helpers/Wrapper';
 
-// The following two functions are used to trigger a specific class used to attach the `scroll-behavior` modifier; to avoid unecessary smooth-scrolling to the top of the page between routes
-exports.onPreRouteUpdate = () => {
-  document.documentElement.classList.remove('is-loaded');
-  document.body.classList.remove('has-openOffCanvas');
-};
+import { ZSProvider } from './src/components/ZSContext';
+import { zslabsTheme } from './utils/theme';
 
-exports.onRouteUpdate = () => {
-  document.documentElement.classList.add('is-loaded');
+export const wrapRootElement = ({ element }) => (
+  <ZSProvider>
+    <CacheProvider value={ckCache}>
+      <ThemeProvider theme={zslabsTheme}>{element}</ThemeProvider>
+    </CacheProvider>
+  </ZSProvider>
+);
+
+wrapRootElement.propTypes = {
+  element: PropTypes.node.isRequired,
 };
