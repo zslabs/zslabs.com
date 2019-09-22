@@ -10,8 +10,8 @@ const Link = forwardRef(({ exact, className, children, ...props }, ref) => (
     getProps={({ isCurrent, isPartiallyCurrent }) => ({
       className: [
         className,
-        exact && isCurrent ? 'test' : '',
-        !exact && isPartiallyCurrent ? 'test' : '',
+        exact && isCurrent ? 'is-active' : '',
+        !exact && isPartiallyCurrent ? 'is-active' : '',
       ]
         .join(' ')
         .trim(),
