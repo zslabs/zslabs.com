@@ -296,8 +296,8 @@ const Index = () => {
       >
         <Container
           css={{
-            paddingLeft: theme.space.base,
-            paddingRight: theme.space.base,
+            paddingLeft: `${theme.space.base}px !important`,
+            paddingRight: `${theme.space.base}px !important`,
           }}
           size="small"
         >
