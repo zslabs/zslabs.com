@@ -254,9 +254,10 @@ const Index = () => {
                 opacity: theme.opacity.base,
                 transform: `skew(-15deg) translate(-${theme.space.small}px, -${theme.space.small}px)`,
               },
-            },
-            [theme.mq.small] && {
-              minWidth: `calc(${theme.breakpoint.small}px * 0.75)`,
+
+              [theme.mq.small]: {
+                minWidth: `calc(${theme.breakpoint.small}px * 0.75)`,
+              },
             },
           ]}
         >
