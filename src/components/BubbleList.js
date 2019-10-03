@@ -52,29 +52,17 @@ const linkStyles = theme => [
   link.heading(theme),
   {
     ...theme.fontSize.xlarge__fluid,
-    position: 'relative',
-    display: 'inline-block',
-    verticalAlign: 'bottom',
-    overflow: 'hidden',
-    paddingBottom: 3,
-
-    '&::before': {
-      content: "''",
-      zIndex: -1,
-      background: rgba(theme.fontColor.heading, 0.1),
-      height: 3,
-      top: 'calc(100% - 3px)',
-      width: '100%',
-      left: 0,
-      transform: 'translateX(-100%)',
-      position: 'absolute',
-      transition: `transform ${theme.timing.base} ${theme.transition.base}`,
-    },
+    backgroundImage: `linear-gradient(${rgba(
+      theme.fontColor.heading,
+      0.075
+    )}, ${rgba(theme.fontColor.heading, 0.075)})`,
+    backgroundPosition: '0% 100%',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '0% 8px',
+    transition: `background-size ${theme.timing.long} ${theme.transition.base}`,
 
     '&:hover, &:focus': {
-      '&::before': {
-        transform: 'none',
-      },
+      backgroundSize: '100% 8px',
     },
   },
 ];
@@ -162,35 +150,37 @@ export const BubbleListItem = ({
               gridTemplateColumns: 'minmax(0px, 1fr)',
             }}
           >
-            {/* eslint-disable-next-line no-nested-ternary */}
-            {url ? (
-              url.type === 'article' ? (
-                <Link
-                  to={url.to}
-                  onClick={() => {
-                    dispatch({
-                      type: 'toggleOffCanvas',
-                    });
-                  }}
-                  css={linkStyles(theme)}
-                >
-                  {title}
-                </Link>
+            <div>
+              {/* eslint-disable-next-line no-nested-ternary */}
+              {url ? (
+                url.type === 'article' ? (
+                  <Link
+                    to={url.to}
+                    onClick={() => {
+                      dispatch({
+                        type: 'toggleOffCanvas',
+                      });
+                    }}
+                    css={linkStyles(theme)}
+                  >
+                    {title}
+                  </Link>
+                ) : (
+                  <a
+                    href={url.to}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    css={linkStyles(theme)}
+                  >
+                    {title}
+                  </a>
+                )
               ) : (
-                <a
-                  href={url.to}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  css={linkStyles(theme)}
-                >
+                <h4 css={{ ...theme.fontSize.xlarge__fluid, marginBottom: 0 }}>
                   {title}
-                </a>
-              )
-            ) : (
-              <h4 css={{ ...theme.fontSize.xlarge__fluid, marginBottom: 0 }}>
-                {title}
-              </h4>
-            )}
+                </h4>
+              )}
+            </div>
             {meta && (
               <div
                 css={{
