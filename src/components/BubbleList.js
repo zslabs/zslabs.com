@@ -61,7 +61,7 @@ const linkStyles = theme => [
     backgroundSize: '0% 8px',
     transition: `background-size ${theme.timing.long} ${theme.transition.base}`,
 
-    '&:hover, &:focus': {
+    '&:hover, &:focus, &.is-active': {
       backgroundSize: '100% 8px',
     },
   },

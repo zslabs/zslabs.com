@@ -1,11 +1,6 @@
 import { theme } from 'chaoskit/src/assets/styles/theme';
+import { extendTheme } from 'chaoskit/src/helpers/Wrapper';
 import { shade, tint } from 'polished';
-import { merge } from 'lodash-es';
-
-// Handy-dandy utility function to deep-merge themes
-function extendTheme(...themes) {
-  return merge({}, ...themes);
-}
 
 export const zslabsTheme = extendTheme(theme, {
   color: {
