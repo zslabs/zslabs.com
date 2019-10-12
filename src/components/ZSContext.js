@@ -16,7 +16,7 @@ const reducer = (state, action) => {
         offCanvasOpen: !state.offCanvasOpen,
       };
     default:
-      throw new Error();
+      return state;
   }
 };
 
@@ -31,6 +31,4 @@ ZSProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const ZSConsumer = ZSContext.Consumer;
-
-export { ZSContext, ZSProvider, ZSConsumer };
+export { ZSContext, ZSProvider };
