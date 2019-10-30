@@ -28,11 +28,6 @@ const Foundation = ({ children, runAnimation }) => {
 
   const theme = useTheme();
 
-  useEffect(() => {
-    // Get more reliable viewport units
-    rootUnits.install();
-  }, []);
-
   const {
     site: {
       siteMetadata: { title, description, siteUrl },
@@ -96,6 +91,9 @@ const Foundation = ({ children, runAnimation }) => {
   };
 
   useEffect(() => {
+    // Get more reliable viewport units
+    rootUnits.install();
+
     if (runAnimation) {
       runAnimationFunc();
     }
