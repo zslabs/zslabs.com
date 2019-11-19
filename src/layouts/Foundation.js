@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import 'what-input';
-import { TimelineMax } from 'gsap/TweenMax';
+import gsap from 'gsap';
 import rootUnits from 'root-units';
 import { Global } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
@@ -74,20 +74,17 @@ const Foundation = ({ children, runAnimation }) => {
   );
 
   const runAnimationFunc = () => {
-    const pageTimeline = new TimelineMax({
+    const pageTimeline = gsap.timeline({
       delay: 0.5,
     });
 
-    pageTimeline.staggerTo(
-      [logoRef.current, menuRef.current, aboutRef.current],
-      0.5,
-      {
-        y: 0,
-        autoAlpha: 1,
-        ease: theme.gsap.transition.bounce,
-      },
-      0.1
-    );
+    pageTimeline.to([logoRef.current, menuRef.current, aboutRef.current], {
+      duration: 0.5,
+      y: 0,
+      opacity: 1,
+      ease: theme.gsap.transition.bounce,
+      stagger: 0.1,
+    });
   };
 
   useEffect(() => {

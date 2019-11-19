@@ -1,6 +1,6 @@
 import { useEffect, useRef, useContext } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { TimelineMax } from 'gsap/TweenMax';
+import gsap from 'gsap';
 import {
   Button,
   Container,
@@ -73,48 +73,52 @@ const Index = () => {
   `);
 
   const runAnimation = () => {
-    const pageTimeline = new TimelineMax({
+    const pageTimeline = gsap.timeline({
       delay: 1,
     });
 
     pageTimeline
-      .to(introTitle.current, 0.5, {
+      .to(introTitle.current, {
+        duration: 0.5,
         y: 0,
-        autoAlpha: 1,
+        opacity: 1,
         ease: theme.gsap.transition.bounce,
       })
-      .to(introTitleSub.current, 0.5, {
+      .to(introTitleSub.current, {
+        duration: 0.5,
         y: 0,
-        autoAlpha: 1,
+        opacity: 1,
         ease: theme.gsap.transition.bounce,
       })
       .to(
         articleButtonRef.current,
-        0.5,
         {
+          duration: 0.5,
           scale: 1,
-          autoAlpha: 1,
+          opacity: 1,
           ease: theme.gsap.transition.bounce,
         },
         'introButtons'
       )
       .to(
         experienceButtonRef.current,
-        0.75,
         {
+          duration: 0.75,
           delay: 0.125,
           scale: 1,
-          autoAlpha: 1,
+          opacity: 1,
           ease: theme.gsap.transition.bounce,
         },
         'introButtons'
       )
-      .to(latestArticleRef.current, 0.25, {
-        autoAlpha: 1,
+      .to(latestArticleRef.current, {
+        duration: 0.25,
+        opacity: 1,
       })
-      .to(projectsRef.current, 0.5, {
+      .to(projectsRef.current, {
+        duration: 0.5,
         delay: 0.25,
-        autoAlpha: 1,
+        opacity: 1,
       });
   };
 
