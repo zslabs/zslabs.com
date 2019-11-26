@@ -136,7 +136,7 @@ export const BubbleListItem = ({
             badge && {
               display: 'grid',
               gridGap: theme.space.small,
-              gridTemplateColumns: 'minmax(0px, 1fr)',
+              gridTemplateColumns: 'minmax(auto, 1fr)',
 
               [theme.mq.small]: {
                 gridTemplateColumns: '1fr auto',
@@ -147,7 +147,7 @@ export const BubbleListItem = ({
           <div
             css={{
               display: 'inline-grid',
-              gridTemplateColumns: 'minmax(0px, 1fr)',
+              gridTemplateColumns: 'minmax(auto, 1fr)',
             }}
           >
             <div>
