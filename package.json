@@ -19,7 +19,7 @@
   "dependencies": {
     "@weknow/gatsby-remark-twitter": "0.2.3",
     "babel-eslint": "10.0.3",
-    "chaoskit": "https://github.com/gremlin/chaoskit/tarball/64bb760907391f147541a48c78bd722fe05d459d/chaoskit.tar.gz",
+    "chaoskit": "https://github.com/gremlin/chaoskit/tarball/233bc0bbd0ea18e8b1281b9558f6aa8ee432c693/chaoskit.tar.gz",
     "eslint-loader": "3.0.2",
     "eslint-plugin-prettier": "3.1.1",
     "gatsby": "2.17.15",
