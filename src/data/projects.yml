@@ -6,8 +6,8 @@ projects:
     url: https://listingprops.com
     description: Giving real estate agents the power to build gorgeous single property websites for their real estate listings.
   - title: ChaosKit
-    url: https://chaoskit.netlify.com
-    description: A lightweight and modular front-end framework for developing fast and powerful web interfaces within Gremlin.
+    url: https://feature-emotion--chaoskit.netlify.com/
+    description: A lightweight and modular front-end framework for developing fast and powerful web interfaces within Gremlin. [Source](https://github.com/gremlin/chaoskit/tree/feature/emotion)
   - title: Gremlin
     url: https://www.gremlin.com
     description: Marketing site for Chaos.

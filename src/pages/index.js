@@ -16,6 +16,7 @@ import { useTheme } from 'emotion-theming';
 
 import Foundation from '../layouts/Foundation';
 import Link from '../components/Link';
+import Data from '../components/Data';
 import { ZSContext } from '../components/ZSContext';
 import { BubbleList, BubbleListItem } from '../components/BubbleList';
 import { backgroundDots, buttonBase, titleStyles } from '../helpers';
@@ -333,7 +334,7 @@ const Index = () => {
                       to: project.url,
                     }}
                   >
-                    {project.description}
+                    <Data markdown>{project.description}</Data>
                   </BubbleListItem>
                 ))}
               </BubbleList>
