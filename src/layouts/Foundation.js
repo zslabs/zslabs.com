@@ -81,6 +81,7 @@ const Foundation = ({ children, runAnimation }) => {
     pageTimeline.to([logoRef.current, menuRef.current, aboutRef.current], {
       duration: 0.5,
       y: 0,
+      yPercent: 0, // Both are required in this case https://github.com/greensock/GSAP/issues/330#issuecomment-562429618
       opacity: 1,
       ease: theme.gsap.transition.bounce,
       stagger: 0.1,
