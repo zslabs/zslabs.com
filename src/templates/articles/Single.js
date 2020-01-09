@@ -48,8 +48,8 @@ const Post = ({
           </h5>
         </header>
         <div
+          className={theme.settings.classes.trim}
           css={[
-            misc.trimChildren,
             misc.fluidSize({
               theme,
               property: 'fontSize',

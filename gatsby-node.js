@@ -25,6 +25,12 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
   }
 };
 
+exports.onCreateBabelConfig = ({ actions }) => {
+  actions.setBabelPlugin({
+    name: require.resolve('@wzuo/babel-plugin-polished'),
+  });
+};
+
 const path = require('path');
 const _ = require('lodash');
 const { attachFields } = require('gatsby-plugin-node-fields');
