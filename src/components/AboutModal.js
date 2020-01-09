@@ -6,6 +6,7 @@ import {
   ModalBody,
   Close,
   Inline,
+  ListItem,
 } from 'chaoskit/src/components';
 import { text, link } from 'chaoskit/src/assets/styles/utility';
 import { useTheme } from 'emotion-theming';
@@ -50,7 +51,11 @@ const AboutModal = () => {
 
   return (
     <Fragment>
-      <Button type="reset" onClick={() => toggleAboutModalOpen(true)}>
+      <Button
+        className="ZS__Header__Item"
+        type="reset"
+        onClick={() => toggleAboutModalOpen(true)}
+      >
         <img
           src={me}
           alt="About"
@@ -97,21 +102,27 @@ const AboutModal = () => {
               justifyContent: 'center',
             }}
           >
-            <SocialButton
-              url="https://www.github.com/zslabs"
-              title="GitHub"
-              icon="github"
-            />
-            <SocialButton
-              url="https://www.codepen.io/zslabs"
-              title="CodePen"
-              icon="codepen"
-            />
-            <SocialButton
-              url="https://www.twitter.com/zslabs"
-              title="Twitter"
-              icon="twitter"
-            />
+            <ListItem>
+              <SocialButton
+                url="https://www.github.com/zslabs"
+                title="GitHub"
+                icon="github"
+              />
+            </ListItem>
+            <ListItem>
+              <SocialButton
+                url="https://www.codepen.io/zslabs"
+                title="CodePen"
+                icon="codepen"
+              />
+            </ListItem>
+            <ListItem>
+              <SocialButton
+                url="https://www.twitter.com/zslabs"
+                title="Twitter"
+                icon="twitter"
+              />
+            </ListItem>
           </Inline>
           <p
             css={{

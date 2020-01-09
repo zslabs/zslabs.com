@@ -18,6 +18,7 @@ const ArticlesOffCanvas = ({ articles }) => {
   return (
     <Fragment>
       <Button
+        className="ZS__Header__Item"
         type="reset"
         onClick={() => {
           dispatch({

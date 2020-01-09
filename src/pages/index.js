@@ -9,6 +9,7 @@ import {
   RowColumn,
   Section,
   SectionTitle,
+  ListItem,
 } from 'chaoskit/src/components';
 import { link, misc } from 'chaoskit/src/assets/styles/utility';
 import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient';
@@ -164,42 +165,46 @@ const Index = () => {
         </div>
         <div css={{ marginTop: theme.space.large }}>
           <Inline size="medium" css={{ justifyContent: 'center' }}>
-            <div
-              css={{
-                // GSAP
-                transformOrigin: 'center center',
-                transform: 'scale(0)',
-                opacity: 0,
-              }}
-              ref={articleButtonRef}
-            >
-              <Button
-                onClick={() => {
-                  dispatch({
-                    type: 'toggleOffCanvas',
-                  });
+            <ListItem>
+              <div
+                css={{
+                  // GSAP
+                  transformOrigin: 'center center',
+                  transform: 'scale(0)',
+                  opacity: 0,
                 }}
-                css={buttonBase(theme, { type: 'primary' })}
+                ref={articleButtonRef}
               >
-                Articles
-              </Button>
-            </div>
-            <div
-              css={{
-                // GSAP
-                transformOrigin: 'center center',
-                transform: 'scale(0)',
-                opacity: 0,
-              }}
-              ref={experienceButtonRef}
-            >
-              <Button
-                css={buttonBase(theme, { type: 'secondary' })}
-                url="/experience/"
+                <Button
+                  onClick={() => {
+                    dispatch({
+                      type: 'toggleOffCanvas',
+                    });
+                  }}
+                  css={buttonBase(theme, { type: 'primary' })}
+                >
+                  Articles
+                </Button>
+              </div>
+            </ListItem>
+            <ListItem>
+              <div
+                css={{
+                  // GSAP
+                  transformOrigin: 'center center',
+                  transform: 'scale(0)',
+                  opacity: 0,
+                }}
+                ref={experienceButtonRef}
               >
-                Experience
-              </Button>
-            </div>
+                <Button
+                  css={buttonBase(theme, { type: 'secondary' })}
+                  url="/experience/"
+                >
+                  Experience
+                </Button>
+              </div>
+            </ListItem>
           </Inline>
         </div>
         <Link

@@ -125,7 +125,7 @@ const Foundation = ({ children, runAnimation }) => {
               alignItems: 'center',
               paddingTop: theme.space.base,
 
-              '> * > *': {
+              '.ZS__Header__Item': {
                 display: 'inline-block',
                 transition: `transform ${theme.timing.base} ${theme.transition.bounce}`,
                 transformOrigin: 'center center',
@@ -139,15 +139,16 @@ const Foundation = ({ children, runAnimation }) => {
 
             runAnimation && {
               // GSAP
-              '> *': {
+              '.ZS__Header__ItemWrapper': {
                 transform: `translateY(calc(-100% + ${theme.space.base}px))`,
                 opacity: 0,
               },
             },
           ]}
         >
-          <div ref={logoRef}>
+          <div className="ZS__Header__ItemWrapper" ref={logoRef}>
             <Link
+              className="ZS__Header__Item"
               to="/"
               title={title}
               css={{
@@ -161,10 +162,11 @@ const Foundation = ({ children, runAnimation }) => {
               }}
             />
           </div>
-          <div ref={menuRef}>
+          <div className="ZS__Header__ItemWrapper" ref={menuRef}>
             <ArticlesOffCanvas articles={articles} />
           </div>
           <div
+            className="ZS__Header__ItemWrapper"
             ref={aboutRef}
             css={{
               justifyContent: 'flex-end',

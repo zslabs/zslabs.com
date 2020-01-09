@@ -3196,9 +3196,9 @@ chalk@^3.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-"chaoskit@https://github.com/gremlin/chaoskit/tarball/f0a5a6c836220869d1650a28c9950c893c51463d/chaoskit.tar.gz":
+"chaoskit@https://github.com/gremlin/chaoskit/tarball/8267f6b6dd6b537290412a96f6ef8da62e69ecc2/chaoskit.tar.gz":
   version "1.4.7"
-  resolved "https://github.com/gremlin/chaoskit/tarball/f0a5a6c836220869d1650a28c9950c893c51463d/chaoskit.tar.gz#75bbdf527231a6c431d212cf80c2a9a0a6b858df"
+  resolved "https://github.com/gremlin/chaoskit/tarball/8267f6b6dd6b537290412a96f6ef8da62e69ecc2/chaoskit.tar.gz#d11d733b0c33c40c2bd7a610809927a5284ac956"
   dependencies:
     "@emotion/babel-preset-css-prop" "10.0.27"
     "@emotion/cache" "10.0.27"
