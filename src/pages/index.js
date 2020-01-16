@@ -39,7 +39,9 @@ const Index = () => {
     latestArticle: {
       edges: [latestArticle],
     },
-    projects: { childDataYaml: pageData },
+    projects: {
+      childMarkdownRemark: { frontmatter: pageData },
+    },
   } = useStaticQuery(graphql`
     query IndexPageData {
       latestArticle: allMarkdownRemark(
@@ -62,12 +64,17 @@ const Index = () => {
         }
       }
 
-      projects: file(name: { eq: "projects" }) {
-        childDataYaml {
-          projects {
-            title
-            url
-            description
+      projects: file(
+        name: { eq: "projects" }
+        absolutePath: { regex: "/src/data/" }
+      ) {
+        childMarkdownRemark {
+          frontmatter {
+            projects {
+              title
+              url
+              description
+            }
           }
         }
       }

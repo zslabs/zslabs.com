@@ -1,3 +1,4 @@
+---
 experience:
   - company: Gremlin
     title: Senior Frontend Engineer
@@ -24,3 +25,4 @@ experience:
     dates: Jan 2013 - May 2014
     blurb: >-
       Lead design, frontend and backend implementation updates across a vast array of clients and requirements. Was an integral part of client interactions and scoping project specifications.
+---

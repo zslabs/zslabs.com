@@ -9,7 +9,7 @@ import strip from 'strip-markdown';
 
 import { domainRegex } from '../../utils/helpers';
 
-// Provides consistent way for us to render content from yml file that propery encodes entities as well
+// Provides consistent way for us to render content from Markdown frontmatter that propery encodes entities as well
 const Data = props => {
   const { children, markdown, stripMarkdown } = props;
 

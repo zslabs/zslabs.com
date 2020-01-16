@@ -1,3 +1,4 @@
+---
 projects:
   - title: List
     description: The best eBay toolkit for gauging market-prices, trends, and activity on multiple search terms.
@@ -14,3 +15,5 @@ projects:
   - title: Saos Capital
     url: https://www.saoscapital.com
     description: Financial planning and advisory services to the stars.
+---
+

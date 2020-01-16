@@ -12,7 +12,9 @@ import { titleStyles } from '../helpers';
 const Experience = ({
   data: {
     file: {
-      childDataYaml: { experience },
+      childMarkdownRemark: {
+        frontmatter: { experience },
+      },
     },
   },
 }) => {
@@ -67,13 +69,15 @@ Experience.propTypes = {
 
 export const pageQuery = graphql`
   query ExperiencePageData {
-    file(name: { eq: "experience" }) {
-      childDataYaml {
-        experience {
-          company
-          title
-          dates
-          blurb
+    file(name: { eq: "experience" }, absolutePath: { regex: "/src/data/" }) {
+      childMarkdownRemark {
+        frontmatter {
+          experience {
+            company
+            title
+            dates
+            blurb
+          }
         }
       }
     }

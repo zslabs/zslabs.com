@@ -33,7 +33,6 @@ exports.onCreateBabelConfig = ({ actions }) => {
 
 const path = require('path');
 const _ = require('lodash');
-const { attachFields } = require('gatsby-plugin-node-fields');
 
 //
 // Lifecycle methods
@@ -44,34 +43,28 @@ function attachFieldsToNodes({ node, actions }) {
     return;
   }
 
+  const { createNodeField } = actions;
+
   const { slug, title } = node.frontmatter;
   const articlePath = slug || _.kebabCase(_.toLower(title));
   const fullUrl = `/articles/${articlePath}/`;
 
-  attachFields(node, actions, [
-    // Custom slug
-    {
-      predicate: () => true, // Attach this to any markdown-generated files to allow for custom slugs
-      fields: [
-        {
-          name: 'slug',
-          getter: nodeObject => nodeObject.frontmatter.slug,
-          defaultValue: articlePath,
-          validator: value => value && value.trim() !== '', // Check against empty slugs
-        },
-      ],
-    },
-    // Full URL
-    {
-      predicate: () => true, // Attach this to any markdown-generated files to allow for custom slugs
-      fields: [
-        {
-          name: 'fullUrl',
-          defaultValue: fullUrl,
-        },
-      ],
-    },
-  ]);
+  // Slug overrides
+  createNodeField({
+    node,
+    name: 'slug',
+    value:
+      node.frontmatter.slug && node.frontmatter.slug.trim() !== ''
+        ? node.frontmatter.slug
+        : articlePath,
+  });
+
+  // Full URL
+  createNodeField({
+    node,
+    name: 'fullUrl',
+    value: fullUrl,
+  });
 }
 
 // eslint-disable-next-line func-names

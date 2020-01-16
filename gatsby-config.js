@@ -20,7 +20,6 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
-    'gatsby-transformer-yaml',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -74,12 +73,6 @@ module.exports = {
             options: {
               target: '_blank',
               rel: ['noopener', 'noreferrer'],
-            },
-          },
-          {
-            resolve: 'gatsby-remark-copy-linked-files',
-            options: {
-              destinationDir: 'uploads',
             },
           },
           '@weknow/gatsby-remark-twitter',
