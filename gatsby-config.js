@@ -15,7 +15,12 @@ module.exports = {
         modules: ['chaoskit', 'lodash-es'],
       },
     },
-    'gatsby-plugin-emotion',
+    {
+      resolve: 'gatsby-plugin-emotion',
+      options: {
+        sourceMap: false,
+      },
+    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-catch-links',
@@ -131,6 +136,7 @@ module.exports = {
               }
             `,
             output: '/rss.xml',
+            title: 'ZS Labs RSS Feed',
           },
         ],
       },
