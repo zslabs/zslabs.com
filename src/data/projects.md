@@ -3,9 +3,6 @@ projects:
   - title: List
     description: The best eBay toolkit for gauging market-prices, trends, and activity on multiple search terms.
     url: https://list.zslabs.com
-  - title: Listing Props
-    url: https://listingprops.com
-    description: Giving real estate agents the power to build gorgeous single property websites for their real estate listings.
   - title: ChaosKit
     url: https://feature-emotion--chaoskit.netlify.com/
     description: A lightweight and modular front-end framework for developing fast and powerful web interfaces within Gremlin. [Source](https://github.com/gremlin/chaoskit/tree/feature/emotion)
@@ -16,4 +13,3 @@ projects:
     url: https://www.saoscapital.com
     description: Financial planning and advisory services to the stars.
 ---
-
