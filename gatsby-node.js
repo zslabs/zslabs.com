@@ -21,18 +21,19 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
           },
         ],
       },
-    });
+    })
   }
-};
+}
 
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
     name: require.resolve('@wzuo/babel-plugin-polished'),
-  });
-};
+  })
+}
 
-const path = require('path');
-const _ = require('lodash');
+const path = require('path')
+
+const _ = require('lodash')
 
 //
 // Lifecycle methods
@@ -40,14 +41,14 @@ const _ = require('lodash');
 
 function attachFieldsToNodes({ node, actions }) {
   if (node.internal.type !== 'MarkdownRemark') {
-    return;
+    return
   }
 
-  const { createNodeField } = actions;
+  const { createNodeField } = actions
 
-  const { slug, title } = node.frontmatter;
-  const articlePath = slug || _.kebabCase(_.toLower(title));
-  const fullUrl = `/articles/${articlePath}/`;
+  const { slug, title } = node.frontmatter
+  const articlePath = slug || _.kebabCase(_.toLower(title))
+  const fullUrl = `/articles/${articlePath}/`
 
   // Slug overrides
   createNodeField({
@@ -57,20 +58,20 @@ function attachFieldsToNodes({ node, actions }) {
       node.frontmatter.slug && node.frontmatter.slug.trim() !== ''
         ? node.frontmatter.slug
         : articlePath,
-  });
+  })
 
   // Full URL
   createNodeField({
     node,
     name: 'fullUrl',
     value: fullUrl,
-  });
+  })
 }
 
 // eslint-disable-next-line func-names
 exports.onCreateNode = function(...args) {
-  return Promise.all([attachFieldsToNodes].map(fn => fn.apply(this, args)));
-};
+  return Promise.all([attachFieldsToNodes].map(fn => fn.apply(this, args)))
+}
 
 function getMarkdownQuery({ regex } = {}) {
   return `
@@ -103,7 +104,7 @@ function getMarkdownQuery({ regex } = {}) {
         }
       }
     }
-  `;
+  `
 }
 
 function createSinglePages({
@@ -112,11 +113,11 @@ function createSinglePages({
   context,
   filename = 'Single',
 }) {
-  const component = path.resolve(`src/templates/${context}/${filename}.js`);
+  const component = path.resolve(`src/templates/${context}/${filename}.js`)
 
   edges.forEach(({ node }) => {
-    const { slug, title } = node.frontmatter;
-    const articlePath = slug || _.kebabCase(_.toLower(title));
+    const { slug, title } = node.frontmatter
+    const articlePath = slug || _.kebabCase(_.toLower(title))
 
     createPage({
       path: `/articles/${articlePath}`,
@@ -125,18 +126,18 @@ function createSinglePages({
         slug: articlePath,
         fileAbsolutePath: node.fileAbsolutePath,
       },
-    });
-  });
+    })
+  })
 }
 
 exports.createPages = async ({ actions, graphql }) => {
   const results = await Promise.all([
     graphql(getMarkdownQuery({ regex: '/src/articles/' })),
-  ]);
+  ])
 
-  const [articleResults] = results;
-  const { createPage } = actions;
-  const articleEdges = articleResults.data.allMarkdownRemark.edges;
+  const [articleResults] = results
+  const { createPage } = actions
+  const articleEdges = articleResults.data.allMarkdownRemark.edges
 
   //
   // Articles
@@ -145,5 +146,5 @@ exports.createPages = async ({ actions, graphql }) => {
     createPage,
     edges: articleEdges,
     context: 'articles',
-  });
-};
+  })
+}

@@ -1,11 +1,10 @@
-import { Helmet } from 'react-helmet';
-
-import Foundation from '../layouts/Foundation';
-import pattern from '../assets/media/pattern.png';
+import Foundation from '../layouts/Foundation'
+import pattern from '../assets/media/pattern.png'
+import HelmetSEO from '../components/HelmetSEO'
 
 const NotFoundPage = () => (
   <Foundation>
-    <Helmet title="404 Page Not Found" />
+    <HelmetSEO title="404 Page Not Found" />
     <h1
       css={{
         WebkitBackgroundClip: 'text !important',
@@ -20,6 +19,6 @@ const NotFoundPage = () => (
       404
     </h1>
   </Foundation>
-);
+)
 
-export default NotFoundPage;
+export default NotFoundPage

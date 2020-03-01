@@ -1,12 +1,13 @@
-const path = require('path');
+const path = require('path')
 
-const { domainRegex } = require('./utils/helpers');
+const { domainRegex } = require('./utils/helpers')
 
 module.exports = {
   siteMetadata: {
     title: 'Zach Schnackel',
     description: 'Portfolio site for software engineer, Zach Schnackel',
     siteUrl: 'https://www.zslabs.com',
+    twitter: '@zslabs',
   },
   plugins: [
     {
@@ -182,4 +183,4 @@ module.exports = {
     },
     'gatsby-plugin-netlify', // Make sure to keep it last in the array
   ],
-};
+}

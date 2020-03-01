@@ -1,18 +1,19 @@
-import { useContext } from 'react';
-import PropTypes from 'prop-types';
-import { rgba } from 'polished';
-import { Badge, List, ListItem } from 'chaoskit/src/components';
-import { link, text } from 'chaoskit/src/assets/styles/utility';
-import { useTheme } from 'emotion-theming';
+import { useContext } from 'react'
+import PropTypes from 'prop-types'
+import { rgba } from 'polished'
+import { Badge, List, ListItem } from 'chaoskit/src/components'
+import { link, text } from 'chaoskit/src/assets/styles/utility'
+import { useTheme } from 'emotion-theming'
 
-import Link from './Link';
-import { ZSContext } from './ZSContext';
-import pattern from '../assets/media/pattern.png';
+import pattern from '../assets/media/pattern.png'
 
-const bubbleSize = 16;
+import Link from './Link'
+import { ZSContext } from './ZSContext'
+
+const bubbleSize = 16
 
 export const BubbleList = ({ ...opts }) => {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return (
     <List
@@ -44,8 +45,8 @@ export const BubbleList = ({ ...opts }) => {
       space="medium"
       {...opts}
     />
-  );
-};
+  )
+}
 
 const linkStyles = theme => [
   text.heading(theme),
@@ -65,7 +66,7 @@ const linkStyles = theme => [
       backgroundSize: '100% 8px',
     },
   },
-];
+]
 
 export const BubbleListItem = ({
   url,
@@ -76,8 +77,8 @@ export const BubbleListItem = ({
   children,
   ...opts
 }) => {
-  const { dispatch } = useContext(ZSContext);
-  const theme = useTheme();
+  const { dispatch } = useContext(ZSContext)
+  const theme = useTheme()
 
   return (
     <ListItem
@@ -159,7 +160,7 @@ export const BubbleListItem = ({
                     onClick={() => {
                       dispatch({
                         type: 'toggleOffCanvas',
-                      });
+                      })
                     }}
                     css={linkStyles(theme)}
                   >
@@ -226,8 +227,8 @@ export const BubbleListItem = ({
         )}
       </div>
     </ListItem>
-  );
-};
+  )
+}
 
 BubbleListItem.propTypes = {
   url: PropTypes.object,
@@ -236,4 +237,4 @@ BubbleListItem.propTypes = {
   badge: PropTypes.string,
   first: PropTypes.bool,
   children: PropTypes.node,
-};
+}

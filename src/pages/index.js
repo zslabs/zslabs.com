@@ -1,6 +1,6 @@
-import { useEffect, useRef, useContext } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import gsap from 'gsap';
+import { useEffect, useRef, useContext } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import gsap from 'gsap'
 import {
   Button,
   Container,
@@ -10,30 +10,30 @@ import {
   Section,
   SectionTitle,
   ListItem,
-} from 'chaoskit/src/components';
-import { link, misc } from 'chaoskit/src/assets/styles/utility';
-import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient';
-import { useTheme } from 'emotion-theming';
+} from 'chaoskit/src/components'
+import { link, misc } from 'chaoskit/src/assets/styles/utility'
+import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient'
+import { useTheme } from 'emotion-theming'
 
-import Foundation from '../layouts/Foundation';
-import Link from '../components/Link';
-import Data from '../components/Data';
-import { ZSContext } from '../components/ZSContext';
-import { BubbleList, BubbleListItem } from '../components/BubbleList';
-import { backgroundDots, buttonBase, titleStyles } from '../helpers';
-import pattern from '../assets/media/pattern.png';
+import Foundation from '../layouts/Foundation'
+import Link from '../components/Link'
+import Data from '../components/Data'
+import { ZSContext } from '../components/ZSContext'
+import { BubbleList, BubbleListItem } from '../components/BubbleList'
+import { backgroundDots, buttonBase, titleStyles } from '../helpers'
+import pattern from '../assets/media/pattern.png'
 
 const Index = () => {
-  const { dispatch } = useContext(ZSContext);
+  const { dispatch } = useContext(ZSContext)
 
-  const introTitle = useRef();
-  const introTitleSub = useRef();
-  const articleButtonRef = useRef();
-  const experienceButtonRef = useRef();
-  const projectsRef = useRef();
-  const latestArticleRef = useRef();
+  const introTitle = useRef()
+  const introTitleSub = useRef()
+  const articleButtonRef = useRef()
+  const experienceButtonRef = useRef()
+  const projectsRef = useRef()
+  const latestArticleRef = useRef()
 
-  const theme = useTheme();
+  const theme = useTheme()
 
   const {
     latestArticle: {
@@ -79,12 +79,12 @@ const Index = () => {
         }
       }
     }
-  `);
+  `)
 
   const runAnimation = () => {
     const pageTimeline = gsap.timeline({
       delay: 1,
-    });
+    })
 
     pageTimeline
       .to(introTitle.current, {
@@ -128,12 +128,12 @@ const Index = () => {
         duration: 0.5,
         delay: 0.25,
         opacity: 1,
-      });
-  };
+      })
+  }
 
   useEffect(() => {
-    runAnimation();
-  }, []);
+    runAnimation()
+  }, [])
 
   return (
     <Foundation runAnimation>
@@ -186,7 +186,7 @@ const Index = () => {
                   onClick={() => {
                     dispatch({
                       type: 'toggleOffCanvas',
-                    });
+                    })
                   }}
                   css={buttonBase(theme, { type: 'primary' })}
                 >
@@ -355,7 +355,7 @@ const Index = () => {
         </Container>
       </Section>
     </Foundation>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

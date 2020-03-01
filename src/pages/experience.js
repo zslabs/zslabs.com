@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import { graphql } from 'gatsby';
-import { Row, RowColumn, Section, SectionTitle } from 'chaoskit/src/components';
-import { useTheme } from 'emotion-theming';
+import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
+import { Row, RowColumn, Section, SectionTitle } from 'chaoskit/src/components'
+import { useTheme } from 'emotion-theming'
 
-import Foundation from '../layouts/Foundation';
-import Data from '../components/Data';
-import { BubbleList, BubbleListItem } from '../components/BubbleList';
-import { titleStyles } from '../helpers';
+import Foundation from '../layouts/Foundation'
+import Data from '../components/Data'
+import { BubbleList, BubbleListItem } from '../components/BubbleList'
+import { titleStyles } from '../helpers'
+import HelmetSEO from '../components/HelmetSEO'
 
 const Experience = ({
   data: {
@@ -18,11 +18,11 @@ const Experience = ({
     },
   },
 }) => {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return (
     <Foundation>
-      <Helmet title="Experience" />
+      <HelmetSEO title="Experience" />
       <Section>
         <SectionTitle
           as="h2"
@@ -60,12 +60,12 @@ const Experience = ({
         </Row>
       </Section>
     </Foundation>
-  );
-};
+  )
+}
 
 Experience.propTypes = {
   data: PropTypes.object.isRequired,
-};
+}
 
 export const pageQuery = graphql`
   query ExperiencePageData {
@@ -82,6 +82,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`
 
-export default Experience;
+export default Experience

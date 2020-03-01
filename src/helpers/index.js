@@ -1,7 +1,7 @@
-import { misc } from 'chaoskit/src/assets/styles/utility';
+import { misc } from 'chaoskit/src/assets/styles/utility'
 
-import dots from '../assets/media/dots.svg';
-import pattern from '../assets/media/pattern.png';
+import dots from '../assets/media/dots.svg'
+import pattern from '../assets/media/pattern.png'
 
 export const buttonBase = (theme, props = { type: 'default' }) => [
   {
@@ -38,7 +38,7 @@ export const buttonBase = (theme, props = { type: 'default' }) => [
   props.type === 'twitter' && {
     backgroundPosition: '70% 10%',
   },
-];
+]
 
 export const backgroundDots = (fill = '#fff') => ({
   content: "''",
@@ -53,7 +53,7 @@ export const backgroundDots = (fill = '#fff') => ({
   backgroundSize: 'auto 8px',
   backgroundRepeat: 'repeat',
   backgroundImage: `url(${dots})`,
-});
+})
 
 export const titleStyles = theme => ({
   position: 'relative',
@@ -85,4 +85,4 @@ export const titleStyles = theme => ({
       backgroundSize: '750px 500px',
     },
   ],
-});
+})

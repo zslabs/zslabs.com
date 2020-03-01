@@ -1,19 +1,20 @@
-import { Fragment, useContext } from 'react';
-import PropTypes from 'prop-types';
-import { Button, OffCanvas } from 'chaoskit/src/components';
-import { useTheme } from 'emotion-theming';
+import { Fragment, useContext } from 'react'
+import PropTypes from 'prop-types'
+import { Button, OffCanvas } from 'chaoskit/src/components'
+import { useTheme } from 'emotion-theming'
 
-import { ZSContext } from './ZSContext';
-import Icon from './Icon';
-import { BubbleList, BubbleListItem } from './BubbleList';
-import { titleStyles } from '../helpers';
+import { titleStyles } from '../helpers'
+
+import { ZSContext } from './ZSContext'
+import Icon from './Icon'
+import { BubbleList, BubbleListItem } from './BubbleList'
 
 const ArticlesOffCanvas = ({ articles }) => {
   const {
     state: { offCanvasOpen },
     dispatch,
-  } = useContext(ZSContext);
-  const theme = useTheme();
+  } = useContext(ZSContext)
+  const theme = useTheme()
 
   return (
     <Fragment>
@@ -23,7 +24,7 @@ const ArticlesOffCanvas = ({ articles }) => {
         onClick={() => {
           dispatch({
             type: 'toggleOffCanvas',
-          });
+          })
         }}
         aria-label="Toggle menu"
       >
@@ -38,7 +39,7 @@ const ArticlesOffCanvas = ({ articles }) => {
         onOffCanvasToggle={() => {
           dispatch({
             type: 'toggleOffCanvas',
-          });
+          })
         }}
       >
         <h2
@@ -71,11 +72,11 @@ const ArticlesOffCanvas = ({ articles }) => {
         </BubbleList>
       </OffCanvas>
     </Fragment>
-  );
-};
+  )
+}
 
 ArticlesOffCanvas.propTypes = {
   articles: PropTypes.array.isRequired,
-};
+}
 
-export default ArticlesOffCanvas;
+export default ArticlesOffCanvas

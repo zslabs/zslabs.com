@@ -1,11 +1,11 @@
-import { createContext, useReducer } from 'react';
-import PropTypes from 'prop-types';
+import { createContext, useReducer } from 'react'
+import PropTypes from 'prop-types'
 
-const ZSContext = createContext();
+const ZSContext = createContext()
 
 const initialState = {
   offCanvasOpen: false,
-};
+}
 
 const reducer = (state, action) => {
   // eslint-disable-next-line default-case
@@ -14,21 +14,21 @@ const reducer = (state, action) => {
       return {
         ...state,
         offCanvasOpen: !state.offCanvasOpen,
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
 const ZSProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const value = { state, dispatch };
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const value = { state, dispatch }
 
-  return <ZSContext.Provider value={value}>{children}</ZSContext.Provider>;
-};
+  return <ZSContext.Provider value={value}>{children}</ZSContext.Provider>
+}
 
 ZSProvider.propTypes = {
   children: PropTypes.node.isRequired,
-};
+}
 
-export { ZSContext, ZSProvider };
+export { ZSContext, ZSProvider }

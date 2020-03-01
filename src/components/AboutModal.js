@@ -1,5 +1,5 @@
-import { useState, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import { useState, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import {
   Button,
   Modal,
@@ -7,16 +7,17 @@ import {
   Close,
   Inline,
   ListItem,
-} from 'chaoskit/src/components';
-import { text, link } from 'chaoskit/src/assets/styles/utility';
-import { useTheme } from 'emotion-theming';
+} from 'chaoskit/src/components'
+import { text, link } from 'chaoskit/src/assets/styles/utility'
+import { useTheme } from 'emotion-theming'
 
-import Icon from './Icon';
-import me from '../assets/media/me.png';
-import { buttonBase } from '../helpers';
+import me from '../assets/media/me.png'
+import { buttonBase } from '../helpers'
+
+import Icon from './Icon'
 
 const SocialButton = ({ url, title, icon }) => {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return (
     <Button
@@ -36,18 +37,18 @@ const SocialButton = ({ url, title, icon }) => {
     >
       <Icon icon={icon} />
     </Button>
-  );
-};
+  )
+}
 
 SocialButton.propTypes = {
   url: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
-};
+}
 
 const AboutModal = () => {
-  const [isAboutModalOpen, toggleAboutModalOpen] = useState(false);
-  const theme = useTheme();
+  const [isAboutModalOpen, toggleAboutModalOpen] = useState(false)
+  const theme = useTheme()
 
   return (
     <Fragment>
@@ -216,7 +217,7 @@ const AboutModal = () => {
         </ModalBody>
       </Modal>
     </Fragment>
-  );
-};
+  )
+}
 
-export default AboutModal;
+export default AboutModal

@@ -1,36 +1,34 @@
-import { Fragment, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from 'gatsby';
-import { Helmet } from 'react-helmet';
-import 'what-input';
-import gsap from 'gsap';
-import rootUnits from 'root-units';
-import { Global } from '@emotion/core';
-import { useTheme } from 'emotion-theming';
-import { Container } from 'chaoskit/src/components';
-import { misc } from 'chaoskit/src/assets/styles/utility';
-import { globalStyles } from 'chaoskit/src/assets/styles/global';
+import { Fragment, useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
+import { useStaticQuery, graphql } from 'gatsby'
+import 'what-input'
+import gsap from 'gsap'
+import rootUnits from 'root-units'
+import { Global } from '@emotion/core'
+import { useTheme } from 'emotion-theming'
+import { Container } from 'chaoskit/src/components'
+import { misc } from 'chaoskit/src/assets/styles/utility'
+import { globalStyles } from 'chaoskit/src/assets/styles/global'
 
-import { global } from '../assets/styles/global';
-import { fonts } from '../assets/styles/fonts';
-import Link from '../components/Link';
-import AboutModal from '../components/AboutModal';
-import ArticlesOffCanvas from '../components/ArticlesOffCanvas';
-
-import me from '../assets/media/me.png';
-import logo from '../assets/media/logo.svg';
-import pattern from '../assets/media/pattern.png';
+import { global } from '../assets/styles/global'
+import { fonts } from '../assets/styles/fonts'
+import Link from '../components/Link'
+import AboutModal from '../components/AboutModal'
+import ArticlesOffCanvas from '../components/ArticlesOffCanvas'
+import logo from '../assets/media/logo.svg'
+import pattern from '../assets/media/pattern.png'
+import HelmetSEO from '../components/HelmetSEO'
 
 const Foundation = ({ children, runAnimation }) => {
-  const logoRef = useRef();
-  const menuRef = useRef();
-  const aboutRef = useRef();
+  const logoRef = useRef()
+  const menuRef = useRef()
+  const aboutRef = useRef()
 
-  const theme = useTheme();
+  const theme = useTheme()
 
   const {
     site: {
-      siteMetadata: { title, description, siteUrl },
+      siteMetadata: { title },
     },
     articles: { edges: articles },
   } = useStaticQuery(
@@ -71,12 +69,12 @@ const Foundation = ({ children, runAnimation }) => {
         }
       }
     `
-  );
+  )
 
   const runAnimationFunc = () => {
     const pageTimeline = gsap.timeline({
       delay: 0.5,
-    });
+    })
 
     pageTimeline.to([logoRef.current, menuRef.current, aboutRef.current], {
       duration: 0.5,
@@ -85,31 +83,22 @@ const Foundation = ({ children, runAnimation }) => {
       opacity: 1,
       ease: theme.gsap.transition.bounce,
       stagger: 0.1,
-    });
-  };
+    })
+  }
 
   useEffect(() => {
     // Get more reliable viewport units
-    rootUnits.install();
+    rootUnits.install()
 
     if (runAnimation) {
-      runAnimationFunc();
+      runAnimationFunc()
     }
-  }, []);
+  }, [])
 
   return (
     <Fragment>
       <Global styles={[globalStyles(theme), global(theme), fonts(theme)]} />
-      <Helmet
-        title={title}
-        meta={[
-          { name: 'description', content: description },
-          { name: 'og:image', content: `${siteUrl}${me}` },
-        ]}
-        htmlAttributes={{
-          lang: 'en',
-        }}
-      />
+      <HelmetSEO />
       <Container size="small">
         <header
           css={[
@@ -178,12 +167,12 @@ const Foundation = ({ children, runAnimation }) => {
         <main>{children}</main>
       </Container>
     </Fragment>
-  );
-};
+  )
+}
 
 Foundation.propTypes = {
   runAnimation: PropTypes.bool,
   children: PropTypes.node.isRequired,
-};
+}
 
-export default Foundation;
+export default Foundation

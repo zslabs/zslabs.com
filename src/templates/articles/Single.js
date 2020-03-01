@@ -1,27 +1,28 @@
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import { graphql } from 'gatsby';
-import { Tooltip } from 'chaoskit/src/components';
-import { misc } from 'chaoskit/src/assets/styles/utility';
-import { useTheme } from 'emotion-theming';
+import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
+import { Tooltip } from 'chaoskit/src/components'
+import { misc } from 'chaoskit/src/assets/styles/utility'
+import { useTheme } from 'emotion-theming'
 
-import Foundation from '../../layouts/Foundation';
-import Icon from '../../components/Icon';
-import pattern from '../../assets/media/pattern.png';
+import Foundation from '../../layouts/Foundation'
+import Icon from '../../components/Icon'
+import pattern from '../../assets/media/pattern.png'
+import HelmetSEO from '../../components/HelmetSEO'
 
 const Post = ({
   data: {
     post: {
       html,
+      excerpt,
       frontmatter: { title, date, dateModified },
     },
   },
 }) => {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return (
     <Foundation>
-      <Helmet title={`${title} - Zach Schnackel`} />
+      <HelmetSEO title={title} description={excerpt} />
       <article>
         <header css={{ textAlign: 'center' }}>
           <h1 css={{ marginBottom: theme.space.small }}>{title}</h1>
@@ -103,14 +104,14 @@ const Post = ({
         />
       </article>
     </Foundation>
-  );
-};
+  )
+}
 
 Post.propTypes = {
   data: PropTypes.object.isRequired,
-};
+}
 
-export default Post;
+export default Post
 
 export const pageQuery = graphql`
   query ArticleSingle($slug: String!) {
@@ -118,4 +119,4 @@ export const pageQuery = graphql`
       ...PostFragment
     }
   }
-`;
+`

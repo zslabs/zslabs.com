@@ -1,11 +1,11 @@
-import { forwardRef } from 'react';
-import PropTypes from 'prop-types';
-import { Link as GatsbyLink } from 'gatsby';
-import { useTheme } from 'emotion-theming';
+import { forwardRef } from 'react'
+import PropTypes from 'prop-types'
+import { Link as GatsbyLink } from 'gatsby'
+import { useTheme } from 'emotion-theming'
 
 // This component gets around an oddity where @reach/router doesn't appropriately handle active links; so we're stubbing in our own logic
 const Link = forwardRef(({ exact, className, children, ...props }, ref) => {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return (
     <GatsbyLink
@@ -23,13 +23,13 @@ const Link = forwardRef(({ exact, className, children, ...props }, ref) => {
     >
       {children}
     </GatsbyLink>
-  );
-});
+  )
+})
 
 Link.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   exact: PropTypes.bool,
-};
+}
 
-export default Link;
+export default Link

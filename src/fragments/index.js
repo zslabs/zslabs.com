@@ -1,9 +1,10 @@
-import { graphql } from 'gatsby';
+import { graphql } from 'gatsby'
 
 export const postTeaserFragment = graphql`
   fragment PostFragment on MarkdownRemark {
     fileAbsolutePath
     html
+    excerpt(pruneLength: 120)
     timeToRead
     frontmatter {
       title
@@ -16,4 +17,4 @@ export const postTeaserFragment = graphql`
       fullUrl
     }
   }
-`;
+`
