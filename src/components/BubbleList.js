@@ -75,7 +75,7 @@ export const BubbleListItem = ({
   badge,
   first,
   children,
-  ...opts
+  ...rest
 }) => {
   const { dispatch } = useContext(ZSContext)
   const theme = useTheme()
@@ -117,7 +117,7 @@ export const BubbleListItem = ({
           },
         },
       }}
-      {...opts}
+      {...rest}
     >
       <div
         css={{

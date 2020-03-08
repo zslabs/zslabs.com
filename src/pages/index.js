@@ -40,7 +40,7 @@ const Index = () => {
       edges: [latestArticle],
     },
     projects: {
-      childMarkdownRemark: { frontmatter: pageData },
+      childMarkdownRemark: { frontmatter: pageData, fields: pageFields },
     },
   } = useStaticQuery(graphql`
     query IndexPageData {
@@ -73,8 +73,11 @@ const Index = () => {
             projects {
               title
               url
-              description
+              blurb
             }
+          }
+          fields {
+            projectBlurb
           }
         }
       }
@@ -338,7 +341,7 @@ const Index = () => {
           <Row css={{ justifyContent: 'center' }}>
             <RowColumn size={{ medium: 9 }}>
               <BubbleList>
-                {pageData.projects.map(project => (
+                {pageData.projects.map((project, index) => (
                   <BubbleListItem
                     key={project.title}
                     title={project.title}
@@ -346,7 +349,7 @@ const Index = () => {
                       to: project.url,
                     }}
                   >
-                    <Data markdown>{project.description}</Data>
+                    <Data>{pageFields.projectBlurb[index]}</Data>
                   </BubbleListItem>
                 ))}
               </BubbleList>

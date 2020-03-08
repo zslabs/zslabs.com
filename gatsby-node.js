@@ -34,17 +34,47 @@ exports.onCreateBabelConfig = ({ actions }) => {
 const path = require('path')
 
 const _ = require('lodash')
+const remark = require('remark')
+const remarkHtml = require('remark-html')
+const remarkRelativeLinks = require('remark-relative-links')
+const remarkExternalLinks = require('remark-external-links')
+
+const { domainRegex } = require('./utils/helpers')
+
+function remarkField({ dataSet, field = '' }) {
+  // If we don't find anything, get outta here!
+  if (!dataSet) return null
+
+  // Utility function to hold the 🔥
+  const remarkify = data =>
+    remark()
+      .use(remarkHtml)
+      .use(remarkRelativeLinks, {
+        domainRegex,
+      })
+      .use(remarkExternalLinks)
+      .processSync(data)
+      .toString()
+
+  // If an array, we know we're mapping through multiple values
+  if (Array.isArray(dataSet)) {
+    return dataSet.map(data => remarkify(data[field]))
+  }
+
+  // Otherwise, it's a single value that we can run through our utility function
+  return remarkify(dataSet)
+}
 
 //
 // Lifecycle methods
 //
 
 function attachFieldsToNodes({ node, actions }) {
+  const { createNodeField } = actions
+
   if (node.internal.type !== 'MarkdownRemark') {
     return
   }
-
-  const { createNodeField } = actions
 
   const { slug, title } = node.frontmatter
   const articlePath = slug || _.kebabCase(_.toLower(title))
@@ -66,6 +96,30 @@ function attachFieldsToNodes({ node, actions }) {
     name: 'fullUrl',
     value: fullUrl,
   })
+
+  // Experience Blurb
+  if (node.frontmatter.experience) {
+    createNodeField({
+      name: 'experienceBlurb',
+      node,
+      value: remarkField({
+        dataSet: node.frontmatter.experience,
+        field: 'blurb',
+      }),
+    })
+  }
+
+  // Project description
+  if (node.frontmatter.projects) {
+    createNodeField({
+      name: 'projectBlurb',
+      node,
+      value: remarkField({
+        dataSet: node.frontmatter.projects,
+        field: 'blurb',
+      }),
+    })
+  }
 }
 
 // eslint-disable-next-line func-names

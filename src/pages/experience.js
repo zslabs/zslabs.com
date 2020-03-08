@@ -14,6 +14,7 @@ const Experience = ({
     file: {
       childMarkdownRemark: {
         frontmatter: { experience },
+        fields: pageFields,
       },
     },
   },
@@ -52,7 +53,7 @@ const Experience = ({
                   meta={item.title}
                   badge={item.dates}
                 >
-                  <Data markdown>{item.blurb}</Data>
+                  <Data>{pageFields.experienceBlurb[index]}</Data>
                 </BubbleListItem>
               ))}
             </BubbleList>
@@ -78,6 +79,9 @@ export const pageQuery = graphql`
             dates
             blurb
           }
+        }
+        fields {
+          experienceBlurb
         }
       }
     }
