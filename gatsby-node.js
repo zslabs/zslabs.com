@@ -5,7 +5,20 @@
  */
 
 // Custom Webpack configuration
-exports.onCreateWebpackConfig = ({ stage, actions }) => {
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  // Include ChaosKit in transpiled modules
+  actions.setWebpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\.js$|\.jsx$/,
+          include: modulePath => /node_modules\/(chaoskit)/.test(modulePath),
+          use: loaders.js(),
+        },
+      ],
+    },
+  })
+
   if (['develop'].includes(stage)) {
     actions.setWebpackConfig({
       module: {
@@ -52,7 +65,10 @@ function remarkField({ dataSet, field = '' }) {
       .use(remarkRelativeLinks, {
         domainRegex,
       })
-      .use(remarkExternalLinks)
+      .use(remarkExternalLinks, {
+        target: '_blank',
+        rel: ['noopener', 'noreferrer'],
+      })
       .processSync(data)
       .toString()
 

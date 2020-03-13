@@ -11,12 +11,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-compile-es6-packages',
-      options: {
-        modules: ['chaoskit', 'lodash-es'],
-      },
-    },
-    {
       resolve: 'gatsby-plugin-emotion',
       options: {
         sourceMap: false,
