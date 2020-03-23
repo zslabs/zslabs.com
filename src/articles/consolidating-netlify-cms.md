@@ -7,7 +7,7 @@ date: '2019-05-11'
 
 With the power of a centralized `config.yml` file, you are able to pass through information to the CMS that prescribe repo integration, permission settings, collections, fields, and more.
 
-<div class="filename">config.yml</div>
+<Filename>config.yml</Filename>
 
 ```yaml
 # Connect to your datastore
@@ -45,15 +45,15 @@ Unfortunately, this all starts crumbling alongside complex projects with a myria
 
 When it was time to add yet another collection-type, I decided to take a step back and look into alternative options. Enter [Manual Initialization](https://www.netlifycms.org/docs/beta-features/#manual-initialization). This allows us to write our CMS init with standard JS that gives us more flexibility on "how" we write our configuration. Let's take a look at how we might accomplish the same thing using manual initialization.
 
-<div class="filename">cms.js</div>
+<Filename>cms.js</Filename>
 
 ```js
 // This global flag enables manual initialization.
-window.CMS_MANUAL_INIT = true;
+window.CMS_MANUAL_INIT = true
 
-import CMS from 'netlify-cms-app';
+import CMS from 'netlify-cms-app'
 
-import { posts } from './collections/posts';
+import { posts } from './collections/posts'
 
 CMS.init({
   config: {
@@ -68,13 +68,13 @@ CMS.init({
     public_folder: '/uploads',
     collections: [posts],
   },
-});
+})
 ```
 
-<div class="filename">posts.js</div>
+<Filename>posts.js</Filename>
 
 ```js
-import { seo } from '../partials/seo';
+import { seo } from '../partials/seo'
 
 export const posts = {
   label: 'Posts',
@@ -100,10 +100,10 @@ export const posts = {
       widget: 'markdown',
     },
   ],
-};
+}
 ```
 
-<div class="filename">seo.js</div>
+<Filename>seo.js</Filename>
 
 ```js
 export const seo = [
@@ -117,7 +117,7 @@ export const seo = [
     name: 'description',
     widget: 'string',
   },
-];
+]
 ```
 
 What are we able to solve with the above?

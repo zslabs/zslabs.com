@@ -4,9 +4,11 @@ import { ThemeProvider } from 'emotion-theming'
 import { CacheProvider } from '@emotion/core'
 import createEmotionServer from 'create-emotion-server'
 import { createCKCache } from 'chaoskit/src/helpers/Wrapper'
+import { MDXProvider } from '@mdx-js/react'
 
 import { ZSProvider } from './src/components/ZSContext'
 import { zslabsTheme } from './utils/theme'
+import { shortcodes } from './src/components/mdxShortcodes'
 
 export const replaceRenderer = ({
   replaceBodyHTMLString,
@@ -37,7 +39,9 @@ export const replaceRenderer = ({
 }
 
 export const wrapRootElement = ({ element }) => (
-  <ZSProvider>{element}</ZSProvider>
+  <ZSProvider>
+    <MDXProvider components={shortcodes}>{element}</MDXProvider>
+  </ZSProvider>
 )
 
 wrapRootElement.propTypes = {

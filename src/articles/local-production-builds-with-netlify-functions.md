@@ -7,10 +7,10 @@ With my framework of choice, [GatsbyJS](https://www.gatsbyjs.org), I've become a
 
 When developing locally, Gatsby provides access to a `developMiddleware` method that allows me to proxy requests to Netlify functions on-top of their [netlify-lambda](https://github.com/netlify/netlify-lambda) package:
 
-<div class="filename">gatsby-config.js</div>
+<Filename>gatsby-config.js</Filename>
 
 ```js
-const proxy = require('http-proxy-middleware');
+const proxy = require('http-proxy-middleware')
 
 module.exports = {
   developMiddleware: app => {
@@ -22,14 +22,14 @@ module.exports = {
           '/.netlify/functions/': '',
         },
       })
-    );
+    )
   },
-};
+}
 ```
 
 To start up both my functions and Gatsby site in unison, my local development script takes advantage of the [concurrently](https://www.npmjs.com/package/concurrently) package to start them up at the same time:
 
-<div class="filename">package.json</div>
+<Filename>package.json</Filename>
 
 ```json
 "scripts": {
@@ -44,7 +44,7 @@ To get around this, I turned to [light-server](https://www.npmjs.com/package/lig
 
 First, I created a `light-server.json` file that included the proxy:
 
-<div class="filename">light-server.json</div>
+<Filename>light-server.json</Filename>
 
 ```json
 {
@@ -56,7 +56,7 @@ First, I created a `light-server.json` file that included the proxy:
 
 And then, instead of using `gatsby build && gatsby serve`, my local production server command was updated to take advantage of light-server:
 
-<div class="filename">package.json</div>
+<Filename>package.json</Filename>
 
 ```json
 "scripts": {

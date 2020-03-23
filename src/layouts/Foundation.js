@@ -42,19 +42,17 @@ const Foundation = ({ children, runAnimation }) => {
           }
         }
 
-        articles: allMarkdownRemark(
+        articles: allMdx(
           sort: { fields: [frontmatter___date], order: DESC }
           filter: {
             fileAbsolutePath: { regex: "/src/articles/" }
             frontmatter: { title: { ne: "BLUEPRINT" } }
           }
         ) {
-          totalCount
           edges {
             node {
               fileAbsolutePath
-              html
-              timeToRead
+              body
               frontmatter {
                 title
                 date(formatString: "MMMM D, YYYY")

@@ -88,7 +88,7 @@ function remarkField({ dataSet, field = '' }) {
 function attachFieldsToNodes({ node, actions }) {
   const { createNodeField } = actions
 
-  if (node.internal.type !== 'MarkdownRemark') {
+  if (node.internal.type !== 'Mdx') {
     return
   }
 
@@ -146,20 +146,18 @@ exports.onCreateNode = function(...args) {
 function getMarkdownQuery({ regex } = {}) {
   return `
     {
-      allMarkdownRemark(
+      allMdx(
         sort: { fields: [frontmatter___date], order: DESC }
         filter: {
           fileAbsolutePath: { regex: "${regex}" }
           frontmatter: { title: { ne: "BLUEPRINT" } }
         }
       ) {
-        totalCount
         edges {
           node {
             fileAbsolutePath
-            html
+            body
             excerpt(pruneLength: 120)
-            timeToRead
             frontmatter {
               title
               date
@@ -207,7 +205,7 @@ exports.createPages = async ({ actions, graphql }) => {
 
   const [articleResults] = results
   const { createPage } = actions
-  const articleEdges = articleResults.data.allMarkdownRemark.edges
+  const articleEdges = articleResults.data.allMdx.edges
 
   //
   // Articles

@@ -40,11 +40,11 @@ const Index = () => {
       edges: [latestArticle],
     },
     projects: {
-      childMarkdownRemark: { frontmatter: pageData, fields: pageFields },
+      childMdx: { frontmatter: pageData, fields: pageFields },
     },
   } = useStaticQuery(graphql`
     query IndexPageData {
-      latestArticle: allMarkdownRemark(
+      latestArticle: allMdx(
         sort: { fields: [frontmatter___date], order: DESC }
         filter: {
           fileAbsolutePath: { regex: "/src/articles/" }
@@ -68,7 +68,7 @@ const Index = () => {
         name: { eq: "projects" }
         absolutePath: { regex: "/src/data/" }
       ) {
-        childMarkdownRemark {
+        childMdx {
           frontmatter {
             projects {
               title

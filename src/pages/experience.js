@@ -12,7 +12,7 @@ import HelmetSEO from '../components/HelmetSEO'
 const Experience = ({
   data: {
     file: {
-      childMarkdownRemark: {
+      childMdx: {
         frontmatter: { experience },
         fields: pageFields,
       },
@@ -71,7 +71,7 @@ Experience.propTypes = {
 export const pageQuery = graphql`
   query ExperiencePageData {
     file(name: { eq: "experience" }, absolutePath: { regex: "/src/data/" }) {
-      childMarkdownRemark {
+      childMdx {
         frontmatter {
           experience {
             company

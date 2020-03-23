@@ -48,11 +48,13 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        excerpt_separator: '<!-- end -->',
-        plugins: [
-          'gatsby-remark-relative-images',
+        extensions: ['.md', '.mdx'],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-relative-images',
+          },
           {
             resolve: 'gatsby-remark-images',
             options: {
@@ -69,24 +71,13 @@ module.exports = {
             },
           },
           {
-            resolve: 'gatsby-remark-external-links',
-            options: {
-              target: '_blank',
-              rel: ['noopener', 'noreferrer'],
-            },
+            resolve: require.resolve('./plugins/gatsby-remark-external-links'), // eslint-disable-line global-require
           },
-          '@weknow/gatsby-remark-twitter',
           {
-            resolve: 'gatsby-remark-embed-video',
-            options: {
-              related: false,
-            },
+            resolve: 'gatsby-remark-prismjs',
           },
-          'gatsby-remark-responsive-iframe',
-          'gatsby-remark-codepen',
-          'gatsby-remark-autolink-headers',
-          'gatsby-remark-prismjs',
         ],
+        plugins: ['gatsby-remark-images'],
       },
     },
     {
@@ -94,18 +85,19 @@ module.exports = {
       options: {
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) =>
-              allMarkdownRemark.edges.map(edge =>
+            serialize: ({ query: { site, allMdx } }) =>
+              allMdx.edges.map(edge =>
                 Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
-                  url: `${site.siteMetadata.siteUrl}/articles/${edge.node.fields.slug}`,
-                  guid: `${site.siteMetadata.siteUrl}/articles/${edge.node.fields.slug}`,
+                  date: edge.node.frontmatter.date,
+                  url: `${site.siteMetadata.siteUrl}/${edge.node.fields.fullUrl}`,
+                  guid: `${site.siteMetadata.siteUrl}/${edge.node.fields.fullUrl}`,
                   custom_elements: [{ 'content:encoded': edge.node.html }],
                 })
               ),
             query: `
               {
-                allMarkdownRemark(
+                allMdx(
                   limit: 50,
                   sort: { fields: [frontmatter___date], order: DESC }
                   filter: {
@@ -115,14 +107,13 @@ module.exports = {
                 ) {
                   edges {
                     node {
-                      excerpt(pruneLength: 120)
                       html
+                      excerpt(pruneLength: 120)
                       frontmatter {
                         title
                         date
                       }
                       fields {
-                        slug
                         fullUrl
                       }
                     }
