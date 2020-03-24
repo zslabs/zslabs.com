@@ -81,7 +81,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-feed',
+      resolve: 'gatsby-plugin-feed-mdx',
       options: {
         feeds: [
           {
@@ -107,8 +107,8 @@ module.exports = {
                 ) {
                   edges {
                     node {
-                      html
                       excerpt(pruneLength: 120)
+                      html
                       frontmatter {
                         title
                         date
