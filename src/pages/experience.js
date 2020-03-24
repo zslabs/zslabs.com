@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Row, RowColumn, Section, SectionTitle } from 'chaoskit/src/components'
 import { useTheme } from 'emotion-theming'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import Foundation from '../layouts/Foundation'
 import Data from '../components/Data'
@@ -44,6 +45,7 @@ const Experience = ({
         />
         <Row css={{ justifyContent: 'center' }}>
           <RowColumn size={{ medium: 9 }}>
+            <MDXRenderer>{pageFields.markdownBody.childMdx.body}</MDXRenderer>
             <BubbleList>
               {experience.map((item, index) => (
                 <BubbleListItem
@@ -82,6 +84,11 @@ export const pageQuery = graphql`
         }
         fields {
           experienceBlurb
+          markdownBody {
+            childMdx {
+              body
+            }
+          }
         }
       }
     }

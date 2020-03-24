@@ -45,6 +45,7 @@ exports.onCreateBabelConfig = ({ actions }) => {
 }
 
 const path = require('path')
+const crypto = require('crypto')
 
 const _ = require('lodash')
 const remark = require('remark')
@@ -86,7 +87,7 @@ function remarkField({ dataSet, field = '' }) {
 //
 
 function attachFieldsToNodes({ node, actions }) {
-  const { createNodeField } = actions
+  const { createNodeField, createNode } = actions
 
   if (node.internal.type !== 'Mdx') {
     return
@@ -134,6 +135,31 @@ function attachFieldsToNodes({ node, actions }) {
         dataSet: node.frontmatter.projects,
         field: 'blurb',
       }),
+    })
+  }
+
+  if (node.frontmatter.testMdx) {
+    const textNode = {
+      id: `${node.id}-MarkdownTestMdx`,
+      parent: node.id,
+      dir: path.resolve('./'),
+      internal: {
+        type: `${node.internal.type}MarkdownTestMdx`,
+        mediaType: 'text/markdown',
+        content: node.frontmatter.testMdx,
+        contentDigest: crypto
+          .createHash(`md5`)
+          .update(node.frontmatter.testMdx)
+          .digest(`hex`),
+      },
+    }
+    createNode(textNode)
+
+    // Create markdownBody___NODE field
+    createNodeField({
+      node,
+      name: 'markdownBody___NODE',
+      value: textNode.id,
     })
   }
 }
