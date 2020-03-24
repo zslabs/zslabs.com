@@ -48,38 +48,55 @@ const path = require('path')
 const crypto = require('crypto')
 
 const _ = require('lodash')
-const remark = require('remark')
-const remarkHtml = require('remark-html')
-const remarkRelativeLinks = require('remark-relative-links')
-const remarkExternalLinks = require('remark-external-links')
 
-const { domainRegex } = require('./utils/helpers')
+function createMdx({ node, createTextNode, createNodeField, data, fieldName }) {
+  // Convert field into "safe" version for querying
+  const safeFieldName = fieldName.replace('.', '_')
 
-function remarkField({ dataSet, field = '' }) {
+  const textNode = createTextNode({
+    id: `${node.id}__${safeFieldName}`,
+    parent: node.id,
+    dir: path.resolve('./'),
+    internal: {
+      type: `${node.internal.type}__${safeFieldName}`,
+      mediaType: 'text/markdown',
+      content: data,
+      contentDigest: crypto
+        .createHash(`md5`)
+        .update(data)
+        .digest(`hex`),
+    },
+  })
+
+  // Create markdownBody___NODE field
+  createNodeField({
+    node,
+    name: `${safeFieldName}__NODE`,
+    value: textNode.id,
+  })
+}
+
+function mdxField({ node, createTextNode, createNodeField, fieldName }) {
+  const data = _.get(node.frontmatter, fieldName)
+
   // If we don't find anything, get outta here!
-  if (!dataSet) return null
-
-  // Utility function to hold the 🔥
-  const remarkify = data =>
-    remark()
-      .use(remarkHtml)
-      .use(remarkRelativeLinks, {
-        domainRegex,
-      })
-      .use(remarkExternalLinks, {
-        target: '_blank',
-        rel: ['noopener', 'noreferrer'],
-      })
-      .processSync(data)
-      .toString()
+  if (!data) return null
 
   // If an array, we know we're mapping through multiple values
-  if (Array.isArray(dataSet)) {
-    return dataSet.map(data => remarkify(data[field]))
+  if (Array.isArray(data)) {
+    return data.map(fieldValue =>
+      createMdx({
+        node,
+        createTextNode,
+        createNodeField,
+        data: fieldValue,
+        fieldName,
+      })
+    )
   }
 
   // Otherwise, it's a single value that we can run through our utility function
-  return remarkify(dataSet)
+  return createMdx({ node, createTextNode, createNodeField, data, fieldName })
 }
 
 //
@@ -114,6 +131,17 @@ function attachFieldsToNodes({ node, actions }) {
     value: fullUrl,
   })
 
+  const frontmatterToMdx = ['experience', 'projects', 'testMdx']
+  // NEED TO TAKE CARE OF ARRAYS
+  frontmatterToMdx.forEach(value => {
+    mdxField({
+      node,
+      createTextNode,
+      createNodeField,
+      fieldName: value,
+    })
+  })
+
   // Experience Blurb
   if (node.frontmatter.experience) {
     createNodeField({
@@ -139,28 +167,7 @@ function attachFieldsToNodes({ node, actions }) {
   }
 
   if (node.frontmatter.testMdx) {
-    const textNode = {
-      id: `${node.id}-MarkdownTestMdx`,
-      parent: node.id,
-      dir: path.resolve('./'),
-      internal: {
-        type: `${node.internal.type}MarkdownTestMdx`,
-        mediaType: 'text/markdown',
-        content: node.frontmatter.testMdx,
-        contentDigest: crypto
-          .createHash(`md5`)
-          .update(node.frontmatter.testMdx)
-          .digest(`hex`),
-      },
-    }
-    createNode(textNode)
-
-    // Create markdownBody___NODE field
-    createNodeField({
-      node,
-      name: 'markdownBody___NODE',
-      value: textNode.id,
-    })
+    const textNode = createNode(textNode)
   }
 }
 
