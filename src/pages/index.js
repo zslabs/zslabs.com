@@ -14,10 +14,10 @@ import {
 import { link, misc } from 'chaoskit/src/assets/styles/utility'
 import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient'
 import { useTheme } from 'emotion-theming'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import Foundation from '../layouts/Foundation'
 import Link from '../components/Link'
-import Data from '../components/Data'
 import { ZSContext } from '../components/ZSContext'
 import { BubbleList, BubbleListItem } from '../components/BubbleList'
 import { backgroundDots, buttonBase, titleStyles } from '../helpers'
@@ -346,7 +346,7 @@ const Index = () => {
                       to: project.url,
                     }}
                   >
-                    <Data>test</Data>
+                    <MDXRenderer>{project.blurb}</MDXRenderer>
                   </BubbleListItem>
                 ))}
               </BubbleList>

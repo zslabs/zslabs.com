@@ -2,9 +2,9 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Row, RowColumn, Section, SectionTitle } from 'chaoskit/src/components'
 import { useTheme } from 'emotion-theming'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import Foundation from '../layouts/Foundation'
-import Data from '../components/Data'
 import { BubbleList, BubbleListItem } from '../components/BubbleList'
 import { titleStyles } from '../helpers'
 import HelmetSEO from '../components/HelmetSEO'
@@ -13,7 +13,7 @@ const Experience = ({
   data: {
     file: {
       childMdx: {
-        frontmatter: { experience },
+        frontmatter: { testMdx, experience },
       },
     },
   },
@@ -43,6 +43,7 @@ const Experience = ({
         />
         <Row css={{ justifyContent: 'center' }}>
           <RowColumn size={{ medium: 9 }}>
+            <MDXRenderer>{testMdx}</MDXRenderer>
             <BubbleList>
               {experience.map((item, index) => (
                 <BubbleListItem
@@ -52,7 +53,7 @@ const Experience = ({
                   meta={item.title}
                   badge={item.dates}
                 >
-                  <Data>test</Data>
+                  <MDXRenderer>{item.blurb}</MDXRenderer>
                 </BubbleListItem>
               ))}
             </BubbleList>
@@ -72,6 +73,7 @@ export const pageQuery = graphql`
     file(name: { eq: "experience" }, absolutePath: { regex: "/src/data/" }) {
       childMdx {
         frontmatter {
+          testMdx
           experience {
             company
             title

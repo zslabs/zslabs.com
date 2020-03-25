@@ -45,65 +45,20 @@ exports.onCreateBabelConfig = ({ actions }) => {
 }
 
 const path = require('path')
-const crypto = require('crypto')
 
-const _ = require('lodash')
-
-function mdxField({ node, createNode, data, identifier }) {
-  const fieldData = _.get(node.frontmatter, data)
-
-  function createMdx(field) {
-    const safeFieldName = _.snakeCase(field)
-
-    const textNode = {
-      id: `${node.id}___${safeFieldName}`,
-      parent: node.id,
-      dir: path.resolve('./'),
-      internal: {
-        type: `${node.internal.type}___${safeFieldName}`,
-        mediaType: 'text/markdown',
-        content: field,
-        contentDigest: crypto
-          .createHash('md5')
-          .update(field)
-          .digest('hex'),
-      },
-    }
-
-    createNode(textNode)
-
-    return textNode.id
-  }
-
-  // If an array, we know we're mapping through multiple values
-  if (Array.isArray(fieldData)) {
-    if (!identifier) {
-      console.error('Identifier not found in data array') // eslint-disable-line no-console
-
-      return null
-    }
-
-    return fieldData.map(fieldValue => createMdx(fieldValue[identifier]))
-  }
-
-  // Otherwise, it's a single value that we can run through our utility function
-  return createMdx(data)
-}
+const { kebabCase, toLower } = require('lodash')
 
 //
 // Lifecycle methods
 //
 
-function attachFieldsToNodes({
-  node,
-  actions: { createNodeField, createNode },
-}) {
+function attachFieldsToNodes({ node, actions: { createNodeField } }) {
   if (node.internal.type !== 'Mdx') {
     return
   }
 
   const { slug, title } = node.frontmatter
-  const articlePath = slug || _.kebabCase(_.toLower(title))
+  const articlePath = slug || kebabCase(toLower(title))
   const fullUrl = `/articles/${articlePath}/`
 
   // Slug overrides
@@ -121,37 +76,6 @@ function attachFieldsToNodes({
     node,
     name: 'fullUrl',
     value: fullUrl,
-  })
-
-  const frontmatterToMdx = [
-    {
-      data: 'experience',
-      identifier: 'blurb',
-    },
-    {
-      data: 'projects',
-      identifier: 'blurb',
-    },
-    {
-      data: 'testMdx',
-    },
-  ]
-
-  frontmatterToMdx.forEach(({ data, identifier }) => {
-    const field = _.get(node.frontmatter, data)
-
-    if (field) {
-      createNodeField({
-        node,
-        name: `${_.snakeCase(data)}___NODE`,
-        value: mdxField({
-          node,
-          createNode,
-          data,
-          identifier,
-        }),
-      })
-    }
   })
 }
 
@@ -202,7 +126,7 @@ function createSinglePages({
 
   edges.forEach(({ node }) => {
     const { slug, title } = node.frontmatter
-    const articlePath = slug || _.kebabCase(_.toLower(title))
+    const articlePath = slug || kebabCase(toLower(title))
 
     createPage({
       path: `/articles/${articlePath}`,
@@ -232,4 +156,50 @@ exports.createPages = async ({ actions, graphql }) => {
     edges: articleEdges,
     context: 'articles',
   })
+}
+
+exports.createSchemaCustomization = ({
+  actions: { createTypes, createFieldExtension },
+  createContentDigest,
+}) => {
+  createFieldExtension({
+    name: 'mdx',
+    extend() {
+      return {
+        type: 'String',
+        resolve(source, _, _2, info) {
+          const value = source[info.fieldName]
+          const mdxType = info.schema.getType('Mdx')
+          const { resolve } = mdxType.getFields().body
+
+          return resolve({
+            rawBody: value,
+            internal: {
+              contentDigest: createContentDigest(value),
+            },
+          })
+        },
+      }
+    },
+  })
+
+  createTypes(`
+    type Mdx implements Node {
+      frontmatter: MdxFrontmatter
+    }
+
+    type MdxFrontmatter {
+      testMdx: String @mdx
+      experience: [ExperienceBlurbs]
+      projects: [ProjectBlurbs]
+    }
+
+    type ExperienceBlurbs {
+      blurb: String @mdx
+    }
+
+    type ProjectBlurbs {
+      blurb: String @mdx
+    }
+  `)
 }
