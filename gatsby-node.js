@@ -49,63 +49,55 @@ const crypto = require('crypto')
 
 const _ = require('lodash')
 
-function createMdx({ node, createTextNode, createNodeField, data, fieldName }) {
-  // Convert field into "safe" version for querying
-  const safeFieldName = fieldName.replace('.', '_')
+function mdxField({ node, createNode, data, identifier }) {
+  const fieldData = _.get(node.frontmatter, data)
 
-  const textNode = createTextNode({
-    id: `${node.id}__${safeFieldName}`,
-    parent: node.id,
-    dir: path.resolve('./'),
-    internal: {
-      type: `${node.internal.type}__${safeFieldName}`,
-      mediaType: 'text/markdown',
-      content: data,
-      contentDigest: crypto
-        .createHash(`md5`)
-        .update(data)
-        .digest(`hex`),
-    },
-  })
+  function createMdx(field) {
+    const safeFieldName = _.snakeCase(field)
 
-  // Create markdownBody___NODE field
-  createNodeField({
-    node,
-    name: `${safeFieldName}__NODE`,
-    value: textNode.id,
-  })
-}
+    const textNode = {
+      id: `${node.id}___${safeFieldName}`,
+      parent: node.id,
+      dir: path.resolve('./'),
+      internal: {
+        type: `${node.internal.type}___${safeFieldName}`,
+        mediaType: 'text/markdown',
+        content: field,
+        contentDigest: crypto
+          .createHash('md5')
+          .update(field)
+          .digest('hex'),
+      },
+    }
 
-function mdxField({ node, createTextNode, createNodeField, fieldName }) {
-  const data = _.get(node.frontmatter, fieldName)
+    createNode(textNode)
 
-  // If we don't find anything, get outta here!
-  if (!data) return null
+    return textNode.id
+  }
 
   // If an array, we know we're mapping through multiple values
-  if (Array.isArray(data)) {
-    return data.map(fieldValue =>
-      createMdx({
-        node,
-        createTextNode,
-        createNodeField,
-        data: fieldValue,
-        fieldName,
-      })
-    )
+  if (Array.isArray(fieldData)) {
+    if (!identifier) {
+      console.error('Identifier not found in data array') // eslint-disable-line no-console
+
+      return null
+    }
+
+    return fieldData.map(fieldValue => createMdx(fieldValue[identifier]))
   }
 
   // Otherwise, it's a single value that we can run through our utility function
-  return createMdx({ node, createTextNode, createNodeField, data, fieldName })
+  return createMdx(data)
 }
 
 //
 // Lifecycle methods
 //
 
-function attachFieldsToNodes({ node, actions }) {
-  const { createNodeField, createNode } = actions
-
+function attachFieldsToNodes({
+  node,
+  actions: { createNodeField, createNode },
+}) {
   if (node.internal.type !== 'Mdx') {
     return
   }
@@ -131,44 +123,36 @@ function attachFieldsToNodes({ node, actions }) {
     value: fullUrl,
   })
 
-  const frontmatterToMdx = ['experience', 'projects', 'testMdx']
-  // NEED TO TAKE CARE OF ARRAYS
-  frontmatterToMdx.forEach(value => {
-    mdxField({
-      node,
-      createTextNode,
-      createNodeField,
-      fieldName: value,
-    })
+  const frontmatterToMdx = [
+    {
+      data: 'experience',
+      identifier: 'blurb',
+    },
+    {
+      data: 'projects',
+      identifier: 'blurb',
+    },
+    {
+      data: 'testMdx',
+    },
+  ]
+
+  frontmatterToMdx.forEach(({ data, identifier }) => {
+    const field = _.get(node.frontmatter, data)
+
+    if (field) {
+      createNodeField({
+        node,
+        name: `${_.snakeCase(data)}___NODE`,
+        value: mdxField({
+          node,
+          createNode,
+          data,
+          identifier,
+        }),
+      })
+    }
   })
-
-  // Experience Blurb
-  if (node.frontmatter.experience) {
-    createNodeField({
-      name: 'experienceBlurb',
-      node,
-      value: remarkField({
-        dataSet: node.frontmatter.experience,
-        field: 'blurb',
-      }),
-    })
-  }
-
-  // Project description
-  if (node.frontmatter.projects) {
-    createNodeField({
-      name: 'projectBlurb',
-      node,
-      value: remarkField({
-        dataSet: node.frontmatter.projects,
-        field: 'blurb',
-      }),
-    })
-  }
-
-  if (node.frontmatter.testMdx) {
-    const textNode = createNode(textNode)
-  }
 }
 
 // eslint-disable-next-line func-names
