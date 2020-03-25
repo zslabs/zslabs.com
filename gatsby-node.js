@@ -167,15 +167,18 @@ exports.createSchemaCustomization = ({
     extend() {
       return {
         type: 'String',
-        resolve(source, _, _2, info) {
+        resolve(source, args, context, info) {
+          // Grab field
           const value = source[info.fieldName]
+          // Isolate MDX
           const mdxType = info.schema.getType('Mdx')
+          // Grab just the body contents of what MDX generates
           const { resolve } = mdxType.getFields().body
 
           return resolve({
             rawBody: value,
             internal: {
-              contentDigest: createContentDigest(value),
+              contentDigest: createContentDigest(value), // Used for caching
             },
           })
         },
