@@ -53,9 +53,6 @@ module.exports = {
         extensions: ['.md', '.mdx'],
         gatsbyRemarkPlugins: [
           {
-            resolve: 'gatsby-remark-relative-images',
-          },
-          {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1000,
@@ -77,7 +74,15 @@ module.exports = {
             resolve: 'gatsby-remark-prismjs',
           },
         ],
-        plugins: ['gatsby-remark-images'],
+      },
+    },
+    {
+      resolve: 'gatsby-remark-images',
+      options: {
+        maxWidth: 1000,
+        linkImagesToOriginal: false,
+        quality: 75,
+        showCaptions: true,
       },
     },
     {
