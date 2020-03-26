@@ -2,36 +2,10 @@ import PropTypes from 'prop-types'
 import { useTheme } from 'emotion-theming'
 import { kebabCase, toLower } from 'lodash-es'
 import { Button } from 'chaoskit/src/components'
+import { preToCodeBlock } from 'mdx-utils'
 
 import Icon from './Icon'
-
-const Filename = props => {
-  const theme = useTheme()
-
-  return (
-    <div
-      css={{
-        marginTop: theme.space.base,
-        background: theme.color.dark.base,
-        color: theme.contrast.base,
-        fontSize: theme.fontSize.small,
-        fontFamily: theme.fontFamily.code,
-        paddingTop: theme.space.xsmall,
-        paddingBottom: theme.space.xsmall,
-        paddingLeft: theme.space.base,
-        paddingRight: theme.space.base,
-        borderTopLeftRadius: theme.borderRadius.base,
-        borderTopRightRadius: theme.borderRadius.base,
-
-        '+ .gatsby-highlight pre': {
-          borderTopLeftRadius: 0,
-          borderTopRightRadius: 0,
-        },
-      }}
-      {...props}
-    />
-  )
-}
+import Code from './Code'
 
 const AutoLinkHeader = ({ as: Component, children, ...rest }) => {
   const theme = useTheme()
@@ -120,12 +94,20 @@ export const base = {
   h3: props => <AutoLinkHeader as="h3" {...props} />,
   h4: props => <AutoLinkHeader as="h4" {...props} />,
   h5: props => <AutoLinkHeader as="h5" {...props} />,
+  pre: preProps => {
+    const props = preToCodeBlock(preProps)
+    // If there's a codeString and some props, we passed the test
+    if (props) {
+      return <Code {...props} />
+    }
+    // It's possible to have a pre without a code in it
+    return <pre {...preProps} />
+  },
 }
 
 export const components = {
   Button,
   CodePen,
-  Filename,
 }
 
 export const shortcodes = { ...base, ...components }

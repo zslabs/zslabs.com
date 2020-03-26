@@ -70,9 +70,6 @@ module.exports = {
           {
             resolve: require.resolve('./plugins/gatsby-remark-external-links'), // eslint-disable-line global-require
           },
-          {
-            resolve: 'gatsby-remark-prismjs',
-          },
         ],
       },
     },

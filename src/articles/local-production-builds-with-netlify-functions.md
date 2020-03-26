@@ -7,9 +7,7 @@ With my framework of choice, [GatsbyJS](https://www.gatsbyjs.org), I've become a
 
 When developing locally, Gatsby provides access to a `developMiddleware` method that allows me to proxy requests to Netlify functions on-top of their [netlify-lambda](https://github.com/netlify/netlify-lambda) package:
 
-<Filename>gatsby-config.js</Filename>
-
-```js
+```js filename=gatsby-config.js
 const proxy = require('http-proxy-middleware')
 
 module.exports = {
@@ -29,9 +27,7 @@ module.exports = {
 
 To start up both my functions and Gatsby site in unison, my local development script takes advantage of the [concurrently](https://www.npmjs.com/package/concurrently) package to start them up at the same time:
 
-<Filename>package.json</Filename>
-
-```json
+```json filename=package.json
 "scripts": {
   "start:lambda": "netlify-lambda serve src/functions",
   "develop": "concurrently \"yarn start:lambda\" \"gatsby develop --open\""
@@ -44,9 +40,7 @@ To get around this, I turned to [light-server](https://www.npmjs.com/package/lig
 
 First, I created a `light-server.json` file that included the proxy:
 
-<Filename>light-server.json</Filename>
-
-```json
+```json filename=light-server.json
 {
   "port": 8000,
   "proxy": "http://localhost:9000",
@@ -56,9 +50,7 @@ First, I created a `light-server.json` file that included the proxy:
 
 And then, instead of using `gatsby build && gatsby serve`, my local production server command was updated to take advantage of light-server:
 
-<Filename>package.json</Filename>
-
-```json
+```json filename=package.json
 "scripts": {
   "start:lambda": "netlify-lambda serve src/functions",
   "build:lambda": "netlify-lambda build src/functions",
@@ -70,7 +62,7 @@ And then, instead of using `gatsby build && gatsby serve`, my local production s
 The above `build-serve` command does the following:
 
 1. Builds a production version of both my functions directory (to catch any build failures) and my Gatsby site.
-1. Starts up the lambda service (as if I'm developing locally)
-1. Spins up light-server, pointing to the `/public` directory with the config we created earlier.
+2. Starts up the lambda service (as if I'm developing locally)
+3. Spins up light-server, pointing to the `/public` directory with the config we created earlier.
 
 Now, my local production builds can take advantage of proxying through Netlify functions alongside my production-ready Gatsby site. Huzzah!
