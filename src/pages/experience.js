@@ -13,7 +13,7 @@ const Experience = ({
   data: {
     file: {
       childMdx: {
-        frontmatter: { testMdx, experience },
+        frontmatter: { experience },
       },
     },
   },
@@ -43,7 +43,6 @@ const Experience = ({
         />
         <Row css={{ justifyContent: 'center' }}>
           <RowColumn size={{ medium: 9 }}>
-            <MDXRenderer>{testMdx}</MDXRenderer>
             <BubbleList>
               {experience.map((item, index) => (
                 <BubbleListItem
@@ -73,7 +72,6 @@ export const pageQuery = graphql`
     file(name: { eq: "experience" }, absolutePath: { regex: "/src/data/" }) {
       childMdx {
         frontmatter {
-          testMdx
           experience {
             company
             title

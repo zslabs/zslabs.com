@@ -192,7 +192,6 @@ exports.createSchemaCustomization = ({
     }
 
     type MdxFrontmatter {
-      testMdx: String @mdx
       experience: [ExperienceBlurbs]
       projects: [ProjectBlurbs]
     }
