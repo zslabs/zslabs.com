@@ -1,14 +1,24 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useTheme } from 'emotion-theming'
 import { Button } from 'chaoskit/src/components'
+import useUpdateEffect from 'react-use/lib/useUpdateEffect'
 
 import Icon from './Icon'
 
 const CodeHeader = ({ filename, language, codeString, ...rest }) => {
   const theme = useTheme()
+
+  const [isCopied, setCopied] = useState(false)
+
+  // Reset icon after 3 seconds
+  useUpdateEffect(() => {
+    if (isCopied) {
+      setTimeout(() => setCopied(false), 3000)
+    }
+  }, [isCopied])
 
   return (
     <div
@@ -57,25 +67,16 @@ const CodeHeader = ({ filename, language, codeString, ...rest }) => {
         </div>
       )}
       <div>
-        <CopyToClipboard text={codeString}>
+        <CopyToClipboard text={codeString} onCopy={() => setCopied(true)}>
           <Button
             css={{
-              transformOrigin: 'center center',
-              opacity: theme.opacity.base,
-
-              '&:hover, &:focus': {
-                opacity: 1,
-              },
-
-              '&:active': {
-                transform: 'scale(1.125)',
-              },
+              top: 'auto', // Reset default inline offset
             }}
             title="Copy"
             iconOnly
             size="xsmall"
           >
-            <Icon icon="copy" />
+            {isCopied ? <Icon icon="check" /> : <Icon icon="copy" />}
           </Button>
         </CopyToClipboard>
       </div>
