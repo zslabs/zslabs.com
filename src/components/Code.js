@@ -1,21 +1,25 @@
 import { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Highlight, { defaultProps } from 'prism-react-renderer'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useTheme } from 'emotion-theming'
+import { Button } from 'chaoskit/src/components'
 
-const CodeHeader = ({ filename, language, ...rest }) => {
+import Icon from './Icon'
+
+const CodeHeader = ({ filename, language, codeString, ...rest }) => {
   const theme = useTheme()
 
   return (
     <div
+      className="u-contrast"
       css={{
         marginTop: theme.space.base,
         display: 'grid',
         alignItems: 'center',
         gap: theme.space.small,
-        gridTemplateColumns: filename ? '1fr auto' : 'auto',
+        gridTemplateColumns: filename ? '1fr auto auto' : '1fr auto',
         background: theme.color.dark.base,
-        color: theme.contrast.base,
         fontSize: theme.fontSize.small,
         paddingTop: theme.space.xsmall,
         paddingBottom: theme.space.xsmall,
@@ -52,6 +56,29 @@ const CodeHeader = ({ filename, language, ...rest }) => {
           {language}
         </div>
       )}
+      <div>
+        <CopyToClipboard text={codeString}>
+          <Button
+            css={{
+              transformOrigin: 'center center',
+              opacity: theme.opacity.base,
+
+              '&:hover, &:focus': {
+                opacity: 1,
+              },
+
+              '&:active': {
+                transform: 'scale(1.125)',
+              },
+            }}
+            title="Copy"
+            iconOnly
+            size="xsmall"
+          >
+            <Icon icon="copy" />
+          </Button>
+        </CopyToClipboard>
+      </div>
     </div>
   )
 }
@@ -59,6 +86,7 @@ const CodeHeader = ({ filename, language, ...rest }) => {
 CodeHeader.propTypes = {
   filename: PropTypes.string,
   language: PropTypes.string,
+  codeString: PropTypes.string,
 }
 
 const Code = ({ codeString, language, filename }) => {
@@ -74,7 +102,11 @@ const Code = ({ codeString, language, filename }) => {
       {({ className, tokens, getLineProps, getTokenProps }) => (
         <Fragment>
           {(filename || language) && (
-            <CodeHeader filename={filename} language={language} />
+            <CodeHeader
+              filename={filename}
+              language={language}
+              codeString={codeString}
+            />
           )}
           <pre
             className={className}
