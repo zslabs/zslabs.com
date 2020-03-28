@@ -80,7 +80,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-feed-mdx',
+      resolve: 'gatsby-plugin-feed',
       options: {
         feeds: [
           {
@@ -91,7 +91,6 @@ module.exports = {
                   date: edge.node.frontmatter.date,
                   url: `${site.siteMetadata.siteUrl}/${edge.node.fields.fullUrl}`,
                   guid: `${site.siteMetadata.siteUrl}/${edge.node.fields.fullUrl}`,
-                  custom_elements: [{ 'content:encoded': edge.node.html }],
                 })
               ),
             query: `
@@ -106,8 +105,7 @@ module.exports = {
                 ) {
                   edges {
                     node {
-                      excerpt(pruneLength: 120)
-                      html
+                      excerpt(pruneLength: 240)
                       frontmatter {
                         title
                         date
