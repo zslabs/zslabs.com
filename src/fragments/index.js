@@ -1,11 +1,10 @@
 import { graphql } from 'gatsby'
 
 export const postTeaserFragment = graphql`
-  fragment PostFragment on MarkdownRemark {
+  fragment PostFragment on Mdx {
     fileAbsolutePath
-    html
+    body
     excerpt(pruneLength: 120)
-    timeToRead
     frontmatter {
       title
       date(formatString: "MMMM D, YYYY")

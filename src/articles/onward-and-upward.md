@@ -20,7 +20,7 @@ Breaking this down, there were a few different pieces to this animation:
 Thinking back a few years ago, drawing in a path is something that would seem like pure magic&mdash;in a lot of ways it still does. Nowadays, it's just another tool at our disposal. Chris Coyier wrote [an article](https://css-tricks.com/svg-line-animation-works/) explaining the ins-and-outs of this phenomenon, including a great example to get you started. With the power of GSAP, we can actually make that part of intricate timelines easily with their [DrawSVG plugin](https://greensock.com/drawSVG).
 
 ```js
-const featuresGraphTimeline = new TimelineMax();
+const featuresGraphTimeline = new TimelineMax()
 
 featuresGraphTimeline
   // Draw blue line
@@ -35,7 +35,7 @@ featuresGraphTimeline
       ease: Power0.easeNone,
     },
     'droplet-lines'
-  );
+  )
 ```
 
 ### Task 2
@@ -52,7 +52,7 @@ featuresGraphTimeline.staggerFrom(
   },
   0.25,
   'droplet-lines'
-);
+)
 ```
 
 For the Droplets located at "the end of the road" for each milestone, I used a combination of [GSAP labels](https://greensock.com/position-parameter) and delays to get the timing just right.
@@ -69,7 +69,7 @@ featuresGraphTimeline.staggerFrom(
   },
   0.25,
   'droplet-lines'
-);
+)
 ```
 
 ### Task 3
@@ -84,20 +84,20 @@ First-off, did you know that this [will be possible](https://css-tricks.com/moti
 // Iterate through DOM nodes
 function forEach(array, callback, scope) {
   for (let i = 0; i < array.length; i++) {
-    callback.call(scope, i, array[i]); // passes back stuff we need
+    callback.call(scope, i, array[i]) // passes back stuff we need
   }
 }
 
 // Return random integer from interval
 function randomIntFromInterval(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 forEach(document.querySelectorAll('.Features-dot'), (index, value) => {
   const tl = new TimelineMax({
     repeat: -1,
     delay: index + randomIntFromInterval(1, 3),
-  });
+  })
 
   tl.to(
     value,
@@ -127,8 +127,8 @@ forEach(document.querySelectorAll('.Features-dot'), (index, value) => {
         opacity: 0,
       },
       'dot-path'
-    );
-});
+    )
+})
 ```
 
 Having this run on "init" of the animation took only wrapping the above in a function and having it called on the timeline's `onStart()` callback.
@@ -137,9 +137,9 @@ Having this run on "init" of the animation took only wrapping the above in a fun
 const featuresGraphTimeline = new TimelineMax({
   // Fire dot motion while blue line is being drawn
   onStart: dotMotion(),
-});
+})
 ```
 
 Below is the finished product. Let me know what you think!
 
-https://codepen.io/zslabs/pen/EZyLgG
+<CodePen user="zslabs" pen="EZyLgG" />

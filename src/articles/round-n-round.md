@@ -29,7 +29,7 @@ TweenMax.to('#Droplet-boundingShape', 3, {
   y: -15,
   yoyo: true,
   repeat: -1,
-});
+})
 
 // Droplet shadow
 TweenMax.to('.Droplet-shadow', 3, {
@@ -37,7 +37,7 @@ TweenMax.to('.Droplet-shadow', 3, {
   yoyo: true,
   repeat: -1,
   transformOrigin: 'center center',
-});
+})
 ```
 
 ### Task 2
@@ -77,7 +77,7 @@ timeline
       opacity: 0.15,
       ease: Power0.easeNone,
     },
-    'droplet-path',
+    'droplet-path'
   )
   .to(
     dot,
@@ -87,12 +87,12 @@ timeline
       opacity: 1,
       ease: Power0.easeNone,
     },
-    'droplet-path',
-  );
+    'droplet-path'
+  )
 ```
 
 I ran with that idea and figured out the timings, delays, and offsets for each dot. With some more JavaScript trickery, creating an object with each configuration, looping through them, and even setting a random start position for each was a breeze.
 
 What you see below is the finished product. Let me know what you think!
 
-https://codepen.io/zslabs/pen/rjLvMZ
+<CodePen user="zslabs" pen="rjLvMZ" />

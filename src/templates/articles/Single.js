@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import { Tooltip } from 'chaoskit/src/components'
 import { misc } from 'chaoskit/src/assets/styles/utility'
 import { useTheme } from 'emotion-theming'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import Foundation from '../../layouts/Foundation'
 import Icon from '../../components/Icon'
@@ -12,7 +13,7 @@ import HelmetSEO from '../../components/HelmetSEO'
 const Post = ({
   data: {
     post: {
-      html,
+      body,
       excerpt,
       frontmatter: { title, date, dateModified },
     },
@@ -100,8 +101,9 @@ const Post = ({
               },
             },
           ]}
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        >
+          <MDXRenderer>{body}</MDXRenderer>
+        </div>
       </article>
     </Foundation>
   )
@@ -115,7 +117,7 @@ export default Post
 
 export const pageQuery = graphql`
   query ArticleSingle($slug: String!) {
-    post: markdownRemark(fields: { slug: { eq: $slug } }) {
+    post: mdx(fields: { slug: { eq: $slug } }) {
       ...PostFragment
     }
   }

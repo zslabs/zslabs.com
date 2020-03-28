@@ -46,54 +46,19 @@ exports.onCreateBabelConfig = ({ actions }) => {
 
 const path = require('path')
 
-const _ = require('lodash')
-const remark = require('remark')
-const remarkHtml = require('remark-html')
-const remarkRelativeLinks = require('remark-relative-links')
-const remarkExternalLinks = require('remark-external-links')
-
-const { domainRegex } = require('./utils/helpers')
-
-function remarkField({ dataSet, field = '' }) {
-  // If we don't find anything, get outta here!
-  if (!dataSet) return null
-
-  // Utility function to hold the 🔥
-  const remarkify = data =>
-    remark()
-      .use(remarkHtml)
-      .use(remarkRelativeLinks, {
-        domainRegex,
-      })
-      .use(remarkExternalLinks, {
-        target: '_blank',
-        rel: ['noopener', 'noreferrer'],
-      })
-      .processSync(data)
-      .toString()
-
-  // If an array, we know we're mapping through multiple values
-  if (Array.isArray(dataSet)) {
-    return dataSet.map(data => remarkify(data[field]))
-  }
-
-  // Otherwise, it's a single value that we can run through our utility function
-  return remarkify(dataSet)
-}
+const { kebabCase, toLower } = require('lodash')
 
 //
 // Lifecycle methods
 //
 
-function attachFieldsToNodes({ node, actions }) {
-  const { createNodeField } = actions
-
-  if (node.internal.type !== 'MarkdownRemark') {
+function attachFieldsToNodes({ node, actions: { createNodeField } }) {
+  if (node.internal.type !== 'Mdx') {
     return
   }
 
   const { slug, title } = node.frontmatter
-  const articlePath = slug || _.kebabCase(_.toLower(title))
+  const articlePath = slug || kebabCase(toLower(title))
   const fullUrl = `/articles/${articlePath}/`
 
   // Slug overrides
@@ -112,30 +77,6 @@ function attachFieldsToNodes({ node, actions }) {
     name: 'fullUrl',
     value: fullUrl,
   })
-
-  // Experience Blurb
-  if (node.frontmatter.experience) {
-    createNodeField({
-      name: 'experienceBlurb',
-      node,
-      value: remarkField({
-        dataSet: node.frontmatter.experience,
-        field: 'blurb',
-      }),
-    })
-  }
-
-  // Project description
-  if (node.frontmatter.projects) {
-    createNodeField({
-      name: 'projectBlurb',
-      node,
-      value: remarkField({
-        dataSet: node.frontmatter.projects,
-        field: 'blurb',
-      }),
-    })
-  }
 }
 
 // eslint-disable-next-line func-names
@@ -146,20 +87,18 @@ exports.onCreateNode = function(...args) {
 function getMarkdownQuery({ regex } = {}) {
   return `
     {
-      allMarkdownRemark(
+      allMdx(
         sort: { fields: [frontmatter___date], order: DESC }
         filter: {
           fileAbsolutePath: { regex: "${regex}" }
           frontmatter: { title: { ne: "BLUEPRINT" } }
         }
       ) {
-        totalCount
         edges {
           node {
             fileAbsolutePath
-            html
+            body
             excerpt(pruneLength: 120)
-            timeToRead
             frontmatter {
               title
               date
@@ -187,7 +126,7 @@ function createSinglePages({
 
   edges.forEach(({ node }) => {
     const { slug, title } = node.frontmatter
-    const articlePath = slug || _.kebabCase(_.toLower(title))
+    const articlePath = slug || kebabCase(toLower(title))
 
     createPage({
       path: `/articles/${articlePath}`,
@@ -207,7 +146,7 @@ exports.createPages = async ({ actions, graphql }) => {
 
   const [articleResults] = results
   const { createPage } = actions
-  const articleEdges = articleResults.data.allMarkdownRemark.edges
+  const articleEdges = articleResults.data.allMdx.edges
 
   //
   // Articles
@@ -217,4 +156,52 @@ exports.createPages = async ({ actions, graphql }) => {
     edges: articleEdges,
     context: 'articles',
   })
+}
+
+exports.createSchemaCustomization = ({
+  actions: { createTypes, createFieldExtension },
+  createContentDigest,
+}) => {
+  createFieldExtension({
+    name: 'mdx',
+    extend() {
+      return {
+        type: 'String',
+        resolve(source, args, context, info) {
+          // Grab field
+          const value = source[info.fieldName]
+          // Isolate MDX
+          const mdxType = info.schema.getType('Mdx')
+          // Grab just the body contents of what MDX generates
+          const { resolve } = mdxType.getFields().body
+
+          return resolve({
+            rawBody: value,
+            internal: {
+              contentDigest: createContentDigest(value), // Used for caching
+            },
+          })
+        },
+      }
+    },
+  })
+
+  createTypes(`
+    type Mdx implements Node {
+      frontmatter: MdxFrontmatter
+    }
+
+    type MdxFrontmatter {
+      experience: [ExperienceBlurbs]
+      projects: [ProjectBlurbs]
+    }
+
+    type ExperienceBlurbs {
+      blurb: String @mdx
+    }
+
+    type ProjectBlurbs {
+      blurb: String @mdx
+    }
+  `)
 }

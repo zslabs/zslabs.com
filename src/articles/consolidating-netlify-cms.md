@@ -7,9 +7,7 @@ date: '2019-05-11'
 
 With the power of a centralized `config.yml` file, you are able to pass through information to the CMS that prescribe repo integration, permission settings, collections, fields, and more.
 
-<div class="filename">config.yml</div>
-
-```yaml
+```yaml filename=config.yml
 # Connect to your datastore
 backend:
   name: github
@@ -45,15 +43,13 @@ Unfortunately, this all starts crumbling alongside complex projects with a myria
 
 When it was time to add yet another collection-type, I decided to take a step back and look into alternative options. Enter [Manual Initialization](https://www.netlifycms.org/docs/beta-features/#manual-initialization). This allows us to write our CMS init with standard JS that gives us more flexibility on "how" we write our configuration. Let's take a look at how we might accomplish the same thing using manual initialization.
 
-<div class="filename">cms.js</div>
-
-```js
+```js filename=cms.js
 // This global flag enables manual initialization.
-window.CMS_MANUAL_INIT = true;
+window.CMS_MANUAL_INIT = true
 
-import CMS from 'netlify-cms-app';
+import CMS from 'netlify-cms-app'
 
-import { posts } from './collections/posts';
+import { posts } from './collections/posts'
 
 CMS.init({
   config: {
@@ -68,13 +64,11 @@ CMS.init({
     public_folder: '/uploads',
     collections: [posts],
   },
-});
+})
 ```
 
-<div class="filename">posts.js</div>
-
-```js
-import { seo } from '../partials/seo';
+```js filename=posts.js
+import { seo } from '../partials/seo'
 
 export const posts = {
   label: 'Posts',
@@ -100,12 +94,10 @@ export const posts = {
       widget: 'markdown',
     },
   ],
-};
+}
 ```
 
-<div class="filename">seo.js</div>
-
-```js
+```js filename=seo.js
 export const seo = [
   {
     label: 'SEO Title',
@@ -117,14 +109,14 @@ export const seo = [
     name: 'description',
     widget: 'string',
   },
-];
+]
 ```
 
 What are we able to solve with the above?
 
 1. Consolidated init file that can continue to grow as project complexity does.
-1. Utilize packages like [eslint](https://eslint.org/) and [prettier](https://prettier.io/) to maintain code-quality.
-1. Create reusable partials by using native JS object functionality.
-1. Open platform to modify core behavior and add in custom widgets/plugins.
+2. Utilize packages like [eslint](https://eslint.org/) and [prettier](https://prettier.io/) to maintain code-quality.
+3. Create reusable partials by using native JS object functionality.
+4. Open platform to modify core behavior and add in custom widgets/plugins.
 
 Why would Netlify CMS have `config.yml` then if manual initialization gives us so much power? Because not all projects will be complex. Not all projects will have needs that extend from what a single-file config can provide. The single-file config also removes a barrier to entry for users that may not want to add this complexity to their project. What it means for me, is having a platform that provides me with either option.

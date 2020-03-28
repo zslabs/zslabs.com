@@ -14,10 +14,10 @@ import {
 import { link, misc } from 'chaoskit/src/assets/styles/utility'
 import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient'
 import { useTheme } from 'emotion-theming'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import Foundation from '../layouts/Foundation'
 import Link from '../components/Link'
-import Data from '../components/Data'
 import { ZSContext } from '../components/ZSContext'
 import { BubbleList, BubbleListItem } from '../components/BubbleList'
 import { backgroundDots, buttonBase, titleStyles } from '../helpers'
@@ -40,11 +40,11 @@ const Index = () => {
       edges: [latestArticle],
     },
     projects: {
-      childMarkdownRemark: { frontmatter: pageData, fields: pageFields },
+      childMdx: { frontmatter: pageData },
     },
   } = useStaticQuery(graphql`
     query IndexPageData {
-      latestArticle: allMarkdownRemark(
+      latestArticle: allMdx(
         sort: { fields: [frontmatter___date], order: DESC }
         filter: {
           fileAbsolutePath: { regex: "/src/articles/" }
@@ -68,16 +68,13 @@ const Index = () => {
         name: { eq: "projects" }
         absolutePath: { regex: "/src/data/" }
       ) {
-        childMarkdownRemark {
+        childMdx {
           frontmatter {
             projects {
               title
               url
               blurb
             }
-          }
-          fields {
-            projectBlurb
           }
         }
       }
@@ -341,7 +338,7 @@ const Index = () => {
           <Row css={{ justifyContent: 'center' }}>
             <RowColumn size={{ medium: 9 }}>
               <BubbleList>
-                {pageData.projects.map((project, index) => (
+                {pageData.projects.map(project => (
                   <BubbleListItem
                     key={project.title}
                     title={project.title}
@@ -349,7 +346,7 @@ const Index = () => {
                       to: project.url,
                     }}
                   >
-                    <Data>{pageFields.projectBlurb[index]}</Data>
+                    <MDXRenderer>{project.blurb}</MDXRenderer>
                   </BubbleListItem>
                 ))}
               </BubbleList>
