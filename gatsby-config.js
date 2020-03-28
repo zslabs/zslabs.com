@@ -53,6 +53,18 @@ module.exports = {
         extensions: ['.md', '.mdx'],
         gatsbyRemarkPlugins: [
           {
+            resolve: 'gatsby-remark-relative-links',
+            options: {
+              domainRegex,
+            },
+          },
+          {
+            resolve: 'gatsby-remark-relative-source',
+          },
+          {
+            resolve: 'gatsby-remark-copy-linked-files',
+          },
+          {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1000,
@@ -62,24 +74,9 @@ module.exports = {
             },
           },
           {
-            resolve: 'gatsby-remark-relative-links',
-            options: {
-              domainRegex,
-            },
-          },
-          {
             resolve: require.resolve('./plugins/gatsby-remark-external-links'), // eslint-disable-line global-require
           },
         ],
-      },
-    },
-    {
-      resolve: 'gatsby-remark-images',
-      options: {
-        maxWidth: 1000,
-        linkImagesToOriginal: false,
-        quality: 75,
-        showCaptions: true,
       },
     },
     {

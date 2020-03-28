@@ -1770,10 +1770,10 @@
   resolved "https://registry.yarnpkg.com/@wzuo/babel-plugin-polished/-/babel-plugin-polished-1.2.0.tgz#a36b5ea39e552f4a75b972ec7cf6b54f7f4640a6"
   integrity sha512-IVfceNRkFQJ5D55FQIxGgQ36BtoyCRAq5Wegu4L0rQaBiNbdURm0AW8pJYnG1o9YDg/4LrbmByd4Up4NM1T7Lw==
 
-"@xobotyi/scrollbar-width@1.9.4":
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/@xobotyi/scrollbar-width/-/scrollbar-width-1.9.4.tgz#a7dce20b7465bcad29cd6bbb557695e4ea7863cb"
-  integrity sha512-o12FCQt/X5n3pgKEWGpt0f/7Eg4mfv3uRwPUrctiOT8ZuxbH3cNLGWfH/8y6KxVJg4L2885ucuXQ6XECZzUiJA==
+"@xobotyi/scrollbar-width@1.9.5":
+  version "1.9.5"
+  resolved "https://registry.yarnpkg.com/@xobotyi/scrollbar-width/-/scrollbar-width-1.9.5.tgz#80224a6919272f405b87913ca13b92929bdf3c4d"
+  integrity sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
@@ -3228,9 +3228,9 @@ change-case@^3.1.0:
     upper-case "^1.1.1"
     upper-case-first "^1.1.0"
 
-"chaoskit@https://github.com/gremlin/chaoskit/tarball/f6b1cce31498f2be7062a0582a22fbea2e2b1097/chaoskit.tar.gz":
+"chaoskit@https://github.com/gremlin/chaoskit/tarball/3d83b38dc682788016bf2822aa68ee9df9d9a489/chaoskit.tar.gz":
   version "1.4.7"
-  resolved "https://github.com/gremlin/chaoskit/tarball/f6b1cce31498f2be7062a0582a22fbea2e2b1097/chaoskit.tar.gz#8c5612e4f0fd3d3b41e876b1b58f1298ca2f3b2b"
+  resolved "https://github.com/gremlin/chaoskit/tarball/3d83b38dc682788016bf2822aa68ee9df9d9a489/chaoskit.tar.gz#6768e0f21a87767266d3dc0d7e4de1c622bee9c9"
   dependencies:
     "@emotion/babel-preset-css-prop" "10.0.27"
     "@emotion/cache" "10.0.29"
@@ -3254,7 +3254,7 @@ change-case@^3.1.0:
     eslint-plugin-react-hooks "2.5.1"
     formik "2.1.4"
     fstream "1.0.12"
-    gsap "3.2.5"
+    gsap "3.2.6"
     lodash-es "4.17.15"
     match-sorter "4.0.2"
     parse5 "5.1.1"
@@ -3264,7 +3264,7 @@ change-case@^3.1.0:
     react-tabs "3.1.0"
     react-text-mask "5.4.3"
     react-textarea-autosize "7.1.2"
-    react-use "13.27.0"
+    react-use "13.27.1"
     recursive-readdir-sync "1.0.6"
     rsvp "4.8.5"
     svgo "1.3.2"
@@ -6484,6 +6484,20 @@ gatsby-react-router-scroll@^2.2.1:
     scroll-behavior "^0.9.12"
     warning "^3.0.0"
 
+gatsby-remark-copy-linked-files@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-copy-linked-files/-/gatsby-remark-copy-linked-files-2.2.1.tgz#1e95420ff61f5ecb1c79dc8d0ec2ce2ac0aa3226"
+  integrity sha512-xTy52n0K+fF4aXCNYkpH1HdhYy47GwLG2tE5H+xIisyEQiCr5XA555yQdS0U4MRtDZEyfX4TB+XTwaNhOgTPgw==
+  dependencies:
+    "@babel/runtime" "^7.8.7"
+    cheerio "^1.0.0-rc.3"
+    fs-extra "^8.1.0"
+    is-relative-url "^3.0.0"
+    lodash "^4.17.15"
+    path-is-inside "^1.0.2"
+    probe-image-size "^4.1.1"
+    unist-util-visit "^1.4.1"
+
 gatsby-remark-images@3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/gatsby-remark-images/-/gatsby-remark-images-3.2.1.tgz#0f767fda76c85cb0ddca2f7ff1b82ca5b4fb716a"
@@ -6501,10 +6515,18 @@ gatsby-remark-images@3.2.1:
     unist-util-select "^1.5.0"
     unist-util-visit-parents "^2.1.2"
 
-gatsby-remark-relative-images@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-relative-images/-/gatsby-remark-relative-images-0.3.0.tgz#6e31b0045d943ae1822ced469ce3b39b772e8ee4"
-  integrity sha512-DvFJiuqV/2I92OvKfVRQl0KxyOEE3zI/ALbxHFXHwCMzz+Pkd/HzmSyTLVyq9iBogzTQB+OpzDtgrTAtQwddzg==
+gatsby-remark-relative-links@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-relative-links/-/gatsby-remark-relative-links-0.0.3.tgz#a5e28508461f2c8f5f94dcd9ebbd4eceda323be3"
+  integrity sha512-qVjXeeUiuV32/p2SWJ5855P6cUBU9hnc6SRM/qJKhDZuGLaDYVpw4AbksZQ+QP6uMLvZbNfe2fGiJpfbOPFZjg==
+  dependencies:
+    babel-runtime "6.26.0"
+    remark-relative-links "0.0.6"
+
+gatsby-remark-relative-source@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-relative-source/-/gatsby-remark-relative-source-0.0.4.tgz#0267a33813b615f3ef3e3fc9a55a5f4a4da1252f"
+  integrity sha512-cXacimlUq6TTJInO4RvmsUi93DYiBxHMegXcWPu2I+IPM942FdOZm1KIdKAQrbqa64MK6biADyaoWNfZgGcm7w==
   dependencies:
     babel-polyfill "^6.26.0"
     cheerio "^1.0.0-rc.3"
@@ -6513,14 +6535,6 @@ gatsby-remark-relative-images@0.3.0:
     lodash "^4.17.15"
     slash "^2.0.0"
     unist-util-select "^1.5.0"
-
-gatsby-remark-relative-links@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-relative-links/-/gatsby-remark-relative-links-0.0.3.tgz#a5e28508461f2c8f5f94dcd9ebbd4eceda323be3"
-  integrity sha512-qVjXeeUiuV32/p2SWJ5855P6cUBU9hnc6SRM/qJKhDZuGLaDYVpw4AbksZQ+QP6uMLvZbNfe2fGiJpfbOPFZjg==
-  dependencies:
-    babel-runtime "6.26.0"
-    remark-relative-links "0.0.6"
 
 gatsby-source-filesystem@2.2.2:
   version "2.2.2"
@@ -7164,10 +7178,10 @@ gray-matter@^4.0.2:
     section-matter "^1.0.0"
     strip-bom-string "^1.0.0"
 
-gsap@3.2.5:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.2.5.tgz#4e4841e8c219b06d0d0d54c1c09c0681e2351c0a"
-  integrity sha512-3D5YZFnuoTj8hkMREadLq4+joYIGk+XE7DUVzWRu5ErtyfrDqRNDKFLMvJBsZP1u8VlMpcqFXmPBCZjKjOUbQw==
+gsap@3.2.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.2.6.tgz#fbaddab30c8c2fb029d61ef56f667b42f99c932f"
+  integrity sha512-QX7WQWZUAooS9tOCYg4kKLcnjBreA4Xyu11EVx6zp4BbKijnMK+NtzkB47las/E0luFE84hGscOZm5vd13KzZA==
 
 gud@^1.0.0:
   version "1.0.0"
@@ -11952,13 +11966,13 @@ react-textarea-autosize@7.1.2:
     "@babel/runtime" "^7.1.2"
     prop-types "^15.6.0"
 
-react-use@13.27.0:
-  version "13.27.0"
-  resolved "https://registry.yarnpkg.com/react-use/-/react-use-13.27.0.tgz#53a619dc9213e2cbe65d6262e8b0e76641ade4aa"
-  integrity sha512-2lyTyqJWyvnaP/woVtDcFS4B5pUYz0FQWI9pVHk/6TBWom2x3/ziJthkEn/LbCA9Twv39xSQU7Dn0zdIWfsNTQ==
+react-use@13.27.1:
+  version "13.27.1"
+  resolved "https://registry.yarnpkg.com/react-use/-/react-use-13.27.1.tgz#e2ae2b708dafc7893c4772628801589aab9de370"
+  integrity sha512-bAwdqDMXs5lovEanXnL1izledfrPEUUv1afoTVB59eUiYcDyKul+M/dT/2WcgHjoY/R6QlrTcZoW4R7ifwvBfw==
   dependencies:
     "@types/js-cookie" "2.2.5"
-    "@xobotyi/scrollbar-width" "1.9.4"
+    "@xobotyi/scrollbar-width" "1.9.5"
     copy-to-clipboard "^3.2.0"
     fast-deep-equal "^3.1.1"
     fast-shallow-equal "^1.0.0"
