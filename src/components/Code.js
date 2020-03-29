@@ -27,12 +27,12 @@ const CodeHeader = ({ filename, language, codeString, ...rest }) => {
         marginTop: theme.space.base,
         display: 'grid',
         alignItems: 'center',
-        gap: theme.space.small,
+        gap: theme.space.base,
         gridTemplateColumns: filename ? '1fr auto auto' : '1fr auto',
         background: theme.color.dark.base,
         fontSize: theme.fontSize.small,
-        paddingTop: theme.space.xsmall,
-        paddingBottom: theme.space.xsmall,
+        paddingTop: theme.space.small,
+        paddingBottom: theme.space.small,
         paddingLeft: theme.space.base,
         paddingRight: theme.space.base,
         borderTopLeftRadius: theme.borderRadius.base,
@@ -73,8 +73,7 @@ const CodeHeader = ({ filename, language, codeString, ...rest }) => {
               top: 'auto', // Reset default inline offset
             }}
             title="Copy"
-            iconOnly
-            size="xsmall"
+            type="reset"
           >
             {isCopied ? <Icon icon="check" /> : <Icon icon="copy" />}
           </Button>
