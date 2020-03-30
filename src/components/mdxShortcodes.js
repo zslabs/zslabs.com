@@ -29,7 +29,7 @@ const MarkdownLink = ({ href, ...rest }) => {
   return (
     <a
       href={href}
-      target="_blanK"
+      target="_blank"
       rel="noopener noreferrer nofollow"
       {...rest}
     />
