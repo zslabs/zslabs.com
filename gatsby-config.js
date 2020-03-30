@@ -1,7 +1,5 @@
 const path = require('path')
 
-const { domainRegex } = require('./utils/helpers')
-
 module.exports = {
   siteMetadata: {
     title: 'Zach Schnackel',
@@ -18,7 +16,6 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',
@@ -53,12 +50,6 @@ module.exports = {
         extensions: ['.md', '.mdx'],
         gatsbyRemarkPlugins: [
           {
-            resolve: 'gatsby-remark-relative-links',
-            options: {
-              domainRegex,
-            },
-          },
-          {
             resolve: 'gatsby-remark-relative-source',
           },
           {
@@ -72,9 +63,6 @@ module.exports = {
               quality: 75,
               showCaptions: true,
             },
-          },
-          {
-            resolve: require.resolve('./plugins/gatsby-remark-external-links'), // eslint-disable-line global-require
           },
         ],
       },

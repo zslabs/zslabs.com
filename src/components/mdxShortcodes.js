@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { Link as GatsbyLink } from 'gatsby'
 import { useTheme } from 'emotion-theming'
 import { kebabCase, toLower } from 'lodash-es'
 import { Button } from 'chaoskit/src/components'
@@ -7,12 +8,38 @@ import { preToCodeBlock } from 'mdx-utils'
 import Icon from './Icon'
 import Code from './Code'
 
-const Link = props => {
-  console.log(props)
+// Checks against absolute URLs that share 👇 so we can still pass it along to Gatsby's internal link component
+const domainRegex = /http[s]*:\/\/[www.]*zslabs\.com[/]?/
+// @NOTE We can use a REGEX like this for URLs we want to be treated as external which could be used for Netlify redirects
+// /http[s]*:\/\/[www.]*zslabs\.com(?!\/i-am-external|\/me-too)[/]?/
 
-  // eslint-disable-next-line
-  return <a {...props} />
+/* eslint-disable jsx-a11y/anchor-has-content */
+const MarkdownLink = ({ href, ...rest }) => {
+  const internal = /^\/(?!\/)/.test(href)
+  const sameDomain = domainRegex.test(href)
+
+  if (sameDomain) {
+    href = href.replace(domainRegex, '/')
+  }
+
+  if (internal || sameDomain) {
+    return <GatsbyLink to={href} {...rest} />
+  }
+
+  return (
+    <a
+      href={href}
+      target="_blanK"
+      rel="noopener noreferrer nofollow"
+      {...rest}
+    />
+  )
 }
+
+MarkdownLink.propTypes = {
+  href: PropTypes.string.isRequired,
+}
+/* eslint-enable jsx-a11y/anchor-has-content */
 
 const AutoLinkHeader = ({ as: Component, children, ...rest }) => {
   const theme = useTheme()
@@ -96,7 +123,7 @@ CodePen.propTypes = {
 }
 
 export const base = {
-  a: props => <Link {...props} />,
+  a: props => <MarkdownLink {...props} />,
   h1: props => <AutoLinkHeader as="h1" {...props} />,
   h2: props => <AutoLinkHeader as="h2" {...props} />,
   h3: props => <AutoLinkHeader as="h3" {...props} />,
