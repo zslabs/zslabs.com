@@ -109,7 +109,7 @@ const Article = ({ frontmatter, html }) => (
       ))}
     </ul>
 
-    {html}
+    <div dangerouslySetInnerHTML={{ __html: html }} />
   </div>
 )
 ```

@@ -7,6 +7,13 @@ import { preToCodeBlock } from 'mdx-utils'
 import Icon from './Icon'
 import Code from './Code'
 
+const Link = props => {
+  console.log(props)
+
+  // eslint-disable-next-line
+  return <a {...props} />
+}
+
 const AutoLinkHeader = ({ as: Component, children, ...rest }) => {
   const theme = useTheme()
 
@@ -89,6 +96,7 @@ CodePen.propTypes = {
 }
 
 export const base = {
+  a: props => <Link {...props} />,
   h1: props => <AutoLinkHeader as="h1" {...props} />,
   h2: props => <AutoLinkHeader as="h2" {...props} />,
   h3: props => <AutoLinkHeader as="h3" {...props} />,
