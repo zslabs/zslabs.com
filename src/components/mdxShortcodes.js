@@ -123,13 +123,13 @@ CodePen.propTypes = {
 }
 
 export const base = {
-  a: props => <MarkdownLink {...props} />,
-  h1: props => <AutoLinkHeader as="h1" {...props} />,
-  h2: props => <AutoLinkHeader as="h2" {...props} />,
-  h3: props => <AutoLinkHeader as="h3" {...props} />,
-  h4: props => <AutoLinkHeader as="h4" {...props} />,
-  h5: props => <AutoLinkHeader as="h5" {...props} />,
-  pre: preProps => {
+  a: (props) => <MarkdownLink {...props} />,
+  h1: (props) => <AutoLinkHeader as="h1" {...props} />,
+  h2: (props) => <AutoLinkHeader as="h2" {...props} />,
+  h3: (props) => <AutoLinkHeader as="h3" {...props} />,
+  h4: (props) => <AutoLinkHeader as="h4" {...props} />,
+  h5: (props) => <AutoLinkHeader as="h5" {...props} />,
+  pre: (preProps) => {
     const props = preToCodeBlock(preProps)
     // If there's a codeString and some props, we passed the test
     if (props) {

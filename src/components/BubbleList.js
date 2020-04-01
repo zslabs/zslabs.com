@@ -48,7 +48,7 @@ export const BubbleList = ({ ...opts }) => {
   )
 }
 
-const linkStyles = theme => [
+const linkStyles = (theme) => [
   text.heading(theme),
   link.heading(theme),
   {

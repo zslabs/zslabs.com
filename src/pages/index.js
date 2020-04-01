@@ -338,7 +338,7 @@ const Index = () => {
           <Row css={{ justifyContent: 'center' }}>
             <RowColumn size={{ medium: 9 }}>
               <BubbleList>
-                {pageData.projects.map(project => (
+                {pageData.projects.map((project) => (
                   <BubbleListItem
                     key={project.title}
                     title={project.title}

@@ -55,7 +55,7 @@ export const backgroundDots = (fill = '#fff') => ({
   backgroundImage: `url(${dots})`,
 })
 
-export const titleStyles = theme => ({
+export const titleStyles = (theme) => ({
   position: 'relative',
   display: 'inline-flex',
   zIndex: 1,

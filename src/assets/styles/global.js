@@ -4,7 +4,7 @@ import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient'
 import pattern from '../media/pattern.png'
 import bubbles from '../media/bubbles.svg'
 
-export const global = theme => ({
+export const global = (theme) => ({
   body: {
     position: 'relative',
 
