@@ -205,8 +205,9 @@ const Index = () => {
                 ref={experienceButtonRef}
               >
                 <Button
+                  as={Link}
                   css={buttonBase(theme, { type: 'secondary' })}
-                  url="/experience/"
+                  to="/experience/"
                 >
                   Experience
                 </Button>

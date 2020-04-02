@@ -12,7 +12,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
       rules: [
         {
           test: /\.js$|\.jsx$/,
-          include: modulePath => /node_modules\/(chaoskit)/.test(modulePath),
+          include: (modulePath) => /node_modules\/(chaoskit)/.test(modulePath),
           use: loaders.js(),
         },
       ],
@@ -80,8 +80,8 @@ function attachFieldsToNodes({ node, actions: { createNodeField } }) {
 }
 
 // eslint-disable-next-line func-names
-exports.onCreateNode = function(...args) {
-  return Promise.all([attachFieldsToNodes].map(fn => fn.apply(this, args)))
+exports.onCreateNode = function (...args) {
+  return Promise.all([attachFieldsToNodes].map((fn) => fn.apply(this, args)))
 }
 
 function getMarkdownQuery({ regex } = {}) {
