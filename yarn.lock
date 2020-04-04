@@ -3206,9 +3206,9 @@ change-case@^3.1.0:
     upper-case "^1.1.1"
     upper-case-first "^1.1.0"
 
-"chaoskit@https://github.com/gremlin/chaoskit/tarball/a08478b0fe1dbee4a7503819eca5931f1a776916/chaoskit.tar.gz":
+"chaoskit@https://github.com/gremlin/chaoskit/tarball/53ecc7883f5991ea1a991563578a6ffc4a56d4bd/chaoskit.tar.gz":
   version "1.4.7"
-  resolved "https://github.com/gremlin/chaoskit/tarball/a08478b0fe1dbee4a7503819eca5931f1a776916/chaoskit.tar.gz#1be985acd0dfee8d3b0f6d84ead5ec9fdd7ee89f"
+  resolved "https://github.com/gremlin/chaoskit/tarball/53ecc7883f5991ea1a991563578a6ffc4a56d4bd/chaoskit.tar.gz#d0b717c35a611c5dd2905396c9baec1b8b33a46b"
   dependencies:
     "@emotion/babel-preset-css-prop" "10.0.27"
     "@emotion/cache" "10.0.29"

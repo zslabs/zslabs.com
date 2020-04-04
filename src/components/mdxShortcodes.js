@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { Link as GatsbyLink } from 'gatsby'
 import { useTheme } from 'emotion-theming'
 import { kebabCase, toLower } from 'lodash-es'
-import { Button } from 'chaoskit/src/components'
+import { Button, List, ListItem } from 'chaoskit/src/components'
 import { preToCodeBlock } from 'mdx-utils'
 
 import Icon from './Icon'
@@ -124,6 +124,9 @@ CodePen.propTypes = {
 
 export const base = {
   a: (props) => <MarkdownLink {...props} />,
+  ul: (props) => <List space="small" type="circles" {...props} />,
+  ol: (props) => <List space="small" type="numbers" {...props} />,
+  li: (props) => <ListItem {...props} />,
   h1: (props) => <AutoLinkHeader as="h1" {...props} />,
   h2: (props) => <AutoLinkHeader as="h2" {...props} />,
   h3: (props) => <AutoLinkHeader as="h3" {...props} />,
