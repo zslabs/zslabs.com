@@ -125,9 +125,11 @@ const Index = () => {
         opacity: 1,
       })
       .to(projectsRef.current, {
-        duration: 0.5,
+        duration: 0.25,
         delay: 0.25,
         opacity: 1,
+        y: 0,
+        ease: theme.gsap.transition.bounce,
       })
   }
 
@@ -295,12 +297,8 @@ const Index = () => {
         </Link>
       </Section>
       <Section
-        ref={projectsRef}
         id="recent-projects"
         css={{
-          // GSAP
-          opacity: 0,
-
           position: 'relative',
           left: '50%',
           margin: `0 calc(var(--rw) / -2)`,
@@ -313,47 +311,56 @@ const Index = () => {
           },
         }}
       >
-        <Container
+        <div
           css={{
-            paddingLeft: `${theme.space.base}px !important`,
-            paddingRight: `${theme.space.base}px !important`,
+            // GSAP
+            opacity: 0,
+            transform: 'translateY(10%)',
           }}
-          size="small"
+          ref={projectsRef}
         >
-          <SectionTitle
-            as="h2"
-            title="Recent Projects"
+          <Container
             css={{
-              '.CK__SectionTitle__Header': [
-                titleStyles(theme),
-
-                {
-                  '&::before': {
-                    clipPath: 'polygon(0 100%, 0 0, 100% 0)',
-                    backgroundPosition: '-200px -75px',
-                  },
-                },
-              ],
+              paddingLeft: `${theme.space.base}px !important`,
+              paddingRight: `${theme.space.base}px !important`,
             }}
-          />
-          <Row css={{ justifyContent: 'center' }}>
-            <RowColumn size={{ medium: 9 }}>
-              <BubbleList>
-                {pageData.projects.map((project) => (
-                  <BubbleListItem
-                    key={project.title}
-                    title={project.title}
-                    url={{
-                      to: project.url,
-                    }}
-                  >
-                    <MDXRenderer>{project.blurb}</MDXRenderer>
-                  </BubbleListItem>
-                ))}
-              </BubbleList>
-            </RowColumn>
-          </Row>
-        </Container>
+            size="small"
+          >
+            <SectionTitle
+              as="h2"
+              title="Recent Projects"
+              css={{
+                '.CK__SectionTitle__Header': [
+                  titleStyles(theme),
+
+                  {
+                    '&::before': {
+                      clipPath: 'polygon(0 100%, 0 0, 100% 0)',
+                      backgroundPosition: '-200px -75px',
+                    },
+                  },
+                ],
+              }}
+            />
+            <Row css={{ justifyContent: 'center' }}>
+              <RowColumn size={{ medium: 9 }}>
+                <BubbleList>
+                  {pageData.projects.map((project) => (
+                    <BubbleListItem
+                      key={project.title}
+                      title={project.title}
+                      url={{
+                        to: project.url,
+                      }}
+                    >
+                      <MDXRenderer>{project.blurb}</MDXRenderer>
+                    </BubbleListItem>
+                  ))}
+                </BubbleList>
+              </RowColumn>
+            </Row>
+          </Container>
+        </div>
       </Section>
     </Foundation>
   )
