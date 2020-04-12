@@ -1,7 +1,10 @@
 ---
 title: MDX frontmatter in Gatsby
 date: '2020-03-28'
+dateModified: '2020-04-12'
 ---
+
+import { Alert } from 'chaoskit/src/components'
 
 [MDX](https://mdxjs.com/) is an incredible toolkit that allows you to write [JSX](https://reactjs.org/docs/introducing-jsx.html) in your Markdown files; creating opportunities for more dynamic and interactive experiences in your content. An example of how MDX could be used:
 
@@ -41,7 +44,7 @@ const Article = ({ frontmatter, html }) => (
     <h1>{frontmatter.title}</h1>
 
     <ul>
-      {frontmatter.items.map(item => (
+      {frontmatter.items.map((item) => (
         <li key={item.value}>{item.value}</li>
       ))}
     </ul>
@@ -80,12 +83,7 @@ import parser from 'html-react-parser'
 
 // Provides a consistent way for us to render content from Markdown frontmatter that propery encodes entities as well
 const Data = ({ children }) =>
-  parser(
-    remark()
-      .use(html)
-      .processSync(children)
-      .toString()
-  )
+  parser(remark().use(html).processSync(children).toString())
 
 Data.propTypes = {
   children: PropTypes.node.isRequired,
@@ -102,7 +100,7 @@ const Article = ({ frontmatter, html }) => (
     <h1>{frontmatter.title}</h1>
 
     <ul>
-      {frontmatter.items.map(item => (
+      {frontmatter.items.map((item) => (
         <li key={item.value}>
           <Data>{item.value}</Data>
         </li>
@@ -187,7 +185,7 @@ const Article = ({ frontmatter, body }) => (
       <h1>{frontmatter.title}</h1>
 
       <ul>
-        {frontmatter.items.map(item => (
+        {frontmatter.items.map((item) => (
           <li key={item.value}>
             <MDXRenderer>{item.value}</MDXRenderer>
           </li>
@@ -199,3 +197,7 @@ const Article = ({ frontmatter, body }) => (
   </MDXProvider>
 )
 ```
+
+<Alert type="primary">
+  <p>A reader created <a href="https://github.com/duanecilliers/gatsby-mdx-frontmatter-starter">a Gatsby starter</a> with the concepts from this post to help get everyone up and running. Thanks!</p>
+</Alert>

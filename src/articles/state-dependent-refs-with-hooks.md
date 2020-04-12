@@ -42,13 +42,13 @@ After a bit of searching, I came across [this little gem](https://reactjs.org/do
 
 ```js
 const listRef = useCallback(
-  node => {
+  (node) => {
     if (node !== null) {
       // Safely perform DOM manipulations on `listRef` which is now equal to `node`
     }
   },
-  [tweets],
-);
+  [tweets]
+)
 ```
 
 After some initial skepticism, I've really enjoyed my time with Hooks so far - and with an opportunity to play around with Netlify Functions, it was a win-win!

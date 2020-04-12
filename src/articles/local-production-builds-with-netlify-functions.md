@@ -11,7 +11,7 @@ When developing locally, Gatsby provides access to a `developMiddleware` method 
 const proxy = require('http-proxy-middleware')
 
 module.exports = {
-  developMiddleware: app => {
+  developMiddleware: (app) => {
     app.use(
       '/.netlify/functions/',
       proxy({
