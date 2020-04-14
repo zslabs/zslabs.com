@@ -30,20 +30,19 @@ const domainRegex = /http[s]*:\/\/[www.]*YOURDOMAIN\.com[/]?/
 // /http[s]*:\/\/[www.]*YOURDOMAIN\.com(?!\/i-am-external|\/me-too)[/]?/
 
 const MarkdownLink = ({ href, ...rest }) => {
-  const internal = !/^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(href)
   const sameDomain = domainRegex.test(href)
 
   if (sameDomain) {
     href = href.replace(domainRegex, '/')
   }
 
+  if (href.startsWith('/')) {
+    return <GatsbyLink to={href} {...rest} />
+  }
+
   // Treat urls that aren't web protocols as "normal" links
   if (!href.startsWith('http')) {
     return <a href={href} {...rest} /> // eslint-disable-line jsx-a11y/anchor-has-content
-  }
-
-  if (internal || sameDomain) {
-    return <GatsbyLink to={href} {...rest} />
   }
 
   return (
