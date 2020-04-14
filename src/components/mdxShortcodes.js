@@ -15,11 +15,16 @@ const domainRegex = /http[s]*:\/\/[www.]*zslabs\.com[/]?/
 
 /* eslint-disable jsx-a11y/anchor-has-content */
 const MarkdownLink = ({ href, ...rest }) => {
-  const internal = /^\/(?!\/)/.test(href)
+  const internal = !/^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(href)
   const sameDomain = domainRegex.test(href)
 
   if (sameDomain) {
     href = href.replace(domainRegex, '/')
+  }
+
+  // Treat urls that aren't web protocols as "normal" links
+  if (!href.startsWith('http')) {
+    return <a href={href} {...rest} /> // eslint-disable-line jsx-a11y/anchor-has-content
   }
 
   if (internal || sameDomain) {
