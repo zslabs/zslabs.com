@@ -2,6 +2,7 @@
 title: MDX link routing in Gatsby
 slug: mdx-link-routing-in-gatsby
 date: '2020-04-03'
+dateModified: '2020-04-15'
 ---
 
 In my [last article](/articles/mdx-frontmatter-in-gatsby/), I wrote about how I was able to parse frontmatter through MDX in Gatsby for a more powerful writing/developer experience. I also mentioned a few [remark](https://github.com/remarkjs/remark) plugins I brought in-house. Today, I'll walkthrough how I was able to remove three dependencies for just a few lines of code.
@@ -37,7 +38,7 @@ const MarkdownLink = ({ href, ...rest }) => {
   }
 
   if (href.startsWith('/')) {
-    return <GatsbyLink to={href} {...rest} />
+    return <GatsbyLink data-link-internal to={href} {...rest} />
   }
 
   // Treat urls that aren't web protocols as "normal" links
@@ -47,6 +48,7 @@ const MarkdownLink = ({ href, ...rest }) => {
 
   return (
     <a
+      data-link-external
       href={href}
       target="_blank"
       rel="noopener noreferrer nofollow"

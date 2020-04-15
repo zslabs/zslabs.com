@@ -22,7 +22,7 @@ const MarkdownLink = ({ href, ...rest }) => {
   }
 
   if (href.startsWith('/')) {
-    return <GatsbyLink to={href} {...rest} />
+    return <GatsbyLink data-link-internal to={href} {...rest} />
   }
 
   // Treat urls that aren't web protocols as "normal" links
@@ -32,6 +32,7 @@ const MarkdownLink = ({ href, ...rest }) => {
 
   return (
     <a
+      data-link-external
       href={href}
       target="_blank"
       rel="noopener noreferrer nofollow"
