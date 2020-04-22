@@ -8,8 +8,6 @@ import GHSlugger from 'github-slugger'
 import Icon from './Icon'
 import Code from './Code'
 
-const slugger = new GHSlugger()
-
 // Checks against absolute URLs that share 👇 so we can still pass it along to Gatsby's internal link component
 const domainRegex = /http[s]*:\/\/[www.]*zslabs\.com[/]?/
 // @NOTE We can use a REGEX like this for URLs we want to be treated as external which could be used for Netlify redirects
@@ -50,6 +48,8 @@ MarkdownLink.propTypes = {
 
 const AutoLinkHeader = ({ as: Component, children, ...rest }) => {
   const theme = useTheme()
+
+  const slugger = new GHSlugger()
 
   const id = slugger.slug(children)
 
