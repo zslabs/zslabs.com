@@ -51,7 +51,7 @@ MarkdownLink.propTypes = {
 const AutoLinkHeader = ({ as: Component, children, ...rest }) => {
   const theme = useTheme()
 
-  const id = slugger(children)
+  const id = slugger.slug(children)
 
   return (
     <Component
