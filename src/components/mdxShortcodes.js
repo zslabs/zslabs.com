@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types'
 import { Link as GatsbyLink } from 'gatsby'
 import { useTheme } from 'emotion-theming'
-import { kebabCase, toLower } from 'lodash-es'
 import { Button, List, ListItem } from 'chaoskit/src/components'
 import { preToCodeBlock } from 'mdx-utils'
+import GHSlugger from 'github-slugger'
 
 import Icon from './Icon'
 import Code from './Code'
+
+const slugger = new GHSlugger()
 
 // Checks against absolute URLs that share 👇 so we can still pass it along to Gatsby's internal link component
 const domainRegex = /http[s]*:\/\/[www.]*zslabs\.com[/]?/
@@ -49,7 +51,7 @@ MarkdownLink.propTypes = {
 const AutoLinkHeader = ({ as: Component, children, ...rest }) => {
   const theme = useTheme()
 
-  const id = kebabCase(toLower(children))
+  const id = slugger(children)
 
   return (
     <Component
