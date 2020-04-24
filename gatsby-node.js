@@ -192,15 +192,11 @@ exports.createSchemaCustomization = ({
     }
 
     type MdxFrontmatter {
-      experience: [ExperienceBlurbs]
-      projects: [ProjectBlurbs]
+      experience: [Shared__Blurb]
+      projects: [Shared__Blurb]
     }
 
-    type ExperienceBlurbs {
-      blurb: String @mdx
-    }
-
-    type ProjectBlurbs {
+    type Shared__Blurb {
       blurb: String @mdx
     }
   `)
