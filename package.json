@@ -56,7 +56,7 @@
   "scripts": {
     "icons": "node ./utils/build-icons.js",
     "startup": "yarn && yarn run icons",
-    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true && yarn startup && gatsby build --log-pages",
+    "build": "yarn startup && GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "build-serve": "yarn build && gatsby serve",
     "develop": "yarn startup && gatsby develop --open",
     "lint": "eslint ./src ./utils",
