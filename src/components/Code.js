@@ -108,21 +108,22 @@ const Code = ({ codeString, language, filename }) => {
               codeString={codeString}
             />
           )}
-          <pre
-            className={className}
-            css={{
-              // Takes care of whitespace lines
-              '.token-line:empty': {
-                marginTop: theme.space.base,
-              },
-            }}
-          >
+          <pre className={className}>
             {tokens.map((line, i) => (
               <div {...getLineProps({ line, key: i })}>
-                {!line[0].empty &&
-                  line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} />
-                  ))}
+                <span
+                  css={{
+                    opacity: theme.opacity.base,
+                    width: '2em',
+                    userSelect: 'none',
+                    display: 'inline-block',
+                  }}
+                >
+                  {i + 1}
+                </span>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} />
+                ))}
               </div>
             ))}
           </pre>
