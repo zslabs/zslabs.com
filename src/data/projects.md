@@ -4,7 +4,7 @@ projects:
     blurb: The best eBay toolkit for gauging market-prices, trends, and activity on multiple search terms.
     url: https://list.zslabs.com
   - title: ChaosKit
-    url: https://feature-emotion--chaoskit.netlify.com/
+    url: https://chaoskit.netlify.app/
     blurb: A lightweight and modular front-end framework for developing fast and powerful web interfaces within Gremlin. [Source](https://github.com/gremlin/chaoskit/tree/feature/emotion)
   - title: Gremlin
     url: https://www.gremlin.com
