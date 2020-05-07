@@ -100,35 +100,6 @@ AutoLinkHeader.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-const CodePen = ({ user, pen }) => (
-  <div
-    css={{
-      position: 'relative',
-      paddingBottom: '56.25%',
-
-      iframe: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-      },
-    }}
-  >
-    <iframe
-      title="CodePen embed"
-      scrolling="no"
-      src={`https://codepen.io/${user}/embed/preview/${pen}/?theme-id=dark&default-tab=result`}
-      allowFullScreen
-    />
-  </div>
-)
-
-CodePen.propTypes = {
-  pen: PropTypes.string.isRequired,
-  user: PropTypes.string.isRequired,
-}
-
 export const base = {
   a: (props) => <MarkdownLink {...props} />,
   ul: (props) => <List space="small" type="circles" {...props} />,
@@ -152,7 +123,6 @@ export const base = {
 
 export const components = {
   Button,
-  CodePen,
 }
 
 export const shortcodes = { ...base, ...components }

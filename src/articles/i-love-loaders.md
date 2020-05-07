@@ -11,4 +11,4 @@ When I started using GSAP, I used both of these resources to help me learn the i
 
 Within the finished product (below), you'll find individual timelines that match their position in the grid. Each loader presented it's own level of thinking for how best to approach them, and as with anything on the web - could be approached a dozen different ways. I hope you find the collection useful and something that you can pull out and use in your own projects. Let me know what you think!
 
-<CodePen user="zslabs" pen="YwygoQ" />
+<CodePen codePenId="YwygoQ" />

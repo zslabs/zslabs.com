@@ -142,4 +142,4 @@ const featuresGraphTimeline = new TimelineMax({
 
 Below is the finished product. Let me know what you think!
 
-<CodePen user="zslabs" pen="EZyLgG" />
+<CodePen codePenId="EZyLgG" />

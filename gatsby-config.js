@@ -44,6 +44,7 @@ module.exports = {
         trackingId: 'UA-17637644-1',
       },
     },
+    '@pauliescanlon/gatsby-mdx-embed',
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -51,6 +52,9 @@ module.exports = {
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-relative-source',
+          },
+          {
+            resolve: 'gatsby-remark-smartypants',
           },
           {
             resolve: 'gatsby-remark-copy-linked-files',

@@ -95,4 +95,4 @@ I ran with that idea and figured out the timings, delays, and offsets for each d
 
 What you see below is the finished product. Let me know what you think!
 
-<CodePen user="zslabs" pen="rjLvMZ" />
+<CodePen codePenId="rjLvMZ" />
