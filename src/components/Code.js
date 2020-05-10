@@ -1,5 +1,6 @@
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import PropTypes from 'prop-types'
+import { rgba } from 'polished'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useTheme } from 'emotion-theming'
@@ -24,7 +25,6 @@ const CodeHeader = ({ filename, language, codeString, ...rest }) => {
     <div
       className="u-contrast"
       css={{
-        marginTop: theme.space.base,
         display: 'grid',
         alignItems: 'center',
         gap: theme.space.base,
@@ -37,6 +37,7 @@ const CodeHeader = ({ filename, language, codeString, ...rest }) => {
         paddingRight: theme.space.base,
         borderTopLeftRadius: theme.borderRadius.base,
         borderTopRightRadius: theme.borderRadius.base,
+        boxShadow: `inset 0 -1px 0 0 ${rgba(theme.color.light.base, 0.2)}`,
 
         '+ .prism-code': {
           marginTop: 0,
@@ -100,7 +101,13 @@ const Code = ({ codeString, language, filename }) => {
       language={language}
     >
       {({ className, tokens, getLineProps, getTokenProps }) => (
-        <Fragment>
+        <div
+          css={{
+            boxShadow: theme.boxShadow.neutral,
+            marginTop: theme.space.base,
+            marginBottom: theme.space.base,
+          }}
+        >
           {(filename || language) && (
             <CodeHeader
               filename={filename}
@@ -127,7 +134,7 @@ const Code = ({ codeString, language, filename }) => {
               </div>
             ))}
           </pre>
-        </Fragment>
+        </div>
       )}
     </Highlight>
   )
