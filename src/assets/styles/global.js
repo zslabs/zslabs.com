@@ -3,7 +3,6 @@ import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient'
 
 import pattern from '../media/pattern.png'
 import bubbles from '../media/bubbles.svg'
-import link from '../icons/link.svg'
 
 export const global = (theme) => ({
   body: {
@@ -38,24 +37,5 @@ export const global = (theme) => ({
   // Article specific
   '.svgBackground-example': {
     width: 50,
-  },
-
-  'a > code': {
-    position: 'relative',
-
-    '&::after': {
-      content: "''",
-      display: 'inline-block',
-      height: '1em',
-      width: '1em',
-      background: `url(${link})`,
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center center',
-      filter: theme.fontColor.filter,
-      verticalAlign: 'middle',
-      marginLeft: theme.space.xsmall,
-      position: 'relative',
-      top: '-0.1em',
-    },
   },
 })
