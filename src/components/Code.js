@@ -37,7 +37,7 @@ const CodeHeader = ({ filename, language, codeString, ...rest }) => {
         paddingRight: theme.space.base,
         borderTopLeftRadius: theme.borderRadius.base,
         borderTopRightRadius: theme.borderRadius.base,
-        boxShadow: `inset 0 -1px 0 0 ${rgba(theme.color.light.base, 0.2)}`,
+        boxShadow: `inset 0 -1px 0 0 ${rgba(theme.color.light.base, 0.15)}`,
 
         '+ .prism-code': {
           marginTop: 0,
