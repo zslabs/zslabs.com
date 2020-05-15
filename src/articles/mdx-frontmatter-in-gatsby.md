@@ -143,6 +143,9 @@ exports.createSchemaCustomization = ({
             internal: {
               contentDigest: createContentDigest(value), // Used for caching
             },
+            args,
+            context,
+            info,
           })
         },
       }
