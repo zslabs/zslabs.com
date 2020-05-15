@@ -6,6 +6,10 @@ dateModified: '2020-04-12'
 
 import { Alert } from 'chaoskit/src/components'
 
+<Alert type="primary">
+  <p>I've published <a href="https://www.npmjs.com/package/gatsby-plugin-mdx-frontmatter">gatsby-plugin-mdx-frontmatter</a> to help get everyone up and running.</p>
+</Alert>
+
 [MDX](https://mdxjs.com/) is an incredible toolkit that allows you to write [JSX](https://reactjs.org/docs/introducing-jsx.html) in your Markdown files; creating opportunities for more dynamic and interactive experiences in your content. An example of how MDX could be used:
 
 ```mdx
@@ -200,7 +204,3 @@ const Article = ({ frontmatter, body }) => (
   </MDXProvider>
 )
 ```
-
-<Alert type="primary">
-  <p>A reader created <a href="https://github.com/duanecilliers/gatsby-mdx-frontmatter-starter">a Gatsby starter</a> with the concepts from this post to help get everyone up and running. Thanks!</p>
-</Alert>
