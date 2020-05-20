@@ -4,10 +4,10 @@ import { Row, RowColumn, Section, SectionTitle } from 'chaoskit/src/components'
 import { useTheme } from 'emotion-theming'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
-import Foundation from '../layouts/Foundation'
-import { BubbleList, BubbleListItem } from '../components/BubbleList'
-import { titleStyles } from '../helpers'
-import HelmetSEO from '../components/HelmetSEO'
+import { titleStyles } from '~helpers'
+import Foundation from '~layouts/Foundation'
+import { BubbleList, BubbleListItem } from '~components/BubbleList'
+import HelmetSEO from '~components/HelmetSEO'
 
 const Experience = ({
   data: {

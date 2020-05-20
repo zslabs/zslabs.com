@@ -1,6 +1,6 @@
 import { Icon as FrameworkIcon } from 'chaoskit/src/components'
 
-import siteIcons from '../assets/icons/icons.json'
+import siteIcons from '~icons/icons.json'
 
 const Icon = (props) => <FrameworkIcon additionalIcons={siteIcons} {...props} />
 

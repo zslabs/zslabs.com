@@ -1,7 +1,7 @@
 import { misc } from 'chaoskit/src/assets/styles/utility'
 
-import dots from '../assets/media/dots.svg'
-import pattern from '../assets/media/pattern.png'
+import dots from '~media/dots.svg'
+import pattern from '~media/pattern.png'
 
 export const buttonBase = (theme, props = { type: 'default' }) => [
   {

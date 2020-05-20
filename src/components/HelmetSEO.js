@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
-import me from '../assets/media/me.png'
+import me from '~media/me.png'
 
 const HelmetSEO = ({ title, description, type, titleTemplate, ...rest }) => {
   // Grab out defaults

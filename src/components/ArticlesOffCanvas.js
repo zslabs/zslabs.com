@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import { Button, OffCanvas } from 'chaoskit/src/components'
 import { useTheme } from 'emotion-theming'
 
-import { titleStyles } from '../helpers'
-
 import { ZSContext } from './ZSContext'
 import Icon from './Icon'
 import { BubbleList, BubbleListItem } from './BubbleList'
+
+import { titleStyles } from '~helpers'
 
 const ArticlesOffCanvas = ({ articles }) => {
   const {

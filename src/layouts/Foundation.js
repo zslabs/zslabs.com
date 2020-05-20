@@ -10,14 +10,14 @@ import { Container } from 'chaoskit/src/components'
 import { misc } from 'chaoskit/src/assets/styles/utility'
 import { globalStyles } from 'chaoskit/src/assets/styles/global'
 
-import { global } from '../assets/styles/global'
-import { fonts } from '../assets/styles/fonts'
-import Link from '../components/Link'
-import AboutModal from '../components/AboutModal'
-import ArticlesOffCanvas from '../components/ArticlesOffCanvas'
-import logo from '../assets/media/logo.svg'
-import pattern from '../assets/media/pattern.png'
-import HelmetSEO from '../components/HelmetSEO'
+import { global } from '~styles/global'
+import { fonts } from '~styles/fonts'
+import logo from '~media/logo.svg'
+import pattern from '~media/pattern.png'
+import Link from '~components/Link'
+import AboutModal from '~components/AboutModal'
+import ArticlesOffCanvas from '~components/ArticlesOffCanvas'
+import HelmetSEO from '~components/HelmetSEO'
 
 const Foundation = ({ children, runAnimation }) => {
   const logoRef = useRef()

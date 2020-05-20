@@ -1,6 +1,6 @@
-import Foundation from '../layouts/Foundation'
-import pattern from '../assets/media/pattern.png'
-import HelmetSEO from '../components/HelmetSEO'
+import Foundation from '~layouts/Foundation'
+import pattern from '~media/pattern.png'
+import HelmetSEO from '~components/HelmetSEO'
 
 const NotFoundPage = () => (
   <Foundation>

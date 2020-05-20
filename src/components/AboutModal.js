@@ -11,10 +11,10 @@ import {
 import { text, link } from 'chaoskit/src/assets/styles/utility'
 import { useTheme } from 'emotion-theming'
 
-import me from '../assets/media/me.png'
-import { buttonBase } from '../helpers'
-
 import Icon from './Icon'
+
+import me from '~media/me.png'
+import { buttonBase } from '~helpers'
 
 const SocialButton = ({ url, title, icon }) => {
   const theme = useTheme()

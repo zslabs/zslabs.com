@@ -1,11 +1,23 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require('path')
+
+const { kebabCase, toLower } = require('lodash')
 
 // Custom Webpack configuration
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  // Create aliases
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        '~components': path.resolve(__dirname, 'src/components'),
+        '~helpers': path.resolve(__dirname, 'src/helpers'),
+        '~icons': path.resolve(__dirname, 'src/assets/icons'),
+        '~layouts': path.resolve(__dirname, 'src/layouts'),
+        '~media': path.resolve(__dirname, 'src/assets/media'),
+        '~styles': path.resolve(__dirname, 'src/assets/styles'),
+      },
+    },
+  })
+
   // Include ChaosKit in transpiled modules
   actions.setWebpackConfig({
     module: {
@@ -43,10 +55,6 @@ exports.onCreateBabelConfig = ({ actions }) => {
     name: require.resolve('@wzuo/babel-plugin-polished'),
   })
 }
-
-const path = require('path')
-
-const { kebabCase, toLower } = require('lodash')
 
 //
 // Lifecycle methods

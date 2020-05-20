@@ -4,9 +4,10 @@ import { CacheProvider } from '@emotion/core'
 import { ckCache } from 'chaoskit/src/helpers/Wrapper'
 import { MDXProvider } from '@mdx-js/react'
 
-import { ZSProvider } from './src/components/ZSContext'
 import { zslabsTheme } from './utils/theme'
-import { shortcodes } from './src/components/mdxShortcodes'
+
+import { ZSProvider } from '~components/ZSContext'
+import { shortcodes } from '~components/mdxShortcodes'
 
 export const wrapRootElement = ({ element }) => (
   <ZSProvider>

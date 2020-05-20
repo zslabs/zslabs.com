@@ -5,10 +5,10 @@ import { Badge, List, ListItem } from 'chaoskit/src/components'
 import { link, text } from 'chaoskit/src/assets/styles/utility'
 import { useTheme } from 'emotion-theming'
 
-import pattern from '../assets/media/pattern.png'
-
 import Link from './Link'
 import { ZSContext } from './ZSContext'
+
+import pattern from '~media/pattern.png'
 
 const bubbleSize = 16
 

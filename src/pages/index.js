@@ -16,12 +16,12 @@ import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient'
 import { useTheme } from 'emotion-theming'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
-import Foundation from '../layouts/Foundation'
-import Link from '../components/Link'
-import { ZSContext } from '../components/ZSContext'
-import { BubbleList, BubbleListItem } from '../components/BubbleList'
-import { backgroundDots, buttonBase, titleStyles } from '../helpers'
-import pattern from '../assets/media/pattern.png'
+import { backgroundDots, buttonBase, titleStyles } from '~helpers'
+import Foundation from '~layouts/Foundation'
+import pattern from '~media/pattern.png'
+import Link from '~components/Link'
+import { ZSContext } from '~components/ZSContext'
+import { BubbleList, BubbleListItem } from '~components/BubbleList'
 
 const Index = () => {
   const { dispatch } = useContext(ZSContext)

@@ -5,10 +5,10 @@ import { misc } from 'chaoskit/src/assets/styles/utility'
 import { useTheme } from 'emotion-theming'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
-import Foundation from '../../layouts/Foundation'
-import Icon from '../../components/Icon'
-import pattern from '../../assets/media/pattern.png'
-import HelmetSEO from '../../components/HelmetSEO'
+import Foundation from '~layouts/Foundation'
+import pattern from '~media/pattern.png'
+import Icon from '~components/Icon'
+import HelmetSEO from '~components/HelmetSEO'
 
 const Post = ({
   data: {
