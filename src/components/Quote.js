@@ -23,8 +23,6 @@ const Quote = ({ children, ...rest }) => {
           to: theme.space.large,
         }),
         {
-          // Resets/changes from normal blockquote
-          padding: 0,
           position: 'relative',
           zIndex: 1,
           fontStyle: 'normal',
