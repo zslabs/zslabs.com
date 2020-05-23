@@ -7,6 +7,7 @@ import GHSlugger from 'github-slugger'
 
 import Icon from './Icon'
 import Code from './Code'
+import Quote from './Quote'
 
 // Checks against absolute URLs that share 👇 so we can still pass it along to Gatsby's internal link component
 const domainRegex = /http[s]*:\/\/[www.]*zslabs\.com[/]?/
@@ -110,6 +111,7 @@ export const base = {
   h3: (props) => <AutoLinkHeader as="h3" {...props} />,
   h4: (props) => <AutoLinkHeader as="h4" {...props} />,
   h5: (props) => <AutoLinkHeader as="h5" {...props} />,
+  blockquote: (props) => <Quote {...props} />,
   pre: (preProps) => {
     const props = preToCodeBlock(preProps)
     // If there's a codeString and some props, we passed the test
