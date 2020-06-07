@@ -12,6 +12,7 @@ import { text, link } from 'chaoskit/src/assets/styles/utility'
 import { useTheme } from 'emotion-theming'
 
 import Icon from './Icon'
+import { TextLink } from './mdxShortcodes'
 
 import me from '~media/me.png'
 import { buttonBase } from '~helpers'
@@ -23,7 +24,7 @@ const SocialButton = ({ url, title, icon }) => {
     <Button
       url={url}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener noreferrer nofollow"
       iconOnly
       title={title}
       css={[
@@ -132,50 +133,40 @@ const AboutModal = () => {
             }}
           >
             I create buttons, borders, and other groovy things at{' '}
-            <a
+            <TextLink
               href="https://www.gremlin.com"
-              target="_blank"
-              rel="noopener noreferrer"
               css={[text.underline, link.reset(theme)]}
             >
               Gremlin
-            </a>
+            </TextLink>
             . I work with techologies like{' '}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
+            <TextLink
               href="https://reactjs.org"
               css={[text.underline, link.reset(theme)]}
             >
               ReactJS
-            </a>
+            </TextLink>
             ,{' '}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
+            <TextLink
               href="https://gatsbyjs.org"
               css={[text.underline, link.reset(theme)]}
             >
               GatsbyJS
-            </a>
+            </TextLink>
             ,{' '}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
+            <TextLink
               href="https://nextjs.org"
               css={[text.underline, link.reset(theme)]}
             >
               Next.JS
-            </a>
+            </TextLink>
             , and{' '}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
+            <TextLink
               href="https://nodejs.org"
               css={[text.underline, link.reset(theme)]}
             >
               NodeJS
-            </a>
+            </TextLink>
             . My background involves pushing the limits of what we can build on
             the backend and how we can experience it on the frontend. My
             passions are perfecting process and educating those around me.
@@ -198,14 +189,12 @@ const AboutModal = () => {
           <p>
             Because I love open-source—it&apos;s available for anyone to view.
             Find a bug? Report it!{' '}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
+            <TextLink
               href="https://github.com/zslabs/zslabs.com"
               css={[text.underline, link.reset(theme)]}
             >
               View source
-            </a>
+            </TextLink>
             .
           </p>
           <div css={{ marginTop: theme.space.large, textAlign: 'center' }}>

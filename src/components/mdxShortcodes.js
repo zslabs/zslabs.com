@@ -15,7 +15,7 @@ const domainRegex = /http[s]*:\/\/[www.]*zslabs\.com[/]?/
 // /http[s]*:\/\/[www.]*zslabs\.com(?!\/i-am-external|\/me-too)[/]?/
 
 /* eslint-disable jsx-a11y/anchor-has-content */
-const MarkdownLink = ({ href, ...rest }) => {
+export const TextLink = ({ href, ...rest }) => {
   const sameDomain = domainRegex.test(href)
 
   if (sameDomain) {
@@ -42,7 +42,7 @@ const MarkdownLink = ({ href, ...rest }) => {
   )
 }
 
-MarkdownLink.propTypes = {
+TextLink.propTypes = {
   href: PropTypes.string.isRequired,
 }
 /* eslint-enable jsx-a11y/anchor-has-content */
@@ -102,7 +102,7 @@ AutoLinkHeader.propTypes = {
 }
 
 export const base = {
-  a: (props) => <MarkdownLink {...props} />,
+  a: (props) => <TextLink {...props} />,
   ul: (props) => <List space="small" type="circles" {...props} />,
   ol: (props) => <List space="small" type="numbers" {...props} />,
   li: (props) => <ListItem {...props} />,

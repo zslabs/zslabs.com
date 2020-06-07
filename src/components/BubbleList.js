@@ -7,6 +7,7 @@ import { useTheme } from 'emotion-theming'
 
 import Link from './Link'
 import { ZSContext } from './ZSContext'
+import { TextLink } from './mdxShortcodes'
 
 import pattern from '~media/pattern.png'
 
@@ -167,14 +168,9 @@ export const BubbleListItem = ({
                     {title}
                   </Link>
                 ) : (
-                  <a
-                    href={url.to}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    css={linkStyles(theme)}
-                  >
+                  <TextLink href={url.to} css={linkStyles(theme)}>
                     {title}
-                  </a>
+                  </TextLink>
                 )
               ) : (
                 <h4 css={{ ...theme.fontSize.xlarge__fluid, marginBottom: 0 }}>
