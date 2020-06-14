@@ -173,8 +173,8 @@ const AboutModal = () => {
           </p>
           <h4 css={{ ...theme.fontSize.xlarge__fluid }}>Speaking/Consulting</h4>
           <p>
-            Have an event and/or consluting project you&apos;d like me to be a
-            part of? Awesome!{' '}
+            Have an event or consulting project you&apos;d like me to be a part
+            of? Awesome!{' '}
             <a
               href="mailto:info@zslabs.com"
               css={[text.underline, link.reset(theme)]}
