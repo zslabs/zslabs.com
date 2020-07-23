@@ -5,6 +5,11 @@ import pattern from '../media/pattern.png'
 import bubbles from '../media/bubbles.svg'
 
 export const global = (theme) => ({
+  html: {
+    fontFeatureSettings: '"calt", "liga"',
+    letterSpacing: 'calc(-.03058em + .44638px)',
+  },
+
   body: {
     position: 'relative',
 
