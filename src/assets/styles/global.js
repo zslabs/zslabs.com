@@ -43,4 +43,12 @@ export const global = (theme) => ({
   '.svgBackground-example': {
     width: 50,
   },
+
+  // Image captions
+  '.gatsby-resp-image-figcaption': {
+    marginTop: theme.space.xsmall,
+    textAlign: 'center',
+    fontSize: theme.fontSize.small,
+    color: theme.fontColor.muted,
+  },
 })
