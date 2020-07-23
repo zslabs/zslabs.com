@@ -39,8 +39,8 @@ export const zslabsTheme = extendTheme(theme, {
       'invert(64%) sepia(92%) saturate(5728%) hue-rotate(339deg) brightness(101%) contrast(90%)',
   },
   fontFamily: {
-    base: "Calibre, 'Helvetica Neue', Arial, sans-serif",
-    heading: "Calibre, 'Helvetica Neue', Arial, sans-serif",
+    base: "Manrope, 'Helvetica Neue', Arial, sans-serif",
+    heading: "Manrope, 'Helvetica Neue', Arial, sans-serif",
   },
   settings: {
     button: {
