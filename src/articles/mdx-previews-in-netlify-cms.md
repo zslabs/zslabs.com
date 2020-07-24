@@ -74,7 +74,7 @@ export default (Component) => (props) => {
 
 Finally, we are ready to tackle the preview render:
 
-```js filename=MDXPreview
+```js filename=MDXPreview.js
 import MDX from 'mdx-scoped-runtime'
 
 const MDXPreview = ({ entry }) => {
@@ -82,9 +82,11 @@ const MDXPreview = ({ entry }) => {
 
   return (
     <MDX
-      components={{
-        // DOM element + React component overrides
-      }}
+      components={
+        {
+          // DOM element + React component overrides
+        }
+      }
     >
       {entry.getIn(['data', 'body'])}
     </MDX>
@@ -103,9 +105,7 @@ export default MDXPreview
 ```js filename=ArticlePreview.js
 import MDXPreview from './MDXPreview'
 
-const ArticlePreview = ({ entry }) => (
-  <MDXPreview entry={entry} />
-)
+const ArticlePreview = ({ entry }) => <MDXPreview entry={entry} />
 
 ArticlePreview.propTypes = {
   entry: PropTypes.object.isRequired,
@@ -120,12 +120,13 @@ export default ArticlePreview
 
 For scenarios where you may have components that use a bit more [Gatsby](https://www.gatsbyjs.org/) magic than what `mdx-scoped-runtime` can provide; like [graphql](https://graphql.org/), you can override the default behavior to provide a fallback component as needed to avoid compilation errors:
 
-```js filename=MDXPreview
+```js filename=MDXPreview.js
 import MDX from 'mdx-scoped-runtime'
 
 const UnsupportedComponent = ({ label, ...rest }) => (
   <div {...rest}>
-    <code>{label}</code> requires a bit more magic than we are able to display in the CMS.
+    <code>{label}</code> requires a bit more magic than we are able to display
+    in the CMS.
   </div>
 )
 
@@ -139,7 +140,9 @@ const MDXPreview = ({ entry }) => {
   return (
     <MDX
       components={{
-        SuperSpecialGatsbyComponent: () => <UnsupportedComponent label="SuperSpecialGatsbyComponent" />,
+        SuperSpecialGatsbyComponent: () => (
+          <UnsupportedComponent label="SuperSpecialGatsbyComponent" />
+        ),
       }}
     >
       {entry.getIn(['data', 'body'])}
