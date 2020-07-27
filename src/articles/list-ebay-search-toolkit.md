@@ -25,7 +25,7 @@ Having used a few external tools that attempt to solve issues that plague the na
 ### Tech
 
 - **React:** My frontend technology of choice was an easy decision to ensure the project was fast, interactive, and easy to iterrate on over time. While I do love tweaking build-pipelines, utilizing [CRA](https://github.com/facebook/create-react-app) alongside [customize-cra](https://github.com/arackaf/customize-cra) was a perfect-pairing to start developing as quickly as possible.
-- **Component library:** The [Emotion](https://emotion.sh) branch of [ChaosKit](https://github.com/gremlin/chaoskit/tree/feature/emotion) that I've been working on is becoming more and more stable each day. With this being the first project I've implemented it in the wild, I'm even more confident this was a worthy endevour.
+- **Component library:** The [Emotion](https://emotion.sh) branch of [ChaosKit](https://github.com/gremlin/chaoskit) that I've been working on is becoming more and more stable each day. With this being the first project I've implemented it in the wild, I'm even more confident this was a worthy endevour.
 - **API:** Having used [Netlify functions](https://www.netlify.com/docs/functions/) previously, I knew using them alongside the eBay API would be a perfect-match. A single-endpoint has provided me a wide-array of options to gather results.
 
 ### Pro

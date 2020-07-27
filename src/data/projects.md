@@ -5,7 +5,7 @@ projects:
     url: https://list.zslabs.com
   - title: ChaosKit
     url: https://chaoskit.netlify.app/
-    blurb: A lightweight and modular front-end framework for developing fast and powerful web interfaces within Gremlin. [Source](https://github.com/gremlin/chaoskit/tree/feature/emotion)
+    blurb: A lightweight and modular front-end framework for developing fast and powerful web interfaces within Gremlin. [Source](https://github.com/gremlin/chaoskit/)
   - title: Gremlin
     url: https://www.gremlin.com
     blurb: Marketing site for Chaos.
