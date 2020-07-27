@@ -37,7 +37,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
         rules: [
           {
             test: /\.js$|\.jsx$/,
-            include: /(src)/,
+            exclude: /(node_modules|cache|public|_this_is_virtual_fs_path_)/,
             use: [
               {
                 loader: 'eslint-loader',
