@@ -18,6 +18,7 @@ import Link from '~components/Link'
 import AboutModal from '~components/AboutModal'
 import ArticlesOffCanvas from '~components/ArticlesOffCanvas'
 import HelmetSEO from '~components/HelmetSEO'
+import Footer from '~components/Footer'
 
 const Foundation = ({ children, runAnimation }) => {
   const logoRef = useRef()
@@ -163,6 +164,7 @@ const Foundation = ({ children, runAnimation }) => {
           </div>
         </header>
         <main>{children}</main>
+        <Footer />
       </Container>
     </Fragment>
   )
