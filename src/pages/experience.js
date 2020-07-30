@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import { Row, RowColumn, Section, SectionTitle } from 'chaoskit/src/components'
+import { Section, SectionTitle } from 'chaoskit/src/components'
 import { useTheme } from 'emotion-theming'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
@@ -25,7 +25,7 @@ const Experience = ({
       <HelmetSEO title="Experience" />
       <Section>
         <SectionTitle
-          as="h2"
+          as="h1"
           title="Experience"
           css={{
             '.CK__SectionTitle__Header': [
@@ -41,23 +41,29 @@ const Experience = ({
             ],
           }}
         />
-        <Row css={{ justifyContent: 'center' }}>
-          <RowColumn size={{ medium: 9 }}>
-            <BubbleList>
-              {experience.map((item, index) => (
-                <BubbleListItem
-                  key={item.company}
-                  first={index === 0}
-                  title={item.company}
-                  meta={item.title}
-                  badge={item.dates}
-                >
-                  <MDXRenderer>{item.blurb}</MDXRenderer>
-                </BubbleListItem>
-              ))}
-            </BubbleList>
-          </RowColumn>
-        </Row>
+        <div
+          css={{
+            [theme.mq.medium]: {
+              display: 'grid',
+              gridTemplateColumns: '0.75fr',
+              justifyContent: 'center',
+            },
+          }}
+        >
+          <BubbleList>
+            {experience.map((item, index) => (
+              <BubbleListItem
+                key={item.company}
+                first={index === 0}
+                title={item.company}
+                meta={item.title}
+                badge={item.dates}
+              >
+                <MDXRenderer>{item.blurb}</MDXRenderer>
+              </BubbleListItem>
+            ))}
+          </BubbleList>
+        </div>
       </Section>
     </Foundation>
   )
