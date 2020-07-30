@@ -1,9 +1,37 @@
 import { useTheme } from 'emotion-theming'
-import { Section, SectionTitle } from 'chaoskit/src/components'
+import {
+  Section,
+  SectionTitle,
+  Inline,
+  ListItem,
+} from 'chaoskit/src/components'
+import { fluidSize } from 'chaoskit/src/assets/styles/utility/misc'
 
 import Foundation from '~layouts/Foundation'
 import HelmetSEO from '~components/HelmetSEO'
 import { titleStyles } from '~helpers'
+
+const Box = (props) => {
+  const theme = useTheme()
+
+  return (
+    <ListItem
+      css={[
+        fluidSize({
+          theme,
+          property: 'padding',
+          from: theme.space.base,
+          to: theme.space.large,
+        }),
+        {
+          border: theme.border.base,
+          borderRadius: theme.borderRadius.base,
+        },
+      ]}
+      {...props}
+    />
+  )
+}
 
 const Uses = () => {
   const theme = useTheme()
@@ -30,7 +58,13 @@ const Uses = () => {
             ],
           }}
         />
-        <p>Stuffz</p>
+        <Inline size="base">
+          <Box>hello</Box>
+          <Box>hello</Box>
+          <Box>hello</Box>
+          <Box>hello</Box>
+          <Box>hello</Box>
+        </Inline>
       </Section>
     </Foundation>
   )
