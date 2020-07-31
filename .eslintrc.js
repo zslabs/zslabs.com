@@ -5,7 +5,8 @@ module.exports = {
       alias: {
         map: [
           ['~components', 'src/components'],
-          ['~helpers', 'src/helpers'],
+          ['~helpers', 'src/helpers/index'],
+          ['~hooks', 'src/hooks'],
           ['~icons', 'src/assets/icons'],
           ['~layouts', 'src/layouts'],
           ['~media', 'src/assets/media'],

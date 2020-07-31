@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { rgba } from 'polished'
 import { Badge, List, ListItem } from 'chaoskit/src/components'
@@ -6,10 +5,10 @@ import { link, text } from 'chaoskit/src/assets/styles/utility'
 import { useTheme } from 'emotion-theming'
 
 import Link from './Link'
-import { ZSContext } from './ZSContext'
 import { TextLink } from './mdxShortcodes'
 
 import pattern from '~media/pattern.png'
+import useArticlesOffCanvasState from '~hooks/useArticlesOffCanvasState'
 
 const bubbleSize = 16
 
@@ -78,7 +77,7 @@ export const BubbleListItem = ({
   children,
   ...rest
 }) => {
-  const { dispatch } = useContext(ZSContext)
+  const toggle = useArticlesOffCanvasState((state) => state.toggle)
   const theme = useTheme()
 
   return (
@@ -154,15 +153,7 @@ export const BubbleListItem = ({
               {/* eslint-disable-next-line no-nested-ternary */}
               {url ? (
                 url.type === 'article' ? (
-                  <Link
-                    to={url.to}
-                    onClick={() => {
-                      dispatch({
-                        type: 'toggleOffCanvas',
-                      })
-                    }}
-                    css={linkStyles(theme)}
-                  >
+                  <Link to={url.to} onClick={toggle} css={linkStyles(theme)}>
                     {title}
                   </Link>
                 ) : (

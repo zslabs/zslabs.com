@@ -8,7 +8,6 @@ import { MDXProvider } from '@mdx-js/react'
 
 import { zslabsTheme } from './utils/theme'
 
-import { ZSProvider } from '~components/ZSContext'
 import { shortcodes } from '~components/mdxShortcodes'
 
 export const replaceRenderer = ({
@@ -40,9 +39,7 @@ export const replaceRenderer = ({
 }
 
 export const wrapRootElement = ({ element }) => (
-  <ZSProvider>
-    <MDXProvider components={shortcodes}>{element}</MDXProvider>
-  </ZSProvider>
+  <MDXProvider components={shortcodes}>{element}</MDXProvider>
 )
 
 wrapRootElement.propTypes = {

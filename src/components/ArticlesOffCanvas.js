@@ -1,31 +1,26 @@
-import { Fragment, useContext } from 'react'
+import { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Button, OffCanvas } from 'chaoskit/src/components'
 import { useTheme } from 'emotion-theming'
 
-import { ZSContext } from './ZSContext'
 import Icon from './Icon'
 import { BubbleList, BubbleListItem } from './BubbleList'
 
+import useArticlesOffCanvasState from '~hooks/useArticlesOffCanvasState'
 import { titleStyles } from '~helpers'
 
 const ArticlesOffCanvas = ({ articles }) => {
-  const {
-    state: { offCanvasOpen },
-    dispatch,
-  } = useContext(ZSContext)
   const theme = useTheme()
+
+  const open = useArticlesOffCanvasState((state) => state.open)
+  const toggle = useArticlesOffCanvasState((state) => state.toggle)
 
   return (
     <Fragment>
       <Button
         className="ZS__Header__Item"
         type="reset"
-        onClick={() => {
-          dispatch({
-            type: 'toggleOffCanvas',
-          })
-        }}
+        onClick={toggle}
         aria-label="Toggle menu"
       >
         <Icon
@@ -33,15 +28,7 @@ const ArticlesOffCanvas = ({ articles }) => {
           css={{ width: theme.height.xsmall, height: theme.height.xsmall }}
         />
       </Button>
-      <OffCanvas
-        open={offCanvasOpen}
-        panelWidth={350}
-        onOffCanvasToggle={() => {
-          dispatch({
-            type: 'toggleOffCanvas',
-          })
-        }}
-      >
+      <OffCanvas open={open} panelWidth={350} onOffCanvasToggle={toggle}>
         <h2
           css={[
             titleStyles(theme),

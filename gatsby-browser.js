@@ -6,17 +6,14 @@ import { MDXProvider } from '@mdx-js/react'
 
 import { zslabsTheme } from './utils/theme'
 
-import { ZSProvider } from '~components/ZSContext'
 import { shortcodes } from '~components/mdxShortcodes'
 
 export const wrapRootElement = ({ element }) => (
-  <ZSProvider>
-    <CacheProvider value={ckCache}>
-      <ThemeProvider theme={zslabsTheme}>
-        <MDXProvider components={shortcodes}>{element}</MDXProvider>
-      </ThemeProvider>
-    </CacheProvider>
-  </ZSProvider>
+  <CacheProvider value={ckCache}>
+    <ThemeProvider theme={zslabsTheme}>
+      <MDXProvider components={shortcodes}>{element}</MDXProvider>
+    </ThemeProvider>
+  </CacheProvider>
 )
 
 wrapRootElement.propTypes = {

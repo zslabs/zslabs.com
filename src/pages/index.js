@@ -1,4 +1,4 @@
-import { useRef, useContext } from 'react'
+import { useRef } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import gsap from 'gsap'
 import {
@@ -18,11 +18,11 @@ import { backgroundDots, buttonBase, titleStyles } from '~helpers'
 import Foundation from '~layouts/Foundation'
 import pattern from '~media/pattern.png'
 import Link from '~components/Link'
-import { ZSContext } from '~components/ZSContext'
 import { BubbleList, BubbleListItem } from '~components/BubbleList'
+import useArticlesOffCanvasState from '~hooks/useArticlesOffCanvasState'
 
 const Index = () => {
-  const { dispatch } = useContext(ZSContext)
+  const toggle = useArticlesOffCanvasState((state) => state.toggle)
 
   const introTitle = useRef()
   const introTitleSubRef = useRef([])
@@ -200,11 +200,7 @@ const Index = () => {
                 ref={articleButtonRef}
               >
                 <Button
-                  onClick={() => {
-                    dispatch({
-                      type: 'toggleOffCanvas',
-                    })
-                  }}
+                  onClick={toggle}
                   css={buttonBase(theme, { type: 'primary' })}
                 >
                   Articles
