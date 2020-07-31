@@ -187,8 +187,8 @@ const AboutModal = () => {
             How&apos;d you build this site?!
           </h4>
           <p>
-            Because I love open-source—it&apos;s available for anyone to view.
-            Find a bug? Report it!{' '}
+            Because I love open-source&mdash;it&apos;s available for anyone to
+            use. Find a bug? Report it!{' '}
             <TextLink
               href="https://github.com/zslabs/zslabs.com"
               css={[text.underline, link.reset(theme)]}
@@ -197,12 +197,6 @@ const AboutModal = () => {
             </TextLink>
             .
           </p>
-          <div css={{ marginTop: theme.space.large, textAlign: 'center' }}>
-            <span css={{ color: theme.fontColor.muted }}>
-              Copyright © {new Date().getFullYear()} Zach Schnackel. Penalty is
-            </span>{' '}
-            🔥
-          </div>
         </ModalBody>
       </Modal>
     </Fragment>

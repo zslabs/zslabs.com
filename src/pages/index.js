@@ -1,12 +1,10 @@
-import { useEffect, useRef, useContext } from 'react'
+import { useRef, useContext } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import gsap from 'gsap'
 import {
   Button,
   Container,
   Inline,
-  Row,
-  RowColumn,
   Section,
   SectionTitle,
   ListItem,
@@ -27,7 +25,7 @@ const Index = () => {
   const { dispatch } = useContext(ZSContext)
 
   const introTitle = useRef()
-  const introTitleSub = useRef()
+  const introTitleSubRef = useRef([])
   const articleButtonRef = useRef()
   const experienceButtonRef = useRef()
   const projectsRef = useRef()
@@ -81,9 +79,11 @@ const Index = () => {
     }
   `)
 
-  const runAnimation = () => {
+  const pageAnimation = () => {
     const pageTimeline = gsap.timeline({
-      delay: 1,
+      defaults: {
+        ease: theme.gsap.transition.bounce,
+      },
     })
 
     pageTimeline
@@ -91,13 +91,12 @@ const Index = () => {
         duration: 0.5,
         y: 0,
         opacity: 1,
-        ease: theme.gsap.transition.bounce,
       })
-      .to(introTitleSub.current, {
-        duration: 0.5,
-        y: 0,
+      .to(introTitleSubRef.current, {
+        duration: 0.75,
         opacity: 1,
-        ease: theme.gsap.transition.bounce,
+        y: 0,
+        stagger: 0.025,
       })
       .to(
         articleButtonRef.current,
@@ -105,7 +104,6 @@ const Index = () => {
           duration: 0.5,
           scale: 1,
           opacity: 1,
-          ease: theme.gsap.transition.bounce,
         },
         'introButtons'
       )
@@ -116,7 +114,6 @@ const Index = () => {
           delay: 0.125,
           scale: 1,
           opacity: 1,
-          ease: theme.gsap.transition.bounce,
         },
         'introButtons'
       )
@@ -129,16 +126,18 @@ const Index = () => {
         delay: 0.25,
         opacity: 1,
         y: 0,
-        ease: theme.gsap.transition.bounce,
+      })
+      .to('.ZS__Footer', {
+        duration: 0.25,
+        opacity: 1,
+        y: 0,
       })
   }
 
-  useEffect(() => {
-    runAnimation()
-  }, [])
+  const introTitleSub = 'Full-Stack/Motion Developer'
 
   return (
-    <Foundation runAnimation>
+    <Foundation runAnimation onAfterAnimation={pageAnimation}>
       <Section size="xlarge">
         <div css={{ textAlign: 'center' }}>
           <h5
@@ -146,13 +145,29 @@ const Index = () => {
               ...theme.fontSize.medium__fluid,
               color: theme.fontColor.muted,
               marginBottom: theme.space.small,
-              // GSAP
-              opacity: 0,
-              transform: 'translateY(100%)',
             }}
-            ref={introTitleSub}
           >
-            Full-Stack/Motion Developer
+            {introTitleSub.split('').map((character, index) => {
+              const key = `${character}-${index}`
+
+              return (
+                <span
+                  key={key}
+                  css={{
+                    display: 'inline-block',
+
+                    // GSAP
+                    opacity: 0,
+                    transform: 'translateY(75%)',
+                  }}
+                  ref={(element) => {
+                    introTitleSubRef.current[index] = element
+                  }}
+                >
+                  {character.trim().length > 0 ? character : '\u00a0'}
+                </span>
+              )
+            })}
           </h5>
           <h1
             css={{
@@ -342,23 +357,29 @@ const Index = () => {
                 ],
               }}
             />
-            <Row css={{ justifyContent: 'center' }}>
-              <RowColumn size={{ medium: 9 }}>
-                <BubbleList>
-                  {pageData.projects.map((project) => (
-                    <BubbleListItem
-                      key={project.title}
-                      title={project.title}
-                      url={{
-                        to: project.url,
-                      }}
-                    >
-                      <MDXRenderer>{project.blurb}</MDXRenderer>
-                    </BubbleListItem>
-                  ))}
-                </BubbleList>
-              </RowColumn>
-            </Row>
+            <div
+              css={{
+                [theme.mq.medium]: {
+                  display: 'grid',
+                  gridTemplateColumns: '0.75fr',
+                  justifyContent: 'center',
+                },
+              }}
+            >
+              <BubbleList>
+                {pageData.projects.map((project) => (
+                  <BubbleListItem
+                    key={project.title}
+                    title={project.title}
+                    url={{
+                      to: project.url,
+                    }}
+                  >
+                    <MDXRenderer>{project.blurb}</MDXRenderer>
+                  </BubbleListItem>
+                ))}
+              </BubbleList>
+            </div>
           </Container>
         </div>
       </Section>

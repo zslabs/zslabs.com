@@ -18,8 +18,13 @@ import Link from '~components/Link'
 import AboutModal from '~components/AboutModal'
 import ArticlesOffCanvas from '~components/ArticlesOffCanvas'
 import HelmetSEO from '~components/HelmetSEO'
+import Footer from '~components/Footer'
 
-const Foundation = ({ children, runAnimation }) => {
+const Foundation = ({
+  children,
+  onAfterAnimation = () => {},
+  runAnimation,
+}) => {
   const logoRef = useRef()
   const menuRef = useRef()
   const aboutRef = useRef()
@@ -69,19 +74,24 @@ const Foundation = ({ children, runAnimation }) => {
     `
   )
 
-  const runAnimationFunc = () => {
+  const runAnimationFunc = async () => {
     const pageTimeline = gsap.timeline({
-      delay: 0.5,
+      delay: 0.25,
     })
 
-    pageTimeline.to([logoRef.current, menuRef.current, aboutRef.current], {
-      duration: 0.5,
-      y: 0,
-      yPercent: 0, // Both are required in this case https://github.com/greensock/GSAP/issues/330#issuecomment-562429618
-      opacity: 1,
-      ease: theme.gsap.transition.bounce,
-      stagger: 0.1,
-    })
+    await pageTimeline.to(
+      [logoRef.current, menuRef.current, aboutRef.current],
+      {
+        duration: 0.5,
+        y: 0,
+        yPercent: 0, // Both are required in this case https://github.com/greensock/GSAP/issues/330#issuecomment-562429618
+        opacity: 1,
+        ease: theme.gsap.transition.bounce,
+        stagger: 0.1,
+      }
+    )
+
+    onAfterAnimation()
   }
 
   useEffect(() => {
@@ -163,6 +173,7 @@ const Foundation = ({ children, runAnimation }) => {
           </div>
         </header>
         <main>{children}</main>
+        <Footer runAnimation={runAnimation} />
       </Container>
     </Fragment>
   )
@@ -171,6 +182,7 @@ const Foundation = ({ children, runAnimation }) => {
 Foundation.propTypes = {
   runAnimation: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  onAfterAnimation: PropTypes.func,
 }
 
 export default Foundation

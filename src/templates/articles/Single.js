@@ -70,14 +70,9 @@ const Post = ({
               from: theme.space.large,
               to: theme.space.large + theme.space.base,
             }),
-            misc.fluidSize({
-              theme,
-              property: 'marginBottom',
-              from: theme.space.large,
-              to: theme.space.large + theme.space.base,
-            }),
             {
               position: 'relative',
+              marginBottom: theme.space.large + theme.space.base,
 
               '&::before, &::after': {
                 content: "''",
