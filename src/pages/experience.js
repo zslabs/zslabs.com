@@ -73,6 +73,8 @@ Experience.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
+export default Experience
+
 export const pageQuery = graphql`
   query ExperiencePageData {
     file(name: { eq: "experience" }, absolutePath: { regex: "/src/data/" }) {
@@ -89,5 +91,3 @@ export const pageQuery = graphql`
     }
   }
 `
-
-export default Experience

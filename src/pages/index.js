@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext } from 'react'
+import { useRef, useContext } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import gsap from 'gsap'
 import {
@@ -79,9 +79,8 @@ const Index = () => {
     }
   `)
 
-  const runAnimation = () => {
+  const pageAnimation = () => {
     const pageTimeline = gsap.timeline({
-      delay: 1,
       defaults: {
         ease: theme.gsap.transition.bounce,
       },
@@ -128,16 +127,17 @@ const Index = () => {
         opacity: 1,
         y: 0,
       })
+      .to('.ZS__Footer', {
+        duration: 0.25,
+        opacity: 1,
+        y: 0,
+      })
   }
-
-  useEffect(() => {
-    runAnimation()
-  }, [])
 
   const introTitleSub = 'Full-Stack/Motion Developer'
 
   return (
-    <Foundation runAnimation>
+    <Foundation runAnimation onAfterAnimation={pageAnimation}>
       <Section size="xlarge">
         <div css={{ textAlign: 'center' }}>
           <h5
