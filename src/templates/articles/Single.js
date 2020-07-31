@@ -6,7 +6,6 @@ import { useTheme } from 'emotion-theming'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import Foundation from '~layouts/Foundation'
-import pattern from '~media/pattern.png'
 import Icon from '~components/Icon'
 import HelmetSEO from '~components/HelmetSEO'
 
@@ -70,31 +69,6 @@ const Post = ({
               from: theme.space.large,
               to: theme.space.large + theme.space.base,
             }),
-            {
-              position: 'relative',
-              marginBottom: theme.space.large + theme.space.base,
-
-              '&::before, &::after': {
-                content: "''",
-                position: 'absolute',
-                background: `url(${pattern}) no-repeat`,
-                backgroundSize: '1500px 1000px',
-                backgroundPosition: '-800px -575px',
-                height: 2,
-                left: '50%',
-                transform: 'translateX(-50%)',
-              },
-
-              '&::before': {
-                width: 250,
-                bottom: 0,
-              },
-
-              '&::after': {
-                width: 125,
-                bottom: -theme.space.base,
-              },
-            },
           ]}
         >
           <MDXRenderer>{body}</MDXRenderer>

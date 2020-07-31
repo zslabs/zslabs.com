@@ -3,9 +3,11 @@ import { useTheme } from 'emotion-theming'
 import clsx from 'clsx'
 import { rgba } from 'polished'
 import { link } from 'chaoskit/src/assets/styles/utility'
-import { fluidSize } from 'chaoskit/src/assets/styles/utility/misc'
 
 import { TextLink } from './mdxShortcodes'
+import Icon from './Icon'
+
+import pattern from '~media/pattern.png'
 
 const FooterLink = (props) => {
   const theme = useTheme()
@@ -41,19 +43,6 @@ const Footer = ({ className, runAnimation, ...rest }) => {
   return (
     <footer
       css={[
-        fluidSize({
-          theme,
-          property: 'marginTop',
-          from: theme.space.large,
-          to: theme.space.xlarge,
-        }),
-        fluidSize({
-          theme,
-          property: 'marginBottom',
-          from: theme.space.base,
-          to: theme.space.large,
-        }),
-
         runAnimation && {
           // GSAP
           opacity: 0,
@@ -61,9 +50,33 @@ const Footer = ({ className, runAnimation, ...rest }) => {
         },
 
         {
+          position: 'relative',
+          paddingTop: theme.space.large + theme.space.base,
+          paddingBottom: theme.space.base,
           textAlign: 'center',
           fontSize: theme.fontSize.small,
           color: theme.fontColor.muted,
+
+          '&::before, &::after': {
+            content: "''",
+            position: 'absolute',
+            background: `url(${pattern}) no-repeat`,
+            backgroundSize: '1500px 1000px',
+            backgroundPosition: '-800px -575px',
+            height: 2,
+            left: '50%',
+            transform: 'translateX(-50%)',
+          },
+
+          '&::before': {
+            width: 250,
+            top: 0,
+          },
+
+          '&::after': {
+            width: 125,
+            top: theme.space.base,
+          },
         },
       ]}
       className={clsx('ZS__Footer', className)}
@@ -84,6 +97,9 @@ const Footer = ({ className, runAnimation, ...rest }) => {
       >
         <FooterLink href="https://github.com/zslabs/zslabs.com">
           Source
+        </FooterLink>
+        <FooterLink href="https://list.zslabs.com" title="List">
+          <Icon size="medium" icon="list-logo" />
         </FooterLink>
       </div>
     </footer>
