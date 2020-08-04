@@ -59,6 +59,7 @@ const AboutModal = () => {
         onClick={() => toggleAboutModalOpen(true)}
       >
         <img
+          loading="lazy"
           src={me}
           alt="About"
           css={{
@@ -83,6 +84,7 @@ const AboutModal = () => {
             }}
           />
           <img
+            loading="lazy"
             src={me}
             alt=""
             css={{
