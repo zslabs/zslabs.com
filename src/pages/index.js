@@ -367,9 +367,7 @@ const Index = () => {
                   <BubbleListItem
                     key={project.title}
                     title={project.title}
-                    url={{
-                      to: project.url,
-                    }}
+                    url={project.url}
                   >
                     <MDXRenderer>{project.blurb}</MDXRenderer>
                   </BubbleListItem>

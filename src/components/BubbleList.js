@@ -4,11 +4,9 @@ import { Badge, List, ListItem } from 'chaoskit/src/components'
 import { link, text } from 'chaoskit/src/assets/styles/utility'
 import { useTheme } from 'emotion-theming'
 
-import Link from './Link'
 import { TextLink } from './mdxShortcodes'
 
 import pattern from '~media/pattern.png'
-import useArticlesOffCanvasState from '~hooks/useArticlesOffCanvasState'
 
 const bubbleSize = 16
 
@@ -75,9 +73,9 @@ export const BubbleListItem = ({
   badge,
   first,
   children,
+  linkProps = {},
   ...rest
 }) => {
-  const toggle = useArticlesOffCanvasState((state) => state.toggle)
   const theme = useTheme()
 
   return (
@@ -150,17 +148,10 @@ export const BubbleListItem = ({
             }}
           >
             <div>
-              {/* eslint-disable-next-line no-nested-ternary */}
               {url ? (
-                url.type === 'article' ? (
-                  <Link to={url.to} onClick={toggle} css={linkStyles(theme)}>
-                    {title}
-                  </Link>
-                ) : (
-                  <TextLink href={url.to} css={linkStyles(theme)}>
-                    {title}
-                  </TextLink>
-                )
+                <TextLink href={url} css={linkStyles(theme)} {...linkProps}>
+                  {title}
+                </TextLink>
               ) : (
                 <h4 css={{ ...theme.fontSize.xlarge__fluid, marginBottom: 0 }}>
                   {title}
@@ -216,10 +207,11 @@ export const BubbleListItem = ({
 }
 
 BubbleListItem.propTypes = {
-  url: PropTypes.object,
+  url: PropTypes.string,
   title: PropTypes.string.isRequired,
   meta: PropTypes.string,
   badge: PropTypes.string,
   first: PropTypes.bool,
   children: PropTypes.node,
+  linkProps: PropTypes.object,
 }

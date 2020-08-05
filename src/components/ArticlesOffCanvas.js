@@ -48,12 +48,12 @@ const ArticlesOffCanvas = ({ articles }) => {
           {articles.map(({ node }) => (
             <BubbleListItem
               key={node.frontmatter.title}
-              url={{
-                type: 'article',
-                to: node.fields.fullUrl,
-              }}
+              url={node.fields.fullUrl}
               title={node.frontmatter.title}
               meta={node.frontmatter.date}
+              linkProps={{
+                onClick: toggle,
+              }}
             />
           ))}
         </BubbleList>

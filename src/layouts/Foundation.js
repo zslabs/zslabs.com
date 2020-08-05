@@ -57,14 +57,11 @@ const Foundation = ({
           edges {
             node {
               fileAbsolutePath
-              body
               frontmatter {
                 title
                 date(formatString: "MMMM D, YYYY")
-                slug
               }
               fields {
-                slug
                 fullUrl
               }
             }
