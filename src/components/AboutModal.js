@@ -14,7 +14,7 @@ import { useTheme } from 'emotion-theming'
 import Icon from './Icon'
 import { TextLink } from './mdxShortcodes'
 
-import me from '~media/me.png'
+import me from '~media/me-small.png'
 import { buttonBase } from '~helpers'
 
 const SocialButton = ({ url, title, icon }) => {
