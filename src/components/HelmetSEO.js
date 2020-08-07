@@ -1,32 +1,17 @@
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
 import me from '~media/me.png'
+import useSiteMetadata from '~hooks/useSiteMetadata'
 
 const HelmetSEO = ({ title, description, type, titleTemplate, ...rest }) => {
   // Grab out defaults
   const {
-    site: {
-      siteMetadata: {
-        title: defaultTitle,
-        description: defaultDescription,
-        siteUrl,
-        twitter,
-      },
-    },
-  } = useStaticQuery(graphql`
-    query HelmetSEOPageData {
-      site {
-        siteMetadata {
-          title
-          description
-          siteUrl
-          twitter
-        }
-      }
-    }
-  `)
+    title: defaultTitle,
+    description: defaultDescription,
+    siteUrl,
+    twitter,
+  } = useSiteMetadata()
 
   // If `titleTemplate` is used (react-helmet magic), we need to parse this ourselves to work within the other meta contexts that we display the title in
   const transformedTitle = titleTemplate

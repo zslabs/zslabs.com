@@ -19,6 +19,7 @@ import AboutModal from '~components/AboutModal'
 import ArticlesOffCanvas from '~components/ArticlesOffCanvas'
 import HelmetSEO from '~components/HelmetSEO'
 import Footer from '~components/Footer'
+import useSiteMetadata from '~hooks/useSiteMetadata'
 
 const Foundation = ({
   children,
@@ -31,22 +32,13 @@ const Foundation = ({
 
   const theme = useTheme()
 
+  const { title } = useSiteMetadata()
+
   const {
-    site: {
-      siteMetadata: { title },
-    },
     articles: { edges: articles },
   } = useStaticQuery(
     graphql`
       query FoundationPageData {
-        site: site {
-          siteMetadata {
-            title
-            description
-            siteUrl
-          }
-        }
-
         articles: allMdx(
           sort: { fields: [frontmatter___date], order: DESC }
           filter: {
