@@ -1027,7 +1027,19 @@
     "@emotion/utils" "0.11.3"
     "@emotion/weak-memoize" "0.2.5"
 
-"@emotion/core@10.0.34", "@emotion/core@^10.0.14":
+"@emotion/core@10.0.28":
+  version "10.0.28"
+  resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.0.28.tgz#bb65af7262a234593a9e952c041d0f1c9b9bef3d"
+  integrity sha512-pH8UueKYO5jgg0Iq+AmCLxBsvuGtvlmiDCOuv8fGNYn3cowFpLN98L8zO56U0H1PjDIyAlXymgL3Wu7u7v6hbA==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    "@emotion/cache" "^10.0.27"
+    "@emotion/css" "^10.0.27"
+    "@emotion/serialize" "^0.11.15"
+    "@emotion/sheet" "0.9.4"
+    "@emotion/utils" "0.11.3"
+
+"@emotion/core@^10.0.14":
   version "10.0.34"
   resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.0.34.tgz#a643889dc32bdde829482539c9438a026631187c"
   integrity sha512-Kcs8WHZG1NgaVFQsSpgN07G0xpfPAKUclwKvUqKrYrJovezl9uTz++1M4JfXHrgFVEiJ5QO46hMo1ZDDfvY/tw==
@@ -3807,14 +3819,14 @@ change-case@^3.1.0:
     upper-case "^1.1.1"
     upper-case-first "^1.1.0"
 
-chaoskit@2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/chaoskit/-/chaoskit-2.4.1.tgz#31d554bc673a7c72a2b4cae1e3fa49bd814cbc5d"
-  integrity sha512-5jXs+YwYRxw2jDmpnMVXX1Bee0BSBV3yB2IcfZ1+GP8hqWnPS3+XEz3vjsg0S0KGhyfkqcFl+uA+71CTbHYU1w==
+chaoskit@2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/chaoskit/-/chaoskit-2.4.3.tgz#35e3a3a0d4c986db56c7fa822565dbec4fcabd20"
+  integrity sha512-ffNTFKxYWwPNUdt/c9i+rvAc+un5hkdYM4+Jpw+5uXntN5KZ9z9qH7qTn5akLyTSoOqmqCdKaTcRGjwaYhb0NA==
   dependencies:
     "@emotion/babel-preset-css-prop" "10.0.27"
     "@emotion/cache" "10.0.29"
-    "@emotion/core" "10.0.34"
+    "@emotion/core" "10.0.28"
     "@tippyjs/react" "4.1.0"
     autoprefixer "9.8.6"
     babel-cli "6.26.0"
@@ -3822,7 +3834,7 @@ chaoskit@2.4.1:
     babel-plugin-polished "1.1.0"
     body-scroll-lock "3.0.3"
     clsx "1.1.1"
-    downshift "6.0.4"
+    downshift "6.0.5"
     emotion-theming "10.0.27"
     eslint "5.16.0"
     eslint-config-airbnb "17.1.0"
@@ -3833,10 +3845,10 @@ chaoskit@2.4.1:
     eslint-plugin-jsx-a11y "6.3.1"
     eslint-plugin-prettier "3.1.4"
     eslint-plugin-react "7.20.6"
-    eslint-plugin-react-hooks "4.0.8"
+    eslint-plugin-react-hooks "4.1.0"
     formik "2.1.5"
     fstream "1.0.12"
-    gsap "3.4.2"
+    gsap "3.5.0"
     lodash-es "4.17.15"
     match-sorter "4.2.0"
     parse5 "6.0.1"
@@ -5428,10 +5440,10 @@ download@^7.1.0:
     p-event "^2.1.0"
     pify "^3.0.0"
 
-downshift@6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/downshift/-/downshift-6.0.4.tgz#6d12f85ef4c0e1715fd0527db56fe70dc9335bda"
-  integrity sha512-3TL0MzW8/E1xcYgfHXr4q0Gm4EiKtkkd9tqXtLzpo8Ol5OcIKjyBwJQU5EYc0ljBlEnRY4ynepIbOdwJ4VLiog==
+downshift@6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/downshift/-/downshift-6.0.5.tgz#a4f8b135c53d51cac232540988f401caf2a0c13a"
+  integrity sha512-GfoHu/zBuMROHipgkCE4r+bf+u+liGpeX4D+/McBODy0HBJJ4c87Ipkzv3HJOrAz1KeP7+6WszBPsTftEuY8fA==
   dependencies:
     "@babel/runtime" "^7.11.2"
     compute-scroll-into-view "^1.0.14"
@@ -5859,10 +5871,10 @@ eslint-plugin-prettier@3.1.4:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-react-hooks@4.0.8:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.0.8.tgz#a9b1e3d57475ccd18276882eff3d6cba00da7a56"
-  integrity sha512-6SSb5AiMCPd8FDJrzah+Z4F44P2CdOaK026cXFV+o/xSRzfOiV1FNFeLl2z6xm3yqWOQEZ5OfVgiec90qV2xrQ==
+eslint-plugin-react-hooks@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.1.0.tgz#6323fbd5e650e84b2987ba76370523a60f4e7925"
+  integrity sha512-36zilUcDwDReiORXmcmTc6rRumu9JIM3WjSvV0nclHoUQ0CNrX866EwONvLR/UqaeqFutbAnVu8PEmctdo2SRQ==
 
 eslint-plugin-react-hooks@^1.7.0:
   version "1.7.0"
@@ -7957,10 +7969,10 @@ gray-matter@^4.0.2:
     section-matter "^1.0.0"
     strip-bom-string "^1.0.0"
 
-gsap@3.4.2:
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.4.2.tgz#2cd85c5792050642f89d5d4e2775d690d7131a37"
-  integrity sha512-2DMG5x9IeQ7csnVaGxmhN4v06sJ4MklqYETMBjfmPQoPel4O4yTvpnINKLDYz7D22xNRwwyd1YWWxpkKgYkuiw==
+gsap@3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.5.0.tgz#ca1753b062309390b46fb3fda245a4a65fb52c2a"
+  integrity sha512-YewxuqAE0HjytsKFRUnjiUz0TatHR6L1aJjalYob1ajQpWCZz+gTRJOgQWiABfTEcA6YpgUcrWLEvEIM1Fftpg==
 
 gud@^1.0.0:
   version "1.0.0"
