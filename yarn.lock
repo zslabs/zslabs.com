@@ -1027,22 +1027,10 @@
     "@emotion/utils" "0.11.3"
     "@emotion/weak-memoize" "0.2.5"
 
-"@emotion/core@10.0.28":
-  version "10.0.28"
-  resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.0.28.tgz#bb65af7262a234593a9e952c041d0f1c9b9bef3d"
-  integrity sha512-pH8UueKYO5jgg0Iq+AmCLxBsvuGtvlmiDCOuv8fGNYn3cowFpLN98L8zO56U0H1PjDIyAlXymgL3Wu7u7v6hbA==
-  dependencies:
-    "@babel/runtime" "^7.5.5"
-    "@emotion/cache" "^10.0.27"
-    "@emotion/css" "^10.0.27"
-    "@emotion/serialize" "^0.11.15"
-    "@emotion/sheet" "0.9.4"
-    "@emotion/utils" "0.11.3"
-
-"@emotion/core@^10.0.14":
-  version "10.0.34"
-  resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.0.34.tgz#a643889dc32bdde829482539c9438a026631187c"
-  integrity sha512-Kcs8WHZG1NgaVFQsSpgN07G0xpfPAKUclwKvUqKrYrJovezl9uTz++1M4JfXHrgFVEiJ5QO46hMo1ZDDfvY/tw==
+"@emotion/core@10.0.35", "@emotion/core@^10.0.14":
+  version "10.0.35"
+  resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.0.35.tgz#513fcf2e22cd4dfe9d3894ed138c9d7a859af9b3"
+  integrity sha512-sH++vJCdk025fBlRZSAhkRlSUoqSqgCzYf5fMOmqqi3bM6how+sQpg3hkgJonj8GxXM4WbD7dRO+4tegDB9fUw==
   dependencies:
     "@babel/runtime" "^7.5.5"
     "@emotion/cache" "^10.0.27"
@@ -1599,10 +1587,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@pauliescanlon/gatsby-mdx-embed@0.0.27":
-  version "0.0.27"
-  resolved "https://registry.yarnpkg.com/@pauliescanlon/gatsby-mdx-embed/-/gatsby-mdx-embed-0.0.27.tgz#555a04cd182956c0420e67940c40bfc89e3fe16f"
-  integrity sha512-Yia521Y+0ZdFN+bksxdcQPR2JcoqIJTCL9u63X2E/nezTyyeiKfHVpbSuArJtXuogt7YlIMbLP7E6uSHIy1khQ==
+"@pauliescanlon/gatsby-mdx-embed@0.0.28":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@pauliescanlon/gatsby-mdx-embed/-/gatsby-mdx-embed-0.0.28.tgz#c7d9f3696c205f0f81b08f65e1f1ac84348afd32"
+  integrity sha512-3UzRnnpv5NKkbNlvrrREVC6wIJpNBDWByBCmSob/GYh718TEBskX7Y5VZuRJte3yweODEA1iOUCBpyTz8zVsSA==
 
 "@pieh/friendly-errors-webpack-plugin@1.7.0-chalk-2":
   version "1.7.0-chalk-2"
@@ -3819,14 +3807,14 @@ change-case@^3.1.0:
     upper-case "^1.1.1"
     upper-case-first "^1.1.0"
 
-chaoskit@2.4.3:
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/chaoskit/-/chaoskit-2.4.3.tgz#35e3a3a0d4c986db56c7fa822565dbec4fcabd20"
-  integrity sha512-ffNTFKxYWwPNUdt/c9i+rvAc+un5hkdYM4+Jpw+5uXntN5KZ9z9qH7qTn5akLyTSoOqmqCdKaTcRGjwaYhb0NA==
+chaoskit@2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/chaoskit/-/chaoskit-2.4.4.tgz#1952cdcb2c6ffddde499912ef4444b2166d33ec6"
+  integrity sha512-gFEzlM6A55IwnLkidejknGCV3rjL65QCD7WkAiDeZF4eyJxdmWX7mkre+i/SjkpelyGTJrwnHvHfU83biv3DVg==
   dependencies:
     "@emotion/babel-preset-css-prop" "10.0.27"
     "@emotion/cache" "10.0.29"
-    "@emotion/core" "10.0.28"
+    "@emotion/core" "10.0.35"
     "@tippyjs/react" "4.1.0"
     autoprefixer "9.8.6"
     babel-cli "6.26.0"
