@@ -22,7 +22,7 @@
     "@pauliescanlon/gatsby-mdx-embed": "0.0.28",
     "@wzuo/babel-plugin-polished": "1.2.0",
     "babel-eslint": "10.1.0",
-    "chaoskit": "2.4.4",
+    "chaoskit": "2.5.2",
     "create-emotion-server": "10.0.27",
     "eslint-import-resolver-alias": "1.1.2",
     "eslint-loader": "3.0.3",
