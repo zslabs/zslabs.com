@@ -147,7 +147,7 @@ const Index = () => {
               marginBottom: theme.space.small,
             }}
           >
-            {introTitleSub.split('').map((character, index) => {
+            {Array.from(introTitleSub).map((character, index) => {
               const key = `${character}-${index}`
 
               return (
