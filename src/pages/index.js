@@ -87,50 +87,65 @@ const Index = () => {
     })
 
     pageTimeline
+      .set(introTitle.current, {
+        yPercent: 50,
+      })
       .to(introTitle.current, {
         duration: 0.5,
-        y: 0,
-        opacity: 1,
+        yPercent: 0,
+        autoAlpha: 1,
+      })
+      .set(introTitleSubRef.current, {
+        yPercent: 75,
       })
       .to(introTitleSubRef.current, {
         duration: 0.75,
-        opacity: 1,
-        y: 0,
+        autoAlpha: 1,
+        yPercent: 0,
         stagger: 0.025,
+      })
+      .set([articleButtonRef.current, experienceButtonRef.current], {
+        scale: 0,
       })
       .to(
         articleButtonRef.current,
         {
           duration: 0.5,
           scale: 1,
-          opacity: 1,
+          autoAlpha: 1,
         },
         'introButtons'
       )
       .to(
         experienceButtonRef.current,
         {
-          duration: 0.75,
           delay: 0.125,
+          duration: 0.75,
           scale: 1,
-          opacity: 1,
+          autoAlpha: 1,
         },
         'introButtons'
       )
       .to(latestArticleRef.current, {
         duration: 0.25,
-        opacity: 1,
+        autoAlpha: 1,
+      })
+      .set(projectsRef.current, {
+        yPercent: 10,
       })
       .to(projectsRef.current, {
         duration: 0.25,
         delay: 0.25,
-        opacity: 1,
-        y: 0,
+        autoAlpha: 1,
+        yPercent: 0,
+      })
+      .set('ZS__Footer', {
+        yPercent: 25,
       })
       .to('.ZS__Footer', {
         duration: 0.25,
-        opacity: 1,
-        y: 0,
+        autoAlpha: 1,
+        yPercent: 0,
       })
   }
 
@@ -157,8 +172,7 @@ const Index = () => {
                     display: 'inline-block',
 
                     // GSAP
-                    opacity: 0,
-                    transform: 'translateY(75%)',
+                    visibility: 'hidden',
                   }}
                   ref={(element) => {
                     introTitleSubRef.current[index] = element
@@ -179,8 +193,7 @@ const Index = () => {
                 to: theme.fontSize.h1 * 1.5,
               }),
               // GSAP
-              opacity: 0,
-              transform: 'translateY(50%)',
+              visibility: 'hidden',
             }}
             ref={introTitle}
           >
@@ -194,8 +207,7 @@ const Index = () => {
                 css={{
                   // GSAP
                   transformOrigin: 'center center',
-                  transform: 'scale(0)',
-                  opacity: 0,
+                  visibility: 'hidden',
                 }}
                 ref={articleButtonRef}
               >
@@ -212,8 +224,7 @@ const Index = () => {
                 css={{
                   // GSAP
                   transformOrigin: 'center center',
-                  transform: 'scale(0)',
-                  opacity: 0,
+                  visibility: 'hidden',
                 }}
                 ref={experienceButtonRef}
               >
@@ -251,7 +262,7 @@ const Index = () => {
               transition: `transform ${theme.timing.base} ${theme.transition.bounce}`,
 
               // GSAP
-              opacity: 0,
+              visibility: 'hidden',
 
               '&:hover, &:focus': {
                 transform: 'translateX(-50%) scale(1.05)',
@@ -325,8 +336,7 @@ const Index = () => {
         <div
           css={{
             // GSAP
-            opacity: 0,
-            transform: 'translateY(10%)',
+            visibility: 'hidden',
           }}
           ref={projectsRef}
         >

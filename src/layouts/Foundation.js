@@ -1,5 +1,6 @@
-import { Fragment, useEffect, useRef } from 'react'
+import { Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import clsx from 'clsx'
 import { useStaticQuery, graphql } from 'gatsby'
 import 'what-input'
 import gsap from 'gsap'
@@ -21,15 +22,19 @@ import HelmetSEO from '~components/HelmetSEO'
 import Footer from '~components/Footer'
 import useSiteMetadata from '~hooks/useSiteMetadata'
 
+const HeaderItemWrapper = ({ className, ...rest }) => (
+  <div className={clsx('ZS__Header__ItemWrapper', className)} {...rest} />
+)
+
+HeaderItemWrapper.propTypes = {
+  className: PropTypes.string,
+}
+
 const Foundation = ({
   children,
   onAfterAnimation = () => {},
   runAnimation,
 }) => {
-  const logoRef = useRef()
-  const menuRef = useRef()
-  const aboutRef = useRef()
-
   const theme = useTheme()
 
   const { title } = useSiteMetadata()
@@ -68,17 +73,17 @@ const Foundation = ({
       delay: 0.25,
     })
 
-    await pageTimeline.to(
-      [logoRef.current, menuRef.current, aboutRef.current],
-      {
+    await pageTimeline
+      .set('.ZS__Header__ItemWrapper', {
+        yPercent: -100,
+      })
+      .to('.ZS__Header__ItemWrapper', {
         duration: 0.5,
-        y: 0,
-        yPercent: 0, // Both are required in this case https://github.com/greensock/GSAP/issues/330#issuecomment-562429618
-        opacity: 1,
+        autoAlpha: 1,
+        yPercent: 0,
         ease: theme.gsap.transition.bounce,
         stagger: 0.1,
-      }
-    )
+      })
 
     onAfterAnimation()
   }
@@ -126,13 +131,12 @@ const Foundation = ({
             runAnimation && {
               // GSAP
               '.ZS__Header__ItemWrapper': {
-                transform: `translateY(calc(-100% + ${theme.space.base}px))`,
-                opacity: 0,
+                visibility: 'hidden',
               },
             },
           ]}
         >
-          <div className="ZS__Header__ItemWrapper" ref={logoRef}>
+          <HeaderItemWrapper>
             <Link
               className="ZS__Header__Item"
               to="/"
@@ -147,19 +151,17 @@ const Foundation = ({
                 backgroundSize: '1500px 1000px',
               }}
             />
-          </div>
-          <div className="ZS__Header__ItemWrapper" ref={menuRef}>
+          </HeaderItemWrapper>
+          <HeaderItemWrapper>
             <ArticlesOffCanvas articles={articles} />
-          </div>
-          <div
-            className="ZS__Header__ItemWrapper"
-            ref={aboutRef}
+          </HeaderItemWrapper>
+          <HeaderItemWrapper
             css={{
               justifyContent: 'flex-end',
             }}
           >
             <AboutModal />
-          </div>
+          </HeaderItemWrapper>
         </header>
         <main>{children}</main>
         <Footer runAnimation={runAnimation} />

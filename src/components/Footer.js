@@ -45,8 +45,7 @@ const Footer = ({ className, runAnimation, ...rest }) => {
       css={[
         runAnimation && {
           // GSAP
-          opacity: 0,
-          transform: 'translateY(25%)',
+          visibility: 'hidden',
         },
 
         {
