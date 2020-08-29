@@ -1,7 +1,6 @@
 import { useState, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Button,
   Modal,
   ModalBody,
   Close,
@@ -13,38 +12,24 @@ import { useTheme } from 'emotion-theming'
 
 import Icon from './Icon'
 import { TextLink } from './mdxShortcodes'
+import StyledButton from './StyledButton'
 
 import me from '~media/me-small.png'
-import { buttonBase } from '~helpers'
 
-const SocialButton = ({ url, title, icon }) => {
-  const theme = useTheme()
-
-  return (
-    <Button
-      url={url}
-      target="_blank"
-      rel="noopener noreferrer nofollow"
-      iconOnly
-      title={title}
-      css={[
-        buttonBase(theme, { type: icon }),
-        {
-          '&:hover, &:focus': {
-            transform: 'scale(1.15)',
-          },
-        },
-      ]}
-    >
-      <Icon icon={icon} />
-    </Button>
-  )
-}
+const SocialButton = ({ variation, ...rest }) => (
+  <StyledButton
+    target="_blank"
+    rel="noopener noreferrer nofollow"
+    iconOnly
+    variation={variation}
+    {...rest}
+  >
+    <Icon icon={variation} />
+  </StyledButton>
+)
 
 SocialButton.propTypes = {
-  url: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
+  variation: PropTypes.string.isRequired,
 }
 
 const AboutModal = () => {
@@ -53,9 +38,12 @@ const AboutModal = () => {
 
   return (
     <Fragment>
-      <Button
+      <StyledButton
         className="ZS__Header__Item"
         type="reset"
+        css={{
+          touchAction: 'none',
+        }}
         onClick={() => toggleAboutModalOpen(true)}
       >
         <img
@@ -69,7 +57,7 @@ const AboutModal = () => {
             boxShadow: theme.boxShadow.neutral,
           }}
         />
-      </Button>
+      </StyledButton>
       <Modal
         open={isAboutModalOpen}
         onOutsideModalClick={() => toggleAboutModalOpen(false)}
@@ -110,21 +98,21 @@ const AboutModal = () => {
               <SocialButton
                 url="https://www.github.com/zslabs"
                 title="GitHub"
-                icon="github"
+                variation="github"
               />
             </ListItem>
             <ListItem>
               <SocialButton
                 url="https://www.codepen.io/zslabs"
                 title="CodePen"
-                icon="codepen"
+                variation="codepen"
               />
             </ListItem>
             <ListItem>
               <SocialButton
                 url="https://www.twitter.com/zslabs"
                 title="Twitter"
-                icon="twitter"
+                variation="twitter"
               />
             </ListItem>
           </Inline>

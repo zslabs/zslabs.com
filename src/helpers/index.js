@@ -3,43 +3,6 @@ import { misc } from 'chaoskit/src/assets/styles/utility'
 import dots from '~media/dots.svg'
 import pattern from '~media/pattern.png'
 
-export const buttonBase = (theme, props = { type: 'default' }) => [
-  {
-    transformOrigin: 'center center',
-    boxShadow: theme.boxShadow.neutral,
-    backgroundImage: `url(${pattern}) !important`,
-    backgroundColor: 'transparent',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'auto',
-    color: theme.contrast.base,
-    transition: `transform ${theme.timing.base} ${theme.transition.bounce}`,
-
-    '&:hover, &:focus': {
-      color: theme.contrast.base,
-      transform: 'scale(1.05)',
-    },
-  },
-
-  props.type === 'default' && {
-    backgroundPosition: '20% 15%',
-  },
-  props.type === 'primary' && {
-    backgroundPosition: '60% 10%',
-  },
-  props.type === 'secondary' && {
-    backgroundPosition: '70% 85%',
-  },
-  props.type === 'github' && {
-    backgroundPosition: '45% 70%',
-  },
-  props.type === 'codepen' && {
-    backgroundPosition: '30% 30%',
-  },
-  props.type === 'twitter' && {
-    backgroundPosition: '70% 10%',
-  },
-]
-
 export const backgroundDots = (fill = '#fff') => ({
   content: "''",
   position: 'absolute',

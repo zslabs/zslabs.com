@@ -1,10 +1,11 @@
 import { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Button, OffCanvas } from 'chaoskit/src/components'
+import { OffCanvas } from 'chaoskit/src/components'
 import { useTheme } from 'emotion-theming'
 
 import Icon from './Icon'
 import { BubbleList, BubbleListItem } from './BubbleList'
+import StyledButton from './StyledButton'
 
 import useArticlesOffCanvasState from '~hooks/useArticlesOffCanvasState'
 import { titleStyles } from '~helpers'
@@ -17,7 +18,7 @@ const ArticlesOffCanvas = ({ articles }) => {
 
   return (
     <Fragment>
-      <Button
+      <StyledButton
         className="ZS__Header__Item"
         type="reset"
         onClick={toggle}
@@ -27,7 +28,7 @@ const ArticlesOffCanvas = ({ articles }) => {
           icon="menu"
           css={{ width: theme.height.xsmall, height: theme.height.xsmall }}
         />
-      </Button>
+      </StyledButton>
       <OffCanvas open={open} panelWidth={350} onOffCanvasToggle={toggle}>
         <h2
           css={[

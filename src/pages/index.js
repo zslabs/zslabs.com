@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import gsap from 'gsap'
 import {
-  Button,
   Container,
   Inline,
   Section,
@@ -14,12 +13,13 @@ import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient'
 import { useTheme } from 'emotion-theming'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
-import { backgroundDots, buttonBase, titleStyles } from '~helpers'
+import { backgroundDots, titleStyles } from '~helpers'
 import Foundation from '~layouts/Foundation'
 import pattern from '~media/pattern.png'
 import Link from '~components/Link'
 import { BubbleList, BubbleListItem } from '~components/BubbleList'
 import useArticlesOffCanvasState from '~hooks/useArticlesOffCanvasState'
+import StyledButton from '~components/StyledButton'
 
 const Index = () => {
   const toggle = useArticlesOffCanvasState((state) => state.toggle)
@@ -139,7 +139,7 @@ const Index = () => {
         autoAlpha: 1,
         yPercent: 0,
       })
-      .set('ZS__Footer', {
+      .set('.ZS__Footer', {
         yPercent: 25,
       })
       .to('.ZS__Footer', {
@@ -211,12 +211,9 @@ const Index = () => {
                 }}
                 ref={articleButtonRef}
               >
-                <Button
-                  onClick={toggle}
-                  css={buttonBase(theme, { type: 'primary' })}
-                >
+                <StyledButton onClick={toggle} variation="primary">
                   Articles
-                </Button>
+                </StyledButton>
               </div>
             </ListItem>
             <ListItem>
@@ -228,13 +225,9 @@ const Index = () => {
                 }}
                 ref={experienceButtonRef}
               >
-                <Button
-                  as={Link}
-                  css={buttonBase(theme, { type: 'secondary' })}
-                  to="/experience/"
-                >
+                <StyledButton as={Link} variation="secondary" to="/experience/">
                   Experience
-                </Button>
+                </StyledButton>
               </div>
             </ListItem>
           </Inline>
