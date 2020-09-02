@@ -32,6 +32,18 @@ SocialButton.propTypes = {
   variation: PropTypes.string.isRequired,
 }
 
+const ModalLink = (props) => {
+  const theme = useTheme()
+
+  return <TextLink css={[text.underline, link.reset(theme)]} {...props} />
+}
+
+const SectionTitle = (props) => {
+  const theme = useTheme()
+
+  return <h4 css={{ ...theme.fontSize.xlarge__fluid }} {...props} /> // eslint-disable-line jsx-a11y/heading-has-content
+}
+
 const AboutModal = () => {
   const [isAboutModalOpen, toggleAboutModalOpen] = useState(false)
   const theme = useTheme()
@@ -123,68 +135,30 @@ const AboutModal = () => {
             }}
           >
             I create buttons, borders, and other groovy things at{' '}
-            <TextLink
-              href="https://www.gremlin.com"
-              css={[text.underline, link.reset(theme)]}
-            >
-              Gremlin
-            </TextLink>
-            . I work with techologies like{' '}
-            <TextLink
-              href="https://reactjs.org"
-              css={[text.underline, link.reset(theme)]}
-            >
-              ReactJS
-            </TextLink>
-            ,{' '}
-            <TextLink
-              href="https://gatsbyjs.org"
-              css={[text.underline, link.reset(theme)]}
-            >
-              GatsbyJS
-            </TextLink>
-            ,{' '}
-            <TextLink
-              href="https://nextjs.org"
-              css={[text.underline, link.reset(theme)]}
-            >
-              Next.JS
-            </TextLink>
-            , and{' '}
-            <TextLink
-              href="https://nodejs.org"
-              css={[text.underline, link.reset(theme)]}
-            >
-              NodeJS
-            </TextLink>
-            . My background involves pushing the limits of what we can build on
-            the backend and how we can experience it on the frontend. My
-            passions are perfecting process and educating those around me.
+            <ModalLink href="https://www.gremlin.com">Gremlin</ModalLink>. I
+            work with techologies like{' '}
+            <ModalLink href="https://reactjs.org">ReactJS</ModalLink>,{' '}
+            <ModalLink href="https://gatsbyjs.org">GatsbyJS</ModalLink>,{' '}
+            <ModalLink href="https://nextjs.org">Next.JS</ModalLink>, and{' '}
+            <ModalLink href="https://nodejs.org">NodeJS</ModalLink>. My
+            background involves pushing the limits of what we can build on the
+            backend and how we can experience it on the frontend. My passions
+            are perfecting process and educating those around me.
           </p>
-          <h4 css={{ ...theme.fontSize.xlarge__fluid }}>Speaking/Consulting</h4>
+          <SectionTitle>Speaking/Consulting</SectionTitle>
           <p>
             Have an event or consulting project you&apos;d like me to be a part
             of? Awesome!{' '}
-            <a
-              href="mailto:info@zslabs.com"
-              css={[text.underline, link.reset(theme)]}
-            >
-              Let&apos;s chat
-            </a>
+            <ModalLink href="mailto:info@zslabs.com">Let&apos;s chat</ModalLink>
             .
           </p>
-          <h4 css={{ ...theme.fontSize.xlarge__fluid }}>
-            How&apos;d you build this site?!
-          </h4>
+          <SectionTitle>How&apos;d you build this site?!</SectionTitle>
           <p>
             Because I love open-source&mdash;it&apos;s available for anyone to
             use. Find a bug? Report it!{' '}
-            <TextLink
-              href="https://github.com/zslabs/zslabs.com"
-              css={[text.underline, link.reset(theme)]}
-            >
+            <ModalLink href="https://github.com/zslabs/zslabs.com">
               View source
-            </TextLink>
+            </ModalLink>
             .
           </p>
         </ModalBody>
