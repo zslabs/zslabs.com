@@ -99,7 +99,7 @@ const Index = () => {
         yPercent: 75,
       })
       .to(introTitleSubRef.current, {
-        duration: 0.75,
+        duration: 0.5,
         autoAlpha: 1,
         yPercent: 0,
         stagger: 0.025,

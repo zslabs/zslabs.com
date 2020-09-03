@@ -53,9 +53,6 @@ const AboutModal = () => {
       <StyledButton
         className="ZS__Header__Item"
         type="reset"
-        css={{
-          touchAction: 'none',
-        }}
         onClick={() => toggleAboutModalOpen(true)}
       >
         <img
