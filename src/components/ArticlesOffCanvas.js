@@ -29,7 +29,7 @@ const ArticlesOffCanvas = ({ articles }) => {
           css={{ width: theme.height.xsmall, height: theme.height.xsmall }}
         />
       </StyledButton>
-      <OffCanvas open={open} panelWidth={350} onOffCanvasToggle={toggle}>
+      <OffCanvas open={open} panelWidth={350} setIsOpen={toggle}>
         <h2
           css={[
             titleStyles(theme),

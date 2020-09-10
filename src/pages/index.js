@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import gsap from 'gsap'
 import {
   Container,
   Inline,
@@ -12,6 +11,7 @@ import { link, misc } from 'chaoskit/src/assets/styles/utility'
 import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient'
 import { useTheme } from 'emotion-theming'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { motion, useAnimation } from 'framer-motion'
 
 import { backgroundDots, titleStyles } from '~helpers'
 import Foundation from '~layouts/Foundation'
@@ -22,16 +22,59 @@ import useArticlesOffCanvasState from '~hooks/useArticlesOffCanvasState'
 import StyledButton from '~components/StyledButton'
 
 const Index = () => {
+  const theme = useTheme()
+
   const toggle = useArticlesOffCanvasState((state) => state.toggle)
 
-  const introTitle = useRef()
-  const introTitleSubRef = useRef([])
-  const articleButtonRef = useRef()
-  const experienceButtonRef = useRef()
   const projectsRef = useRef()
-  const latestArticleRef = useRef()
 
-  const theme = useTheme()
+  const introTitleVariants = {
+    hidden: {
+      y: '50%',
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  }
+
+  const introTitleSubVariants = {
+    hidden: {
+      y: theme.space.medium,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  }
+
+  const buttonVariants = {
+    hidden: {
+      scale: 0.5,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+    },
+  }
+  const latestArticleVariants = {
+    hidden: {
+      scale: 0.5,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+    },
+  }
+
+  const introTitleControls = useAnimation()
+  const introTitleSubControls = useAnimation()
+  const buttonControls = useAnimation()
+  const latestArticleControls = useAnimation()
 
   const {
     latestArticle: {
@@ -79,74 +122,14 @@ const Index = () => {
     }
   `)
 
-  const pageAnimation = () => {
-    const pageTimeline = gsap.timeline({
-      defaults: {
-        ease: theme.gsap.transition.bounce,
-      },
-    })
+  const pageAnimation = async () => {
+    await introTitleControls.start('visible')
 
-    pageTimeline
-      .set(introTitle.current, {
-        yPercent: 50,
-      })
-      .to(introTitle.current, {
-        duration: 0.5,
-        yPercent: 0,
-        autoAlpha: 1,
-      })
-      .set(introTitleSubRef.current, {
-        yPercent: 75,
-      })
-      .to(introTitleSubRef.current, {
-        duration: 0.5,
-        autoAlpha: 1,
-        yPercent: 0,
-        stagger: 0.025,
-      })
-      .set([articleButtonRef.current, experienceButtonRef.current], {
-        scale: 0,
-      })
-      .to(
-        articleButtonRef.current,
-        {
-          duration: 0.5,
-          scale: 1,
-          autoAlpha: 1,
-        },
-        'introButtons'
-      )
-      .to(
-        experienceButtonRef.current,
-        {
-          delay: 0.125,
-          duration: 0.75,
-          scale: 1,
-          autoAlpha: 1,
-        },
-        'introButtons'
-      )
-      .to(latestArticleRef.current, {
-        duration: 0.25,
-        autoAlpha: 1,
-      })
-      .set(projectsRef.current, {
-        yPercent: 10,
-      })
-      .to(projectsRef.current, {
-        duration: 0.25,
-        delay: 0.25,
-        autoAlpha: 1,
-        yPercent: 0,
-      })
-      .set('.ZS__Footer', {
-        yPercent: 25,
-      })
-      .to('.ZS__Footer', {
-        duration: 0.25,
-        autoAlpha: 1,
-        yPercent: 0,
-      })
+    await introTitleSubControls.start('visible')
+
+    await buttonControls.start('visible')
+
+    latestArticleControls.start('visible')
   }
 
   const introTitleSub = 'Full-Stack/Motion Developer'
@@ -166,24 +149,26 @@ const Index = () => {
               const key = `${character}-${index}`
 
               return (
-                <span
+                <motion.span
                   key={key}
                   css={{
                     display: 'inline-block',
-
-                    // GSAP
-                    visibility: 'hidden',
                   }}
-                  ref={(element) => {
-                    introTitleSubRef.current[index] = element
+                  initial="hidden"
+                  transition={{
+                    delay: index * 0.025,
+                    type: 'spring',
+                    stiffness: 100,
                   }}
+                  animate={introTitleSubControls}
+                  variants={introTitleSubVariants}
                 >
                   {character.trim().length > 0 ? character : '\u00a0'}
-                </span>
+                </motion.span>
               )
             })}
           </h5>
-          <h1
+          <motion.h1
             css={{
               marginTop: 0,
               ...misc.fluidSize({
@@ -192,124 +177,131 @@ const Index = () => {
                 from: theme.fontSize.h1,
                 to: theme.fontSize.h1 * 1.5,
               }),
-              // GSAP
-              visibility: 'hidden',
             }}
-            ref={introTitle}
+            initial="hidden"
+            variants={introTitleVariants}
+            animate={introTitleControls}
           >
             Zach Schnackel
-          </h1>
+          </motion.h1>
         </div>
         <div css={{ marginTop: theme.space.large }}>
           <Inline size="medium" css={{ justifyContent: 'center' }}>
             <ListItem>
-              <div
-                css={{
-                  // GSAP
-                  transformOrigin: 'center center',
-                  visibility: 'hidden',
+              <motion.div
+                initial="hidden"
+                variants={buttonVariants}
+                animate={buttonControls}
+                transition={{
+                  duration: theme.motion.timing.short,
+                  type: 'spring',
+                  stiffness: 150,
                 }}
-                ref={articleButtonRef}
               >
                 <StyledButton onClick={toggle} variation="primary">
                   Articles
                 </StyledButton>
-              </div>
+              </motion.div>
             </ListItem>
             <ListItem>
-              <div
-                css={{
-                  // GSAP
-                  transformOrigin: 'center center',
-                  visibility: 'hidden',
+              <motion.div
+                initial="hidden"
+                variants={buttonVariants}
+                animate={buttonControls}
+                transition={{
+                  delay: theme.motion.timing.short / 2,
+                  duration: theme.motion.timing.short,
+                  type: 'spring',
+                  stiffness: 150,
                 }}
-                ref={experienceButtonRef}
               >
                 <StyledButton as={Link} variation="secondary" to="/experience/">
                   Experience
                 </StyledButton>
-              </div>
+              </motion.div>
             </ListItem>
           </Inline>
         </div>
-        <Link
-          to={latestArticle.node.fields.fullUrl}
-          ref={latestArticleRef}
-          css={[
-            misc.fluidSize({
-              theme,
-              property: 'marginTop',
-              from: theme.space.xlarge,
-              to: theme.space.xlarge * 1.5,
-            }),
-            link.reset(theme),
-            {
-              textAlign: 'center',
-              display: 'inline-flex',
-              flexDirection: 'column',
-              padding: theme.space.base,
-              position: 'relative',
-              left: '50%',
-              zIndex: 1,
-              transform: 'translateX(-50%)',
-              transition: `transform ${theme.timing.base} ${theme.transition.bounce}`,
-
-              // GSAP
-              visibility: 'hidden',
-
-              '&:hover, &:focus': {
-                transform: 'translateX(-50%) scale(1.05)',
-              },
-
-              '&::before, &::after': {
-                content: "''",
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                background: generateGradient({
-                  start: theme.color.light.base,
-                  stop: theme.color.panel.base,
-                  position: 'to bottom right',
-                }),
-                transform: 'skew(-15deg)',
-              },
-
-              '&::before': {
-                zIndex: -1,
-              },
-
-              '&::after': {
-                zIndex: -2,
-                backgroundImage: `url(${pattern})`,
-                backgroundPosition: '-600px -575px',
-                backgroundSize: '1500px 1000px',
-                backgroundRepeat: 'no-repeat',
-                opacity: theme.opacity.base,
-                transform: `skew(-15deg) translate(-${theme.space.small}px, -${theme.space.small}px)`,
-              },
-
-              [theme.mq.small]: {
-                minWidth: `calc(${theme.breakpoint.small}px * 0.75)`,
-              },
-            },
-          ]}
+        <motion.div
+          initial="hidden"
+          variants={latestArticleVariants}
+          animate={latestArticleControls}
         >
-          <div>
-            <span
-              css={{ fontSize: theme.fontSize.medium }}
-              role="img"
-              aria-label="Hooray!"
-            >
-              🎉
-            </span>{' '}
-            Check out my latest article:
-          </div>
-          <div css={{ fontWeight: theme.fontWeight.bold }}>
-            {latestArticle.node.frontmatter.title}
-          </div>
-        </Link>
+          <Link
+            to={latestArticle.node.fields.fullUrl}
+            css={[
+              misc.fluidSize({
+                theme,
+                property: 'marginTop',
+                from: theme.space.xlarge,
+                to: theme.space.xlarge * 1.5,
+              }),
+              link.reset(theme),
+              {
+                textAlign: 'center',
+                display: 'inline-flex',
+                flexDirection: 'column',
+                padding: theme.space.base,
+                position: 'relative',
+                left: '50%',
+                zIndex: 1,
+                transform: 'translateX(-50%)',
+                transition: `transform ${theme.timing.base} ${theme.transition.bounce}`,
+
+                '&:hover, &:focus': {
+                  transform: 'translateX(-50%) scale(1.05)',
+                },
+
+                '&::before, &::after': {
+                  content: "''",
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  background: generateGradient({
+                    start: theme.color.light.base,
+                    stop: theme.color.panel.base,
+                    position: 'to bottom right',
+                  }),
+                  transform: 'skew(-15deg)',
+                },
+
+                '&::before': {
+                  zIndex: -1,
+                },
+
+                '&::after': {
+                  zIndex: -2,
+                  backgroundImage: `url(${pattern})`,
+                  backgroundPosition: '-600px -575px',
+                  backgroundSize: '1500px 1000px',
+                  backgroundRepeat: 'no-repeat',
+                  opacity: theme.opacity.base,
+                  transform: `skew(-15deg) translate(-${theme.space.small}px, -${theme.space.small}px)`,
+                },
+
+                [theme.mq.small]: {
+                  minWidth: `calc(${theme.breakpoint.small}px * 0.75)`,
+                },
+              },
+            ]}
+          >
+            <div>
+              <span
+                css={{ fontSize: theme.fontSize.medium }}
+                role="img"
+                aria-label="Hooray!"
+              >
+                🎉
+              </span>{' '}
+              Check out my latest article:
+            </div>
+            <div css={{ fontWeight: theme.fontWeight.bold }}>
+              {latestArticle.node.frontmatter.title}
+            </div>
+          </Link>
+        </motion.div>
       </Section>
       <Section
         id="recent-projects"
