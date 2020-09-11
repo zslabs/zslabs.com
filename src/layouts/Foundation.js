@@ -30,12 +30,12 @@ const HeaderItemWrapper = (
 
   const variants = {
     hidden: {
-      y: -theme.space.large,
       opacity: 0,
+      y: -theme.space.large,
     },
     visible: {
-      y: 0,
       opacity: 1,
+      y: 0,
     },
   }
 
