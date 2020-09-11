@@ -47,8 +47,8 @@ const HeaderItemWrapper = (
       initial={runAnimation ? 'hidden' : false}
       transition={{
         delay: custom * 0.15,
-        type: 'spring',
-        stiffness: 100,
+        duration: theme.motion.timing.base,
+        ...theme.motion.transition.springX,
       }}
       className={clsx('ZS__Header__ItemWrapper', className)}
       {...rest}

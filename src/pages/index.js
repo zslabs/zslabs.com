@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import {
   Container,
@@ -25,8 +24,6 @@ const Index = () => {
   const theme = useTheme()
 
   const toggle = useArticlesOffCanvasState((state) => state.toggle)
-
-  const projectsRef = useRef()
 
   const introTitleVariants = {
     hidden: {
@@ -60,6 +57,7 @@ const Index = () => {
       opacity: 1,
     },
   }
+
   const latestArticleVariants = {
     hidden: {
       scale: 0.5,
@@ -70,11 +68,22 @@ const Index = () => {
       opacity: 1,
     },
   }
+  const projectsVariants = {
+    hidden: {
+      y: theme.space.large,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  }
 
   const introTitleControls = useAnimation()
   const introTitleSubControls = useAnimation()
   const buttonControls = useAnimation()
   const latestArticleControls = useAnimation()
+  const projectsControls = useAnimation()
 
   const {
     latestArticle: {
@@ -129,7 +138,9 @@ const Index = () => {
 
     await buttonControls.start('visible')
 
-    latestArticleControls.start('visible')
+    await latestArticleControls.start('visible')
+
+    projectsControls.start('visible')
   }
 
   const introTitleSub = 'Full-Stack/Motion Developer'
@@ -157,8 +168,7 @@ const Index = () => {
                   initial="hidden"
                   transition={{
                     delay: index * 0.025,
-                    type: 'spring',
-                    stiffness: 100,
+                    ...theme.motion.transition.spring,
                   }}
                   animate={introTitleSubControls}
                   variants={introTitleSubVariants}
@@ -193,9 +203,7 @@ const Index = () => {
                 variants={buttonVariants}
                 animate={buttonControls}
                 transition={{
-                  duration: theme.motion.timing.short,
-                  type: 'spring',
-                  stiffness: 150,
+                  ...theme.motion.transition.springX,
                 }}
               >
                 <StyledButton onClick={toggle} variation="primary">
@@ -209,10 +217,8 @@ const Index = () => {
                 variants={buttonVariants}
                 animate={buttonControls}
                 transition={{
-                  delay: theme.motion.timing.short / 2,
-                  duration: theme.motion.timing.short,
-                  type: 'spring',
-                  stiffness: 150,
+                  delay: theme.motion.timing.short,
+                  ...theme.motion.transition.springX,
                 }}
               >
                 <StyledButton as={Link} variation="secondary" to="/experience/">
@@ -318,12 +324,10 @@ const Index = () => {
           },
         }}
       >
-        <div
-          css={{
-            // GSAP
-            visibility: 'hidden',
-          }}
-          ref={projectsRef}
+        <motion.div
+          initial="hidden"
+          variants={projectsVariants}
+          animate={projectsControls}
         >
           <Container
             css={{
@@ -370,7 +374,7 @@ const Index = () => {
               </BubbleList>
             </div>
           </Container>
-        </div>
+        </motion.div>
       </Section>
     </Foundation>
   )

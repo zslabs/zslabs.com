@@ -3,6 +3,7 @@ import { useTheme } from 'emotion-theming'
 import clsx from 'clsx'
 import { rgba } from 'polished'
 import { link } from 'chaoskit/src/assets/styles/utility'
+import { motion } from 'framer-motion'
 
 import { TextLink } from './mdxShortcodes'
 import Icon from './Icon'
@@ -40,44 +41,51 @@ const FooterLink = (props) => {
 const Footer = ({ className, runAnimation, ...rest }) => {
   const theme = useTheme()
 
+  const footerVariants = {
+    hidden: {
+      opacity: 0,
+      y: theme.space.large,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+  }
+
   return (
-    <footer
-      css={[
-        runAnimation && {
-          // GSAP
-          visibility: 'hidden',
+    <motion.footer
+      initial={runAnimation ? 'hidden' : false}
+      animate="visible"
+      variants={footerVariants}
+      css={{
+        position: 'relative',
+        paddingTop: theme.space.large + theme.space.base,
+        paddingBottom: theme.space.base,
+        textAlign: 'center',
+        fontSize: theme.fontSize.small,
+        color: theme.fontColor.muted,
+
+        '&::before, &::after': {
+          content: "''",
+          position: 'absolute',
+          background: `url(${pattern}) no-repeat`,
+          backgroundSize: '1500px 1000px',
+          backgroundPosition: '-800px -575px',
+          height: 2,
+          left: '50%',
+          transform: 'translateX(-50%)',
         },
 
-        {
-          position: 'relative',
-          paddingTop: theme.space.large + theme.space.base,
-          paddingBottom: theme.space.base,
-          textAlign: 'center',
-          fontSize: theme.fontSize.small,
-          color: theme.fontColor.muted,
-
-          '&::before, &::after': {
-            content: "''",
-            position: 'absolute',
-            background: `url(${pattern}) no-repeat`,
-            backgroundSize: '1500px 1000px',
-            backgroundPosition: '-800px -575px',
-            height: 2,
-            left: '50%',
-            transform: 'translateX(-50%)',
-          },
-
-          '&::before': {
-            width: 250,
-            top: 0,
-          },
-
-          '&::after': {
-            width: 125,
-            top: theme.space.base,
-          },
+        '&::before': {
+          width: 250,
+          top: 0,
         },
-      ]}
+
+        '&::after': {
+          width: 125,
+          top: theme.space.base,
+        },
+      }}
       className={clsx('ZS__Footer', className)}
       {...rest}
     >
@@ -101,7 +109,7 @@ const Footer = ({ className, runAnimation, ...rest }) => {
           <Icon size="medium" icon="list-logo" />
         </FooterLink>
       </div>
-    </footer>
+    </motion.footer>
   )
 }
 
