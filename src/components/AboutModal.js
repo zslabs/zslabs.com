@@ -45,7 +45,7 @@ const SectionTitle = (props) => {
 }
 
 const AboutModal = () => {
-  const [isAboutModalOpen, toggleAboutModalOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const theme = useTheme()
 
   return (
@@ -53,7 +53,7 @@ const AboutModal = () => {
       <StyledButton
         className="ZS__Header__Item"
         type="reset"
-        onClick={() => toggleAboutModalOpen(true)}
+        onClick={() => setIsOpen(true)}
       >
         <img
           loading="lazy"
@@ -67,13 +67,10 @@ const AboutModal = () => {
           }}
         />
       </StyledButton>
-      <Modal
-        open={isAboutModalOpen}
-        onOutsideModalClick={() => toggleAboutModalOpen(false)}
-      >
+      <Modal open={isOpen} setIsOpen={setIsOpen}>
         <ModalBody>
           <Close
-            onClick={() => toggleAboutModalOpen(false)}
+            onClick={() => setIsOpen(false)}
             css={{
               position: 'absolute',
               top: theme.space.large,

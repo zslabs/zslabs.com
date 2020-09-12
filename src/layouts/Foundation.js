@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { useStaticQuery, graphql } from 'gatsby'
 import 'what-input'
-import gsap from 'gsap'
 import rootUnits from 'root-units'
 import { Global } from '@emotion/core'
 import { useTheme } from 'emotion-theming'
 import { Container } from 'chaoskit/src/components'
 import { misc } from 'chaoskit/src/assets/styles/utility'
 import { globalStyles } from 'chaoskit/src/assets/styles/global'
+import { motion, useAnimation } from 'framer-motion'
 
 import { global } from '~styles/global'
 import { fonts } from '~styles/fonts'
@@ -22,22 +22,58 @@ import HelmetSEO from '~components/HelmetSEO'
 import Footer from '~components/Footer'
 import useSiteMetadata from '~hooks/useSiteMetadata'
 
-const HeaderItemWrapper = ({ className, ...rest }) => (
-  <div className={clsx('ZS__Header__ItemWrapper', className)} {...rest} />
-)
+const HeaderItemWrapper = (
+  { runAnimation, className, controls, custom, ...rest },
+  ref
+) => {
+  const theme = useTheme()
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: -theme.space.large,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      animate={controls}
+      variants={variants}
+      initial={runAnimation ? 'hidden' : false}
+      transition={{
+        delay: custom * 0.15,
+        duration: theme.motion.timing.base,
+        ...theme.motion.transition.springX,
+      }}
+      className={clsx('ZS__Header__ItemWrapper', className)}
+      {...rest}
+    />
+  )
+}
 
 HeaderItemWrapper.propTypes = {
   className: PropTypes.string,
+  controls: PropTypes.object.isRequired,
+  custom: PropTypes.number.isRequired,
+  runAnimation: PropTypes.bool,
 }
 
 const Foundation = ({
   children,
   onAfterAnimation = () => {},
   runAnimation,
+  footerMotion,
 }) => {
   const theme = useTheme()
 
   const { title } = useSiteMetadata()
+
+  const controls = useAnimation()
 
   const {
     articles: { edges: articles },
@@ -69,21 +105,7 @@ const Foundation = ({
   )
 
   const runAnimationFunc = async () => {
-    const pageTimeline = gsap.timeline({
-      delay: 0.25,
-    })
-
-    await pageTimeline
-      .set('.ZS__Header__ItemWrapper', {
-        yPercent: -100,
-      })
-      .to('.ZS__Header__ItemWrapper', {
-        duration: 0.5,
-        autoAlpha: 1,
-        yPercent: 0,
-        ease: theme.gsap.transition.bounce,
-        stagger: 0.1,
-      })
+    await controls.start('visible')
 
     onAfterAnimation()
   }
@@ -127,16 +149,13 @@ const Foundation = ({
                 },
               },
             },
-
-            runAnimation && {
-              // GSAP
-              '.ZS__Header__ItemWrapper': {
-                visibility: 'hidden',
-              },
-            },
           ]}
         >
-          <HeaderItemWrapper>
+          <HeaderItemWrapper
+            runAnimation={runAnimation}
+            controls={controls}
+            custom={1}
+          >
             <Link
               className="ZS__Header__Item"
               to="/"
@@ -152,19 +171,26 @@ const Foundation = ({
               }}
             />
           </HeaderItemWrapper>
-          <HeaderItemWrapper>
+          <HeaderItemWrapper
+            runAnimation={runAnimation}
+            controls={controls}
+            custom={2}
+          >
             <ArticlesOffCanvas articles={articles} />
           </HeaderItemWrapper>
           <HeaderItemWrapper
+            runAnimation={runAnimation}
+            controls={controls}
             css={{
               justifyContent: 'flex-end',
             }}
+            custom={3}
           >
             <AboutModal />
           </HeaderItemWrapper>
         </header>
         <main>{children}</main>
-        <Footer runAnimation={runAnimation} />
+        <Footer footerMotion={footerMotion} />
       </Container>
     </Fragment>
   )
@@ -174,6 +200,7 @@ Foundation.propTypes = {
   runAnimation: PropTypes.bool,
   children: PropTypes.node.isRequired,
   onAfterAnimation: PropTypes.func,
+  footerMotion: PropTypes.object,
 }
 
 export default Foundation
