@@ -79,11 +79,23 @@ const Index = () => {
     },
   }
 
+  const footerVariants = {
+    hidden: {
+      y: theme.space.large,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  }
+
   const introTitleControls = useAnimation()
   const introTitleSubControls = useAnimation()
   const buttonControls = useAnimation()
   const latestArticleControls = useAnimation()
   const projectsControls = useAnimation()
+  const footerControls = useAnimation()
 
   const {
     latestArticle: {
@@ -140,13 +152,22 @@ const Index = () => {
 
     await latestArticleControls.start('visible')
 
-    projectsControls.start('visible')
+    await projectsControls.start('visible')
+
+    footerControls.start('visible')
   }
 
   const introTitleSub = 'Full-Stack/Motion Developer'
 
   return (
-    <Foundation runAnimation onAfterAnimation={pageAnimation}>
+    <Foundation
+      runAnimation
+      onAfterAnimation={pageAnimation}
+      footerMotion={{
+        variants: footerVariants,
+        controls: footerControls,
+      }}
+    >
       <Section size="xlarge">
         <div css={{ textAlign: 'center' }}>
           <h5

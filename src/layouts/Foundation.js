@@ -67,6 +67,7 @@ const Foundation = ({
   children,
   onAfterAnimation = () => {},
   runAnimation,
+  footerMotion,
 }) => {
   const theme = useTheme()
 
@@ -189,7 +190,7 @@ const Foundation = ({
           </HeaderItemWrapper>
         </header>
         <main>{children}</main>
-        <Footer runAnimation={runAnimation} />
+        <Footer footerMotion={footerMotion} />
       </Container>
     </Fragment>
   )
@@ -199,6 +200,7 @@ Foundation.propTypes = {
   runAnimation: PropTypes.bool,
   children: PropTypes.node.isRequired,
   onAfterAnimation: PropTypes.func,
+  footerMotion: PropTypes.object,
 }
 
 export default Foundation

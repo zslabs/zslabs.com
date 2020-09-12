@@ -38,25 +38,14 @@ const FooterLink = (props) => {
   )
 }
 
-const Footer = ({ className, runAnimation, ...rest }) => {
+const Footer = ({ className, footerMotion, ...rest }) => {
   const theme = useTheme()
-
-  const footerVariants = {
-    hidden: {
-      opacity: 0,
-      y: theme.space.large,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  }
 
   return (
     <motion.footer
-      initial={runAnimation ? 'hidden' : false}
-      animate="visible"
-      variants={footerVariants}
+      initial={footerMotion?.controls ? 'hidden' : false}
+      animate={footerMotion?.controls}
+      variants={footerMotion?.variants}
       css={{
         position: 'relative',
         paddingTop: theme.space.large + theme.space.base,
@@ -115,7 +104,7 @@ const Footer = ({ className, runAnimation, ...rest }) => {
 
 Footer.propTypes = {
   className: PropTypes.string,
-  runAnimation: PropTypes.bool,
+  footerMotion: PropTypes.object,
 }
 
 export default Footer
