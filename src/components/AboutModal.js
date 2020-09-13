@@ -131,13 +131,20 @@ const AboutModal = () => {
             I create buttons, borders, and other groovy things at{' '}
             <ModalLink href="https://www.gremlin.com">Gremlin</ModalLink>. I
             work with techologies like{' '}
-            <ModalLink href="https://reactjs.org">ReactJS</ModalLink>,{' '}
-            <ModalLink href="https://gatsbyjs.org">GatsbyJS</ModalLink>,{' '}
-            <ModalLink href="https://nextjs.org">Next.JS</ModalLink>, and{' '}
-            <ModalLink href="https://nodejs.org">NodeJS</ModalLink>. My
-            background involves pushing the limits of what we can build on the
-            backend and how we can experience it on the frontend. My passions
-            are perfecting process and educating those around me.
+            <ModalLink href="https://reactjs.org">React</ModalLink>,{' '}
+            <ModalLink href="https://gatsbyjs.org">Gatsby</ModalLink>,{' '}
+            <ModalLink href="https://nextjs.org">Next.js</ModalLink>, and{' '}
+            <ModalLink href="https://nodejs.org">Node</ModalLink>.{' '}
+            <ModalLink href="https://www.framer.com/motion/">
+              Framer Motion
+            </ModalLink>{' '}
+            and <ModalLink href="https://greensock.com/">GSAP</ModalLink> are my
+            go-to animation utilities.
+          </p>
+          <p>
+            My background involves pushing the limits of what we can build on
+            the backend and how we can experience it on the frontend. My
+            passions are perfecting process and educating those around me.
           </p>
           <SectionTitle>Speaking/Consulting</SectionTitle>
           <p>
