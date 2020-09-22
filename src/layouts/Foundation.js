@@ -104,20 +104,20 @@ const Foundation = ({
     `
   )
 
-  const runAnimationFunc = async () => {
-    await controls.start('visible')
-
-    onAfterAnimation()
-  }
-
   useEffect(() => {
     // Get more reliable viewport units
     rootUnits.install()
 
+    async function runAnimationFunc() {
+      await controls.start('visible')
+
+      onAfterAnimation()
+    }
+
     if (runAnimation) {
       runAnimationFunc()
     }
-  }, [])
+  }, [controls, onAfterAnimation, runAnimation])
 
   return (
     <Fragment>
