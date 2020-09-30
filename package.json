@@ -32,7 +32,7 @@
     "gatsby-plugin-canonical-urls": "2.3.11",
     "gatsby-plugin-emotion": "4.3.11",
     "gatsby-plugin-feed": "2.5.12",
-    "gatsby-plugin-google-analytics": "2.3.14",
+    "gatsby-plugin-gtag": "1.0.13",
     "gatsby-plugin-manifest": "2.4.31",
     "gatsby-plugin-mdx": "1.2.40",
     "gatsby-plugin-mdx-frontmatter": "0.0.2",
