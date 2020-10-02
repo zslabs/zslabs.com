@@ -3944,10 +3944,10 @@ change-case@^3.1.0:
     upper-case "^1.1.1"
     upper-case-first "^1.1.0"
 
-chaoskit@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/chaoskit/-/chaoskit-3.0.1.tgz#e3e1d747a9227892b57037e5e291f6d0be12bfe9"
-  integrity sha512-ntbf9J+GBtdkKH/kJWZXP8MyCVSO5Nc7qx3FhEES5nafN3XMCZhjFHYEjOQK6ewA4bOrR39OYTYAJsP/ZpfeDA==
+chaoskit@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/chaoskit/-/chaoskit-3.0.2.tgz#36a86190606a938a238798154937f4a820270a10"
+  integrity sha512-c0Y4oOqwFTioG7Y7aByd/yrqEoLmbNuROFQPozkWNmHwBCptt72mKt/xZf3AG3fAiMp9beP+jxin50O5torrFw==
   dependencies:
     "@emotion/babel-preset-css-prop" "10.0.27"
     "@emotion/cache" "10.0.29"
@@ -3971,7 +3971,7 @@ chaoskit@3.0.1:
     eslint-plugin-prettier "3.1.4"
     eslint-plugin-react "7.21.2"
     eslint-plugin-react-hooks "4.1.2"
-    formik "2.1.7"
+    formik "2.1.5"
     framer-motion "2.7.7"
     fstream "1.0.12"
     lodash-es "4.17.15"
@@ -6894,21 +6894,7 @@ form-data@~2.3.2:
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
 
-formik@2.1.7:
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/formik/-/formik-2.1.7.tgz#40bd04e59b242176d0a17c701830f1536cd7506b"
-  integrity sha512-n1wviIh0JsvHqj9PufNvOV+fS7mFwh9FfMxxTMnTrKR/uVYMS06DKaivXBlJdDF0qEwTcPHxSmIQ3deFHL3Hsg==
-  dependencies:
-    deepmerge "^2.1.1"
-    hoist-non-react-statics "^3.3.0"
-    lodash "^4.17.14"
-    lodash-es "^4.17.14"
-    react-fast-compare "^2.0.1"
-    scheduler "^0.18.0"
-    tiny-warning "^1.0.2"
-    tslib "^1.10.0"
-
-formik@^2.0.8:
+formik@2.1.5, formik@^2.0.8:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/formik/-/formik-2.1.5.tgz#de5bbbe35543fa6d049fe96b8ee329d6cd6892b8"
   integrity sha512-bWpo3PiqVDYslvrRjTq0Isrm0mFXHiO33D8MS6t6dWcqSFGeYF52nlpCM2xwOJ6tRVRznDkL+zz/iHPL4LDuvQ==
