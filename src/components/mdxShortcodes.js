@@ -3,6 +3,7 @@ import { useTheme } from 'emotion-theming'
 import { Button, List, ListItem } from 'chaoskit/src/components'
 import { preToCodeBlock } from 'mdx-utils'
 import GHSlugger from 'github-slugger'
+import { OutboundLink } from 'gatsby-plugin-gtag'
 
 import Icon from './Icon'
 import Code from './Code'
@@ -32,7 +33,7 @@ export const TextLink = ({ href, ...rest }) => {
   }
 
   return (
-    <a
+    <OutboundLink
       data-link-external
       href={href}
       target="_blank"
