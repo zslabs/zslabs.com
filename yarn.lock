@@ -3956,10 +3956,10 @@ change-case@^3.1.0:
     upper-case "^1.1.1"
     upper-case-first "^1.1.0"
 
-chaoskit@3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/chaoskit/-/chaoskit-3.2.1.tgz#bdf194b403d55cbef14c584416ba9f1774b28573"
-  integrity sha512-tTAurkG2oBB7+cET7CY9EZ9YCifC6PkSFn30YjWxXIwJlIHqDwsvpwyXjsX1asi1HUIx1Slmp27jjFmUW1Xjug==
+chaoskit@3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/chaoskit/-/chaoskit-3.2.2.tgz#5baa78b3a3edcba52940557293ca95ff880e3282"
+  integrity sha512-2gK5WpAjmOja/r/0bhU3XfVU9lHttotCcSnInz+ugLpe4qGklU0V9h2qzM17RTR+7M1q4T4ZXnHg+dSpkl/VBg==
   dependencies:
     "@emotion/babel-preset-css-prop" "10.0.27"
     "@emotion/cache" "10.0.29"
@@ -3981,9 +3981,9 @@ chaoskit@3.2.1:
     eslint-plugin-import "2.22.1"
     eslint-plugin-jsx-a11y "6.3.1"
     eslint-plugin-prettier "3.1.4"
-    eslint-plugin-react "7.21.2"
+    eslint-plugin-react "7.21.3"
     eslint-plugin-react-hooks "4.1.2"
-    framer-motion "2.7.7"
+    framer-motion "2.7.8"
     fstream "1.0.12"
     lodash-es "4.17.15"
     match-sorter "4.2.1"
@@ -4002,7 +4002,7 @@ chaoskit@3.2.1:
   optionalDependencies:
     "@hookform/resolvers" ">=1.0.0"
     formik "2.1.5"
-    react-hook-form ">=6.9.1"
+    react-hook-form ">=6.9.2"
     yup ">=0.29.3"
 
 character-entities-html4@^1.0.0:
@@ -6025,10 +6025,10 @@ eslint-plugin-react-hooks@^1.7.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.7.0.tgz#6210b6d5a37205f0b92858f895a4e827020a7d04"
   integrity sha512-iXTCFcOmlWvw4+TOE8CLWj6yX1GwzT0Y6cUfHHZqWnSk144VmVIRcVGtUAzrLES7C798lmvnt02C7rxaOX1HNA==
 
-eslint-plugin-react@7.21.2:
-  version "7.21.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.21.2.tgz#3bd5d2c4c36d5a0428d0d6dda301ac9a84d681b2"
-  integrity sha512-j3XKvrK3rpBzveKFbgAeGsWb9uz6iUOrR0jixRfjwdFeGSRsXvVTFtHDQYCjsd1/6Z/xvb8Vy3LiI5Reo7fDrg==
+eslint-plugin-react@7.21.3:
+  version "7.21.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.21.3.tgz#71655d2af5155b19285ec929dd2cdc67a4470b52"
+  integrity sha512-OI4GwTCqyIb4ipaOEGLWdaOHCXZZydStAsBEPB2e1ZfNM37bojpgO1BoOQbFb0eLVz3QLDx7b+6kYcrxCuJfhw==
   dependencies:
     array-includes "^3.1.1"
     array.prototype.flatmap "^1.2.3"
@@ -6941,10 +6941,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@2.7.7:
-  version "2.7.7"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.7.7.tgz#678e10cb9a6ba7a8a4645fc414a4ab6bc03eadd8"
-  integrity sha512-mAoU31M2XQ9Itxxxlqpac5NARuxSE/LML9rxHV7esbKwre5KIvTN34/C78gXmco5U9HHlxh4C2FiWcgmEviZnw==
+framer-motion@2.7.8:
+  version "2.7.8"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.7.8.tgz#3bc607200642b4a331df1d5e44eec8e2f4a0dcaf"
+  integrity sha512-PKfkSlpN1i7XTYNMuU5X/efgtBUoSc1APM0n4VDl+5wX+Ch5sPVyQP4wNyQKZM4sJL8Eb/HPLH0CE7KcAgKwqg==
   dependencies:
     framesync "^4.1.0"
     hey-listen "^1.0.8"
@@ -12888,7 +12888,7 @@ react-helmet@6.1.0:
     react-fast-compare "^3.1.1"
     react-side-effect "^2.1.0"
 
-react-hook-form@>=6.9.1:
+react-hook-form@>=6.9.2:
   version "6.9.2"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.9.2.tgz#9512cd424e62235fda13c8fc1821f88c352e3d23"
   integrity sha512-vCPEbHVCRvsoqrQARgQ7a3VrXzqbFOO53gHFRdQzLzHMT9kxum3wfcSi8A1b49KPRsomvsqexH4tBUJMneEu+Q==
