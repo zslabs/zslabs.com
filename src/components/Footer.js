@@ -91,6 +91,7 @@ const Footer = ({ className, footerMotion, ...rest }) => {
           gridAutoColumns: 'auto',
         }}
       >
+        <FooterLink href="/contact/">Contact</FooterLink>
         <FooterLink href="https://github.com/zslabs/zslabs.com">
           Source
         </FooterLink>

@@ -34,6 +34,9 @@ const StyledButton = ({ variation, ...rest }) => {
         variation === 'secondary' && {
           backgroundPosition: '70% 85%',
         },
+        variation === 'submit' && {
+          backgroundPosition: '40% 15%',
+        },
         variation === 'github' && {
           backgroundPosition: '45% 70%',
         },
@@ -54,6 +57,7 @@ StyledButton.propTypes = {
     'default',
     'primary',
     'secondary',
+    'submit',
     'github',
     'codepen',
     'twitter',

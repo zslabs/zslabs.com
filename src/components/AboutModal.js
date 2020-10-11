@@ -148,15 +148,13 @@ const AboutModal = () => {
           </p>
           <SectionTitle>Speaking/Consulting</SectionTitle>
           <p>
-            Have an event or consulting project you&apos;d like me to be a part
-            of? Awesome!{' '}
-            <ModalLink href="mailto:info@zslabs.com">Let&apos;s chat</ModalLink>
-            .
+            Have a project you'd like me to be part of?{' '}
+            <ModalLink href="/contact/">Let's chat</ModalLink>.
           </p>
-          <SectionTitle>How&apos;d you build this site?!</SectionTitle>
+          <SectionTitle>How'd you build this site?!</SectionTitle>
           <p>
-            Because I love open-source&mdash;it&apos;s available for anyone to
-            use. Find a bug? Report it!{' '}
+            Because I love open-source&mdash;it's available for anyone to use.
+            Find a bug? Report it!{' '}
             <ModalLink href="https://github.com/zslabs/zslabs.com">
               View source
             </ModalLink>
