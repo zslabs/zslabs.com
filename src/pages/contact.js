@@ -32,7 +32,7 @@ const Contact = () => {
 
   return (
     <Foundation>
-      <HelmetSEO title="Experience" />
+      <HelmetSEO title="Contact" />
       <Section>
         <SectionTitle
           as="h1"
