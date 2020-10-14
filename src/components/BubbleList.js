@@ -186,8 +186,9 @@ export const BubbleListItem = ({
                     backgroundPosition: '60% 10%',
                   },
                 ]}
-                label={badge}
-              />
+              >
+                {badge}
+              </Badge>
             </div>
           )}
         </div>

@@ -3960,10 +3960,10 @@ change-case@^3.1.0:
     upper-case "^1.1.1"
     upper-case-first "^1.1.0"
 
-chaoskit@3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/chaoskit/-/chaoskit-3.2.2.tgz#5baa78b3a3edcba52940557293ca95ff880e3282"
-  integrity sha512-2gK5WpAjmOja/r/0bhU3XfVU9lHttotCcSnInz+ugLpe4qGklU0V9h2qzM17RTR+7M1q4T4ZXnHg+dSpkl/VBg==
+chaoskit@3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/chaoskit/-/chaoskit-3.2.3.tgz#518c23f6143233a29d126131c0d3dff0abf7994b"
+  integrity sha512-FArCqKOOr42Ew4sfhcjr4J9qFDUzdKpShJ3LvGq68es+co9PfefqhYgXykGXDDXCe0gXXT8lckXl0XbPhsdqdQ==
   dependencies:
     "@emotion/babel-preset-css-prop" "10.0.27"
     "@emotion/cache" "10.0.29"
