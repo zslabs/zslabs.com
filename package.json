@@ -24,7 +24,7 @@
     "@wzuo/babel-plugin-polished": "1.2.0",
     "await-to-js": "2.1.1",
     "babel-eslint": "10.1.0",
-    "chaoskit": "3.2.7",
+    "chaoskit": "3.2.8",
     "create-emotion-server": "10.0.27",
     "eslint-import-resolver-alias": "1.1.2",
     "eslint-loader": "3.0.3",
