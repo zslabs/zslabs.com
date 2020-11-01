@@ -4,7 +4,7 @@ import { Badge, List, ListItem } from 'chaoskit/src/components'
 import { link, text } from 'chaoskit/src/assets/styles/utility'
 import { useTheme } from 'emotion-theming'
 
-import { TextLink } from './mdxShortcodes'
+import TextLink from './TextLink'
 
 import pattern from '~media/pattern.png'
 

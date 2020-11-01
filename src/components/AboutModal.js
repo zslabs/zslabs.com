@@ -11,7 +11,7 @@ import { text, link } from 'chaoskit/src/assets/styles/utility'
 import { useTheme } from 'emotion-theming'
 
 import Icon from './Icon'
-import { TextLink } from './mdxShortcodes'
+import TextLink from './TextLink'
 import StyledButton from './StyledButton'
 
 import me from '~media/me-small.png'

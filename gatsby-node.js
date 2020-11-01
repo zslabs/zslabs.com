@@ -166,20 +166,3 @@ exports.createPages = async ({ actions, graphql }) => {
     context: 'articles',
   })
 }
-
-exports.createSchemaCustomization = ({ actions: { createTypes } }) => {
-  createTypes(`
-    type Mdx implements Node {
-      frontmatter: MdxFrontmatter
-    }
-
-    type MdxFrontmatter {
-      experience: [Shared__Blurb]
-      projects: [Shared__Blurb]
-    }
-
-    type Shared__Blurb {
-      blurb: String @mdx
-    }
-  `)
-}

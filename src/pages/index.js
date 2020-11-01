@@ -9,7 +9,6 @@ import {
 import { link, misc } from 'chaoskit/src/assets/styles/utility'
 import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient'
 import { useTheme } from 'emotion-theming'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { motion, useAnimation } from 'framer-motion'
 
 import { backgroundDots, titleStyles } from '~helpers'
@@ -19,6 +18,7 @@ import Link from '~components/Link'
 import { BubbleList, BubbleListItem } from '~components/BubbleList'
 import useArticlesOffCanvasState from '~hooks/useArticlesOffCanvasState'
 import StyledButton from '~components/StyledButton'
+import Data from '~components/Data'
 
 const Index = () => {
   const theme = useTheme()
@@ -389,7 +389,7 @@ const Index = () => {
                     title={project.title}
                     url={project.url}
                   >
-                    <MDXRenderer>{project.blurb}</MDXRenderer>
+                    <Data>{project.blurb}</Data>
                   </BubbleListItem>
                 ))}
               </BubbleList>

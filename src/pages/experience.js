@@ -2,12 +2,12 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Section, SectionTitle } from 'chaoskit/src/components'
 import { useTheme } from 'emotion-theming'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import { titleStyles } from '~helpers'
 import Foundation from '~layouts/Foundation'
 import { BubbleList, BubbleListItem } from '~components/BubbleList'
 import HelmetSEO from '~components/HelmetSEO'
+import Data from '~components/Data'
 
 const Experience = ({
   data: {
@@ -59,7 +59,7 @@ const Experience = ({
                 meta={item.title}
                 badge={item.dates}
               >
-                <MDXRenderer>{item.blurb}</MDXRenderer>
+                <Data>{item.blurb}</Data>
               </BubbleListItem>
             ))}
           </BubbleList>

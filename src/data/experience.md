@@ -4,7 +4,7 @@ experience:
     title: Senior Frontend Engineer
     dates: Sep 2018 - Current
     blurb: >-
-      Helping bring chaos to the masses. Revamped their marketing platform, alongside creating [ChaosKit](https://chaoskit.netlify.app/). Currently working on several internal tools and a few suprises; all powered by React.
+      Helping bring chaos to the masses. Revamped their marketing platform, alongside creating <a href="https://chaoskit.netlify.app/">ChaosKit</a>. Currently working on several internal tools and a few suprises; all powered by React.
   - company: Rhinogram
     title: Senior UI Engineer
     dates: Jan 2017 - Aug 2018

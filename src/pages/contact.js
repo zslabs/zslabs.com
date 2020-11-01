@@ -7,7 +7,7 @@ import ContactForm from '~components/ContactForm'
 import Foundation from '~layouts/Foundation'
 import HelmetSEO from '~components/HelmetSEO'
 import { titleStyles } from '~helpers'
-import { TextLink } from '~components/mdxShortcodes'
+import TextLink from '~components/TextLink'
 
 const ContactLink = (props) => {
   return (

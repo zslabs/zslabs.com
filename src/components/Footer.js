@@ -5,9 +5,9 @@ import { rgba } from 'polished'
 import { link } from 'chaoskit/src/assets/styles/utility'
 import { motion } from 'framer-motion'
 
-import { TextLink } from './mdxShortcodes'
 import Icon from './Icon'
 
+import TextLink from '~components/TextLink'
 import pattern from '~media/pattern.png'
 
 const FooterLink = (props) => {

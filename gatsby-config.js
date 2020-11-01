@@ -9,9 +9,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-mdx-frontmatter',
-    },
-    {
       resolve: 'gatsby-plugin-emotion',
       options: {
         sourceMap: false,
