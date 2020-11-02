@@ -42,7 +42,7 @@ const Quote = ({ children, ...rest }) => {
             fontSize: theme.fontSize.large,
             background: theme.color.light.base,
             border: theme.border.base,
-            borderRadius: '50%',
+            borderRadius: theme.borderRadius.rounded,
             display: 'grid',
             alignItems: 'center',
             justifyItems: 'center',

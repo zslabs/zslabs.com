@@ -31,7 +31,7 @@ export const BubbleList = ({ ...opts }) => {
         '&::before': {
           width: bubbleSize / 2,
           height: bubbleSize / 2,
-          borderRadius: '50%',
+          borderRadius: theme.borderRadius.rounded,
         },
 
         '&::after': {
@@ -111,7 +111,7 @@ export const BubbleListItem = ({
             background: theme.fontColor.base,
             width: bubbleSize / 2,
             height: bubbleSize / 2,
-            borderRadius: '50%',
+            borderRadius: theme.borderRadius.rounded,
           },
         },
       }}
@@ -122,7 +122,7 @@ export const BubbleListItem = ({
           width: bubbleSize,
           height: bubbleSize,
           border: `2px solid ${theme.fontColor.base}`,
-          borderRadius: '50%',
+          borderRadius: theme.borderRadius.rounded,
           backgroundColor: theme.color.light.base,
           transition: `all ${theme.timing.base} ${theme.transition.bounce}`,
           boxShadow: `0 0 0 ${bubbleSize / 4}px ${theme.color.light.base}`,

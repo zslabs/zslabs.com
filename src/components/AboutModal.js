@@ -62,7 +62,7 @@ const AboutModal = () => {
           css={{
             width: theme.height.base,
             height: theme.height.base,
-            borderRadius: '50%',
+            borderRadius: theme.borderRadius.rounded,
             boxShadow: theme.boxShadow.large,
           }}
         />
@@ -84,7 +84,7 @@ const AboutModal = () => {
             css={{
               width: theme.height.base * 2,
               height: theme.height.base * 2,
-              borderRadius: '50%',
+              borderRadius: theme.borderRadius.rounded,
               boxShadow: theme.boxShadow.large,
               position: 'relative',
               left: '50%',
