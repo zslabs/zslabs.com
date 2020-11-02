@@ -11,7 +11,7 @@ const StyledButton = ({ variation, ...rest }) => {
     <Button
       css={[
         variation && {
-          boxShadow: theme.boxShadow.neutral,
+          boxShadow: theme.boxShadow.large,
           backgroundImage: `url(${pattern}) !important`,
           backgroundColor: 'transparent',
           backgroundRepeat: 'no-repeat',

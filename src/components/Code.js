@@ -103,7 +103,7 @@ const Code = ({ codeString, language, filename }) => {
       {({ className, tokens, getLineProps, getTokenProps }) => (
         <div
           css={{
-            boxShadow: theme.boxShadow.neutral,
+            boxShadow: theme.boxShadow.large,
             marginTop: theme.space.base,
             marginBottom: theme.space.base,
           }}

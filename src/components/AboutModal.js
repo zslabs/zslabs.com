@@ -63,7 +63,7 @@ const AboutModal = () => {
             width: theme.height.base,
             height: theme.height.base,
             borderRadius: '50%',
-            boxShadow: theme.boxShadow.neutral,
+            boxShadow: theme.boxShadow.large,
           }}
         />
       </StyledButton>
@@ -85,7 +85,7 @@ const AboutModal = () => {
               width: theme.height.base * 2,
               height: theme.height.base * 2,
               borderRadius: '50%',
-              boxShadow: theme.boxShadow.neutral,
+              boxShadow: theme.boxShadow.large,
               position: 'relative',
               left: '50%',
               transform: 'translateX(-50%)',
