@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Tooltip } from 'chaoskit/src/components'
 import { misc } from 'chaoskit/src/assets/styles/utility'
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import Foundation from '~layouts/Foundation'

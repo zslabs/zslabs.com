@@ -8,7 +8,7 @@ import {
   ListItem,
 } from 'chaoskit/src/components'
 import { text, link } from 'chaoskit/src/assets/styles/utility'
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 
 import Icon from './Icon'
 import TextLink from './TextLink'

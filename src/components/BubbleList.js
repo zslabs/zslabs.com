@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { rgba } from 'polished'
 import { Badge, List, ListItem } from 'chaoskit/src/components'
 import { link, text } from 'chaoskit/src/assets/styles/utility'
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 
 import TextLink from './TextLink'
 

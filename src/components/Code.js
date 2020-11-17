@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { rgba } from 'polished'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 import { Button } from 'chaoskit/src/components'
 import useUpdateEffect from 'react-use/lib/useUpdateEffect'
 

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 import { Button } from 'chaoskit/src/components'
 
 import pattern from '~media/pattern.png'

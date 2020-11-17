@@ -1,6 +1,4 @@
-import PropTypes from 'prop-types'
-import { ThemeProvider } from 'emotion-theming'
-import { CacheProvider } from '@emotion/core'
+import { CacheProvider, ThemeProvider } from '@emotion/react'
 import { ckCache } from 'chaoskit/src/helpers/Wrapper'
 import { MDXProvider } from '@mdx-js/react'
 
@@ -15,7 +13,3 @@ export const wrapRootElement = ({ element }) => (
     </ThemeProvider>
   </CacheProvider>
 )
-
-wrapRootElement.propTypes = {
-  element: PropTypes.node.isRequired,
-}

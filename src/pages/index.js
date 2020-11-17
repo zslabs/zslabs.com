@@ -8,7 +8,7 @@ import {
 } from 'chaoskit/src/components'
 import { link, misc } from 'chaoskit/src/assets/styles/utility'
 import { generateGradient } from 'chaoskit/src/assets/styles/utility/gradient'
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 import { motion, useAnimation } from 'framer-motion'
 
 import { backgroundDots, titleStyles } from '~helpers'
