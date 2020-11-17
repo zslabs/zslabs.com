@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 import { Button, List, ListItem } from 'chaoskit/src/components'
 import { preToCodeBlock } from 'mdx-utils'
 import GHSlugger from 'github-slugger'

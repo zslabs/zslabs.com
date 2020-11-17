@@ -55,6 +55,15 @@ exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
     name: require.resolve('@wzuo/babel-plugin-polished'),
   })
+
+  actions.setBabelPreset({
+    name: require.resolve('@emotion/babel-preset-css-prop'),
+    options: {
+      autoLabel: 'dev-only',
+      labelFormat: '[local]',
+      sourceMap: false,
+    },
+  })
 }
 
 //

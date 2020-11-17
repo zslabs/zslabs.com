@@ -1,4 +1,4 @@
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 import { Section, SectionTitle } from 'chaoskit/src/components'
 import { misc } from 'chaoskit/src/assets/styles/utility'
 import { underline } from 'chaoskit/src/assets/styles/utility/text'

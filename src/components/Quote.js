@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 import { misc } from 'chaoskit/src/assets/styles/utility'
 
 import quoteIcon from '~icons/quote.svg'

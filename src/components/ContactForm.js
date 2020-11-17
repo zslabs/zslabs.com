@@ -1,5 +1,5 @@
 import { useState, Fragment } from 'react'
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 import { Alert, Form } from 'chaoskit/src/components'
 import { misc } from 'chaoskit/src/assets/styles/utility'
 import { useForm, FormProvider } from 'react-hook-form'

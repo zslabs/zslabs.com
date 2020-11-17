@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 import clsx from 'clsx'
 import { rgba } from 'polished'
 import { link } from 'chaoskit/src/assets/styles/utility'

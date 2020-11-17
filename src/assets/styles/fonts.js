@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 
 import ManropeMediumWoff2 from '../fonts/Manrope-Medium.woff2'
 import ManropeMediumWoff from '../fonts/Manrope-Medium.woff'

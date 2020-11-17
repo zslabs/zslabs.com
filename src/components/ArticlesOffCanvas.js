@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { OffCanvas } from 'chaoskit/src/components'
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 
 import Icon from './Icon'
 import { BubbleList, BubbleListItem } from './BubbleList'

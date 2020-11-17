@@ -8,12 +8,6 @@ module.exports = {
     twitter: '@zslabs',
   },
   plugins: [
-    {
-      resolve: 'gatsby-plugin-emotion',
-      options: {
-        sourceMap: false,
-      },
-    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',

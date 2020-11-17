@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Section, SectionTitle } from 'chaoskit/src/components'
-import { useTheme } from 'emotion-theming'
+import { useTheme } from '@emotion/react'
 
 import { titleStyles } from '~helpers'
 import Foundation from '~layouts/Foundation'
