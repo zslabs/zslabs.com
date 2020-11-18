@@ -18,8 +18,10 @@
   "author": "Zach Schnackel <info@zslabs.com>",
   "dependencies": {
     "@emotion/babel-preset-css-prop": "11.0.0",
+    "@emotion/css": "11.0.0",
     "@emotion/eslint-plugin": "11.0.0",
     "@emotion/react": "11.1.1",
+    "@emotion/server": "11.0.0",
     "@hookform/resolvers": "1.0.1",
     "@mdx-js/mdx": "1.6.21",
     "@mdx-js/react": "1.6.21",
