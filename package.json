@@ -30,6 +30,8 @@
     "await-to-js": "2.1.1",
     "babel-eslint": "10.1.0",
     "chaoskit": "4.1.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-prettier": "6.15.0",
     "eslint-import-resolver-alias": "1.1.2",
     "eslint-loader": "4.0.2",
     "eslint-plugin-prettier": "3.1.4",
