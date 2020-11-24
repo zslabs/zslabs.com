@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
 import { rgba } from 'polished'
 import Highlight, { defaultProps } from 'prism-react-renderer'
@@ -12,7 +12,7 @@ import Icon from './Icon'
 const CodeHeader = ({ filename, language, codeString, ...rest }) => {
   const theme = useTheme()
 
-  const [isCopied, setCopied] = useState(false)
+  const [isCopied, setCopied] = React.useState(false)
 
   // Reset icon after 3 seconds
   useUpdateEffect(() => {

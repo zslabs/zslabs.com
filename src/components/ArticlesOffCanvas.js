@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
 import { OffCanvas } from 'chaoskit/src/components'
 import { useTheme } from '@emotion/react'
@@ -17,7 +17,7 @@ const ArticlesOffCanvas = ({ articles }) => {
   const toggle = useArticlesOffCanvasState((state) => state.toggle)
 
   return (
-    <Fragment>
+    <React.Fragment>
       <StyledButton
         className="ZS__Header__Item"
         type="reset"
@@ -59,7 +59,7 @@ const ArticlesOffCanvas = ({ articles }) => {
           ))}
         </BubbleList>
       </OffCanvas>
-    </Fragment>
+    </React.Fragment>
   )
 }
 

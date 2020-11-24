@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { useStaticQuery, graphql } from 'gatsby'
@@ -102,7 +102,7 @@ const Foundation = ({
     `
   )
 
-  useEffect(() => {
+  React.useEffect(() => {
     // Get more reliable viewport units
     rootUnits.install()
 
@@ -118,7 +118,7 @@ const Foundation = ({
   }, [controls, onAfterAnimation, runAnimation])
 
   return (
-    <Fragment>
+    <React.Fragment>
       <Global styles={[globalStyles(theme), global(theme), fonts(theme)]} />
       <HelmetSEO />
       <Container size="small">
@@ -190,7 +190,7 @@ const Foundation = ({
         <main>{children}</main>
         <Footer footerMotion={footerMotion} />
       </Container>
-    </Fragment>
+    </React.Fragment>
   )
 }
 

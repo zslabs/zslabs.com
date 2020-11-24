@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react'
+import * as React from 'react'
 import PropTypes from 'prop-types'
 import {
   Modal,
@@ -45,11 +45,11 @@ const SectionTitle = (props) => {
 }
 
 const AboutModal = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = React.useState(false)
   const theme = useTheme()
 
   return (
-    <Fragment>
+    <React.Fragment>
       <StyledButton
         className="ZS__Header__Item"
         type="reset"
@@ -162,7 +162,7 @@ const AboutModal = () => {
           </p>
         </ModalBody>
       </Modal>
-    </Fragment>
+    </React.Fragment>
   )
 }
 

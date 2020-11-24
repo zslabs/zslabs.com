@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react'
+import * as React from 'react'
 import { useTheme } from '@emotion/react'
 import { Alert, Form } from 'chaoskit/src/components'
 import { misc } from 'chaoskit/src/assets/styles/utility'
@@ -33,7 +33,7 @@ const ContactForm = (props) => {
     resolver: yupResolver(schema),
   })
 
-  const [response, setResponse] = useState()
+  const [response, setResponse] = React.useState()
 
   const handleSubmit = async (data) => {
     const [, success] = await to(
@@ -53,7 +53,7 @@ const ContactForm = (props) => {
   }
 
   return (
-    <Fragment>
+    <React.Fragment>
       {response === 'success' && (
         <Alert type="primary">Your message was sent successfully!</Alert>
       )}
@@ -99,7 +99,7 @@ const ContactForm = (props) => {
           </Form>
         </FormProvider>
       )}
-    </Fragment>
+    </React.Fragment>
   )
 }
 
